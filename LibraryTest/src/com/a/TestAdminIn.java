@@ -46,6 +46,7 @@ public class TestAdminIn extends JFrame implements MouseListener{
      	quit.setBounds(240,160,60,25);
      	add(queren);add(quit);
      	quit.addMouseListener(this);
+     	queren.addMouseListener(this);
       }
 
 	public void mouseClicked(MouseEvent e) {
@@ -54,7 +55,10 @@ public class TestAdminIn extends JFrame implements MouseListener{
 			tm.main(null);
 			this.dispose();
 		}
-		
+		if(e.getSource()==queren){
+			TestAdminInner tai=new TestAdminInner();
+			this.dispose();
+		}
 	}
 
 	public void mousePressed(MouseEvent e) {
