@@ -37,13 +37,14 @@ public class TestAdminInner extends JFrame implements MouseListener,ActionListen
 		delete.addMouseListener(this);
 		quit.addMouseListener(this);
 		query.addMouseListener(this);
+		update.addMouseListener(this);
 	}
 	public void actionPerformed(ActionEvent e) {
 		
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+	
 		if(e.getSource()==quit){
 			dispose();
 		}
@@ -59,7 +60,10 @@ public class TestAdminInner extends JFrame implements MouseListener,ActionListen
 			DeleteBook db=new DeleteBook();
 			this.dispose();
 		}
-		
+		if(e.getSource()==update){
+			ChangeBook cb=new ChangeBook();
+			this.dispose();
+		}
 	}
 
 	public void mousePressed(MouseEvent e) {
