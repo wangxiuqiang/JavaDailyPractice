@@ -34,6 +34,7 @@ public class TestAdminInner extends JFrame implements MouseListener,ActionListen
 		 quit=new JButton("退出");
 		quit.setBounds(180,240,110,28);
 		add(quit);
+		delete.addMouseListener(this);
 		quit.addMouseListener(this);
 		query.addMouseListener(this);
 	}
@@ -52,6 +53,10 @@ public class TestAdminInner extends JFrame implements MouseListener,ActionListen
 		}
 		if(e.getSource()==query){
 			QueryBook qb=new QueryBook();
+			this.dispose();
+		}
+		if(e.getSource()==delete){
+			DeleteBook db=new DeleteBook();
 			this.dispose();
 		}
 		

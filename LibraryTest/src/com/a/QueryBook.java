@@ -25,7 +25,8 @@ public class QueryBook extends JFrame implements MouseListener{
 		queryAll.setBounds(50, 50,95, 25);
 		add(queryAll);
 		allBook = new JTextArea();
-		allBook.setBounds(50,50,160,180);
+		allBook.setBounds(50,90,320,150);
+		allBook.setEditable(false);
        add(allBook);
 	}
 	public void mouseClicked(MouseEvent e) {
