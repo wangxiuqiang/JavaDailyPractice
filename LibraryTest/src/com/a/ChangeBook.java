@@ -3,6 +3,10 @@ package com.a;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
@@ -12,11 +16,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-public class ChangeBook implements MouseListener {
+public class ChangeBook implements MouseListener,ActionListener,ItemListener{
 	public JFrame changeBook;
 	public JTextField QueRen, input;
 	JButton changeOk, changeFirst;
-
+    public String str;
+    public  JComboBox<String> comboBox;
 	public ChangeBook() {
 		changeBook = new JFrame("修改图书");
 		init();
@@ -42,6 +47,7 @@ public class ChangeBook implements MouseListener {
 		changeOk.setBounds(350, 130, 60, 20);
 		changeBook.add(changeFirst);
 		changeBook.add(changeOk);
+		changeOk.addMouseListener(this);
 	}
          /**
           * 添加新的容器   然后改他的布局格式
@@ -63,7 +69,8 @@ public class ChangeBook implements MouseListener {
 //			   changeBook.add(labelDayMoney);
  	//	}
 	public void ComboBox() {
-         JComboBox<String> comboBox=new JComboBox<String>();
+        comboBox=new JComboBox<String>();
+         comboBox.addItem("请选择要修改的内容");
          comboBox.addItem("名称");
          comboBox.addItem("种类");
          comboBox.addItem("价格");
@@ -71,16 +78,24 @@ public class ChangeBook implements MouseListener {
          comboBox.addItem("作者");
          comboBox.addItem("数量");
          comboBox.addItem("日租金");
-         comboBox.setBounds(130, 130,100, 20);
+         /*
+          * 给下拉列表加内容可以用String []a ={"",""}
+          * 然后用for循环  a[i]添加
+          */
+         comboBox.setBounds(90, 130,150, 20); 
+         comboBox.addItemListener(this);
          changeBook.add(comboBox);
          JTextField change=new JTextField();
-         change.setBounds(230, 130,80, 20);
+         change.setBounds(256, 130,80, 20);
          changeBook.add(change);
+         
 	}
-
+  
 	public void mouseClicked(MouseEvent e) {
+		if(e.getSource()==changeOk){
+			//System.out.println(str);
+		}
 	}
-
 	public void mousePressed(MouseEvent e) {
 	}
 
@@ -90,5 +105,12 @@ public class ChangeBook implements MouseListener {
 	public void mouseEntered(MouseEvent e) {
 	}
 	public void mouseExited(MouseEvent e) {
+	}
+	public void itemStateChanged(ItemEvent e) {
+         str=comboBox.getSelectedItem().toString();  
+	}
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
