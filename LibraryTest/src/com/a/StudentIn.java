@@ -28,10 +28,15 @@ public class StudentIn extends JFrame implements ActionListener{
 		add(borrowBook);
 		add(queryBook);
 		queryBook.addActionListener(this);
+		borrowBook.addActionListener(this);
 	}
 	public void actionPerformed(ActionEvent e) {
             if(e.getSource()==queryBook){
             	QueryBook qb=new QueryBook();
+            	this.dispose();
+            }
+            if(e.getSource()==borrowBook){
+            	BorrowBook bb=new BorrowBook();
             	this.dispose();
             }
 	}
