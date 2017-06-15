@@ -56,7 +56,8 @@ public class TestJFrame extends JFrame implements MouseListener{
 				this.dispose();
 			}
 			else if(e.getSource()==stuButton){
-				StudentIn si=new StudentIn();
+				
+				StudentInner si=new StudentInner();
 				this.dispose();
 			}
 			else if(e.getSource()==zhuceButton){
