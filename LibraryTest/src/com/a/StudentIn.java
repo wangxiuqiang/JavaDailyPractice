@@ -29,6 +29,7 @@ public class StudentIn extends JFrame implements ActionListener{
 		add(queryBook);
 		queryBook.addActionListener(this);
 		borrowBook.addActionListener(this);
+		backBook.addActionListener(this);
 	}
 	public void actionPerformed(ActionEvent e) {
             if(e.getSource()==queryBook){
@@ -37,6 +38,10 @@ public class StudentIn extends JFrame implements ActionListener{
             }
             if(e.getSource()==borrowBook){
             	BorrowBook bb=new BorrowBook();
+            	this.dispose();
+            }
+            if(e.getSource()==backBook){
+            	BackBook bb=new BackBook();
             	this.dispose();
             }
 	}
