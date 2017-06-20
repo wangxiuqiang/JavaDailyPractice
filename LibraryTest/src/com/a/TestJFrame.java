@@ -45,6 +45,7 @@ public class TestJFrame extends JFrame implements MouseListener{
             quitButton.addMouseListener(this);
             adminButton.addMouseListener(this);
             stuButton.addMouseListener(this);
+            zhuceButton.addMouseListener(this);
         }
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource()==quitButton){
@@ -61,7 +62,8 @@ public class TestJFrame extends JFrame implements MouseListener{
 				this.dispose();
 			}
 			else if(e.getSource()==zhuceButton){
-				
+				StudentZhuce szc = new StudentZhuce();
+				this.dispose();
 			}
 		}
 

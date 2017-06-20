@@ -20,32 +20,27 @@ public class StudentZhuce {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StudentZhuce window = new StudentZhuce();
-					window.frame.setVisible(true);
-					window.frame.setTitle("学生注册");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+	
+			public void init() {
+				   frame = new JFrame();
+					frame.setVisible(true);
+					frame.setTitle("学生注册");
+					initialize();
 			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
 	public StudentZhuce() {
-		initialize();
+	        init();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		
 		frame.setBounds(100, 100, 500, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
