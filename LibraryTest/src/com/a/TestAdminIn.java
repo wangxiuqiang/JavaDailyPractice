@@ -8,6 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.spi.LocaleServiceProvider;
 
 import javax.naming.InitialContext;
 import javax.swing.JButton;
@@ -16,16 +22,15 @@ import javax.swing.JTextField;
 
 public class TestAdminIn extends JFrame implements MouseListener, ActionListener {
 	JButton queren, quit;
-	String userText, passwdText;
+ static	String userText, passwdText;
 	JTextField user, passwd;
 
 	public TestAdminIn() {
-		init();
-		setVisible(true);
-		setBounds(100, 100, 500, 300);
 	}
 
 	public void init() {
+		setVisible(true);
+		setBounds(100, 100, 500, 300);
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Label label = new Label("欢迎管理员登录,请输入用户名和密码:");
@@ -55,14 +60,42 @@ public class TestAdminIn extends JFrame implements MouseListener, ActionListener
 		quit.addMouseListener(this);
 		queren.addActionListener(this);
 		user.addActionListener(this);
+		passwd.addActionListener(this);
 	}
 
-	public void actionPerformed(ActionEvent e) {	
+	public void actionPerformed(ActionEvent e) {
 		userText = user.getText();
-		if(e.getSource() == queren){
-			//System.out.println(userText);
-			TestAdminInner tai = new TestAdminInner();
-			this.dispose();
+		passwdText = passwd.getText();
+		if (e.getSource() == queren) {
+			// System.out.println(userText);
+			String name1 = "";
+			String passwd1 = "";
+			jdbcDriver jd = new jdbcDriver();
+			try {
+				Class.forName(jd.driver);
+				Connection connection = DriverManager.getConnection(jd.url, jd.user, jd.password);
+				String sql = "select name,passwd from admin where id=1";
+				Statement statement = connection.createStatement();
+				ResultSet rSet = statement.executeQuery(sql);
+				
+				while (rSet.next()) {
+					name1 = rSet.getString(1);
+					passwd1 = rSet.getString(2);
+				}
+			//	System.out.println(name1);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			if( name1 .equals(userText) && passwd1.equals(passwdText)){
+				TestAdminInner tai = new TestAdminInner();
+				this.dispose();
+			}
+			else{
+			    Lose lose = new Lose();
+			    dispose();
+			}
+			
+
 		}
 	}
 
@@ -72,7 +105,7 @@ public class TestAdminIn extends JFrame implements MouseListener, ActionListener
 			tm.main(null);
 			this.dispose();
 		}
-		
+
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -91,7 +124,7 @@ public class TestAdminIn extends JFrame implements MouseListener, ActionListener
 	}
 
 	public void mouseExited(MouseEvent e) {
-		
+
 	}
 
 }

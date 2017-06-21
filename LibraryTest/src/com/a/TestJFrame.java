@@ -54,11 +54,13 @@ public class TestJFrame extends JFrame implements MouseListener{
 			else if(e.getSource()==adminButton){
 				TestAdminIn ta=new TestAdminIn();
 				ta.setTitle("管理员登录");
+				ta.init();
 				this.dispose();
 			}
 			else if(e.getSource()==stuButton){
 				
 				StudentInner si=new StudentInner();
+				si.init();
 				this.dispose();
 			}
 			else if(e.getSource()==zhuceButton){
