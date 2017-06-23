@@ -10,18 +10,34 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Set;
+import java.util.jar.Attributes.Name;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
 
-public class ChangeBook implements MouseListener,ActionListener,ItemListener{
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
+
+public class ChangeBook implements ActionListener, ItemListener {
 	public JFrame changeBook;
-	public JTextField QueRen, input;
+	public JTextField QueRen, input, change;
 	JButton changeOk, changeFirst;
-    public String str;
-    public  JComboBox<String> comboBox;
+	public String str;
+	/*
+	 * float1 string int1 表示修改的内容的全局变量，通过判断后给其赋值，然后把 这三个值写入ＳＱＬ语句
+	 */
+	Float float1;
+	String string;
+	int int1;
+	public JComboBox<String> comboBox;
+	int id;
+
 	public ChangeBook() {
 		changeBook = new JFrame("修改图书");
 		init();
@@ -34,83 +50,166 @@ public class ChangeBook implements MouseListener,ActionListener,ItemListener{
 		changeBook.setLayout(null);
 		changeFirst = new JButton("确认");
 		changeFirst.setBounds(320, 50, 60, 30);
+
 		QueRen = new JTextField();
 		QueRen.setEditable(false);
 		QueRen.setText("请输入需要修改的书籍id");
 		QueRen.setBounds(60, 50, 160, 35);
 		QueRen.setFont(new Font("宋体", Font.BOLD, 13));
-		changeBook.add(QueRen);
+
 		input = new JTextField();
 		input.setBounds(230, 55, 60, 25);
-		changeBook.add(input);
+
 		changeOk = new JButton("修改");
 		changeOk.setBounds(350, 130, 60, 20);
+
 		changeBook.add(changeFirst);
+		changeBook.add(QueRen);
 		changeBook.add(changeOk);
-		changeOk.addMouseListener(this);
+		changeBook.add(input);
+
+		input.addActionListener(this);
+		changeOk.addActionListener(this);
+		changeFirst.addActionListener(this);
+
 	}
-         /**
-          * 添加新的容器   然后改他的布局格式
-          */
-	//	public void chang(){
-//			Label labelName=new Label("名称");
-//			Label labelType=new Label("种类");
-//			Label labelPrice=new Label("价格");
-//			Label labelPublish=new Label("出版社");
-//			Label labelAuthor=new Label("作者");
-//			Label labelCount=new Label("数量");
-//			Label labelDayMoney=new Label("日租金");
-//			   changeBook.add(labelName);
-//			   changeBook.add(labelType);
-//			   changeBook.add(labelPrice);
-//			   changeBook.add(labelPublish);
-//			   changeBook.add(labelAuthor);
-//			   changeBook.add(labelCount);
-//			   changeBook.add(labelDayMoney);
- 	//	}
+
 	public void ComboBox() {
-        comboBox=new JComboBox<String>();
-         comboBox.addItem("请选择要修改的内容");
-         comboBox.addItem("名称");
-         comboBox.addItem("种类");
-         comboBox.addItem("价格");
-         comboBox.addItem("出版社");
-         comboBox.addItem("作者");
-         comboBox.addItem("数量");
-         comboBox.addItem("日租金");
-         /*
-          * 给下拉列表加内容可以用String []a ={"",""}
-          * 然后用for循环  a[i]添加
-          */
-         comboBox.setBounds(90, 130,150, 20); 
-         comboBox.addItemListener(this);
-         changeBook.add(comboBox);
-         JTextField change=new JTextField();
-         change.setBounds(256, 130,80, 20);
-         changeBook.add(change);
-         
+		comboBox = new JComboBox<String>();
+		comboBox.addItem("请选择要修改的内容");
+		comboBox.addItem("名称");
+		comboBox.addItem("种类");
+		comboBox.addItem("价格");
+		comboBox.addItem("出版社");
+		comboBox.addItem("作者");
+		comboBox.addItem("数量");
+		comboBox.addItem("日租金");
+		comboBox.setBounds(90, 130, 150, 30);
+		comboBox.addItemListener(this);
+		changeBook.add(comboBox);
+
+		change = new JTextField();
+		change.setBounds(256, 130, 80, 30);
+		changeBook.add(change);
+		change.addActionListener(this);
 	}
-  
-	public void mouseClicked(MouseEvent e) {
-		if(e.getSource()==changeOk){
-			//System.out.println(str);
+
+	public String decideNumber() {
+		if (str.equals("名称")) {
+			return "name";
+		}
+		if (str.equals("种类")) {
+			return "type";
+		}
+		if (str.equals("出版社")) {
+			return "publishingHouse";
+		}
+		if (str.equals("价格")) {
+			return "price";
+		}
+		if (str.equals("作者")) {
+			return "author";
+		}
+		if (str.equals("数量")) {
+			return "bookCount";
+		}
+		if (str.equals("日租金")) {
+			return "dayMoney";
+		} else {
+			return "";
+		}
+
+	}
+
+	public int changFlag(String bookName) {
+		
+		if (bookName.equals("price") ||bookName.equals("dayMoney")) {
+			return 1;
+		} else if (bookName.equals("bookCount")) {
+			return 2;
+		} else {
+			return 0;
 		}
 	}
-	public void mousePressed(MouseEvent e) {
-	}
 
-	public void mouseReleased(MouseEvent e) {
-	}
-
-	public void mouseEntered(MouseEvent e) {
-	}
-	public void mouseExited(MouseEvent e) {
-	}
 	public void itemStateChanged(ItemEvent e) {
-         str=comboBox.getSelectedItem().toString();  
+		str = comboBox.getSelectedItem().toString();
 	}
+
+	public String jdbcForQueren() throws Exception {
+		Class.forName(jdbcDriver.driver);
+		Connection Check = DriverManager.getConnection(jdbcDriver.url, jdbcDriver.user, jdbcDriver.password);
+		String sq1 = "select name from book where id=" + id;
+		String bookName = "";
+		Statement statement = Check.createStatement();
+		ResultSet rs;
+		rs = statement.executeQuery(sq1);
+		while (rs.next()) {
+			bookName = rs.getString(1);
+		}
+		return bookName;
+	}
+
+	public void jdbcForChangBook(String sql2) throws Exception {
+		Class.forName(jdbcDriver.driver);
+		Connection Check = DriverManager.getConnection(jdbcDriver.url, jdbcDriver.user, jdbcDriver.password);
+		Statement statement = Check.createStatement();
+		statement.execute(sql2);
+	}
+
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		String bookName = "";
+		String changeValue = "";
+		String ids = input.getText();
+		changeValue = change.getText();
+		id = Integer.parseInt(ids);
+		if (e.getSource() == changeFirst) {
+			
+			try {
+				bookName = jdbcForQueren();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			JTextField bookWantChange = new JTextField();
+			bookWantChange.setBounds(150, 80, 60, 30);
+			bookWantChange.setEditable(false);
+			bookWantChange.setText(bookName);
+			changeBook.add(bookWantChange);
+		}
+
+		if (e.getSource() == changeOk) {
+			String string = decideNumber();
+			//System.out.println(string);
+			if (changFlag(string) == 1) {
+				float1 = Float.parseFloat(changeValue);
+				String sql2 = "update book set " + string+ " = " + float1 + " where id=" + id;
+				try {
+					jdbcForChangBook(sql2);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else if (changFlag(string) == 2) {
+				int1 = Integer.parseInt(changeValue);
+				String sql2 = "update book set " + string + " = " + int1 + " where id=" + id;
+				try {
+					jdbcForChangBook(sql2);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else if(changFlag(string) == 0){
+				 
+				String sql2 = "update book set " + string + " = " +"'"+ changeValue+"'" + " where id=" + id;
+				try {
+					jdbcForChangBook(sql2);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			//String string = decideNumber();
+			// System.out.println(string);
+		}
 	}
 }

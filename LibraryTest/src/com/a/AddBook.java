@@ -15,7 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
-
+/**
+ * 已经成功写入数据
+ * @author wxq
+ *
+ */
 public class AddBook extends JFrame implements ActionListener {
 	JButton addFinally;
 	Label label;
@@ -85,7 +89,10 @@ public class AddBook extends JFrame implements ActionListener {
 		/*
 		 * 添加textfile
 		 */
-
+		id = new JTextField();
+		id.setBounds(140, 40,80, 18);
+		add(id);
+		id.addActionListener(this);
 		name = new JTextField();
 		name.setBounds(140, 70, 80, 18);
 		add(name);
@@ -137,6 +144,8 @@ public class AddBook extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		String sida = id.getText();
+		ida = Integer.parseInt(sida);
 		namea = name.getText();
 		typea = type.getText();
 		String pricea = Money.getText();
