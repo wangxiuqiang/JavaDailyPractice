@@ -9,6 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -27,7 +28,7 @@ import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 public class ChangeBook implements ActionListener, ItemListener {
 	public JFrame changeBook;
 	public JTextField QueRen, input, change;
-	JButton changeOk, changeFirst;
+	JButton changeOk, changeFirst , back;
 	public String str;
 	/*
 	 * float1 string int1 表示修改的内容的全局变量，通过判断后给其赋值，然后把 这三个值写入ＳＱＬ语句
@@ -62,8 +63,10 @@ public class ChangeBook implements ActionListener, ItemListener {
 
 		changeOk = new JButton("修改");
 		changeOk.setBounds(350, 130, 60, 20);
-
+		back = new JButton("返回");
+		back.setBounds(350, 190, 60, 30);
 		changeBook.add(changeFirst);
+		changeBook.add(back);
 		changeBook.add(QueRen);
 		changeBook.add(changeOk);
 		changeBook.add(input);
@@ -71,7 +74,8 @@ public class ChangeBook implements ActionListener, ItemListener {
 		input.addActionListener(this);
 		changeOk.addActionListener(this);
 		changeFirst.addActionListener(this);
-
+		back.addActionListener(this);
+        
 	}
 
 	public void ComboBox() {
@@ -122,8 +126,8 @@ public class ChangeBook implements ActionListener, ItemListener {
 	}
 
 	public int changFlag(String bookName) {
-		
-		if (bookName.equals("price") ||bookName.equals("dayMoney")) {
+
+		if (bookName.equals("price") || bookName.equals("dayMoney")) {
 			return 1;
 		} else if (bookName.equals("bookCount")) {
 			return 2;
@@ -163,15 +167,20 @@ public class ChangeBook implements ActionListener, ItemListener {
 		String ids = input.getText();
 		changeValue = change.getText();
 		id = Integer.parseInt(ids);
+		if(e.getSource() == back){
+			TestAdminInner tai = new TestAdminInner();
+			changeBook.dispose();
+		}
 		if (e.getSource() == changeFirst) {
-			
+
 			try {
 				bookName = jdbcForQueren();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+			
 			JTextField bookWantChange = new JTextField();
-			bookWantChange.setBounds(150, 80, 60, 30);
+			bookWantChange.setBounds(150, 90, 60, 30);
 			bookWantChange.setEditable(false);
 			bookWantChange.setText(bookName);
 			changeBook.add(bookWantChange);
@@ -179,12 +188,17 @@ public class ChangeBook implements ActionListener, ItemListener {
 
 		if (e.getSource() == changeOk) {
 			String string = decideNumber();
-			//System.out.println(string);
+			// System.out.println(string);
 			if (changFlag(string) == 1) {
 				float1 = Float.parseFloat(changeValue);
-				String sql2 = "update book set " + string+ " = " + float1 + " where id=" + id;
+				String sql2 = "update book set " + string + " = " + float1 + " where id=" + id;
 				try {
 					jdbcForChangBook(sql2);
+					JTextField bookWantChange = new JTextField();
+					bookWantChange.setBounds(150, 150, 60, 30);
+					bookWantChange.setEditable(false);
+					bookWantChange.setText("修改成功");
+					changeBook.add(bookWantChange);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -194,22 +208,33 @@ public class ChangeBook implements ActionListener, ItemListener {
 				String sql2 = "update book set " + string + " = " + int1 + " where id=" + id;
 				try {
 					jdbcForChangBook(sql2);
+					JTextField bookWantChange = new JTextField();
+					bookWantChange.setBounds(150, 150, 60, 30);
+					bookWantChange.setEditable(false);
+					bookWantChange.setText("修改成功");
+					changeBook.add(bookWantChange);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			} else if(changFlag(string) == 0){
-				 
-				String sql2 = "update book set " + string + " = " +"'"+ changeValue+"'" + " where id=" + id;
+			} else if (changFlag(string) == 0) {
+
+				String sql2 = "update book set " + string + " = " + "'" + changeValue + "'" + " where id=" + id;
 				try {
 					jdbcForChangBook(sql2);
+					JTextField bookWantChange = new JTextField();
+					bookWantChange.setBounds(150, 170, 60, 30);
+					bookWantChange.setEditable(false);
+					bookWantChange.setText("修改成功");
+					changeBook.add(bookWantChange);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
-			//String string = decideNumber();
+			// String string = decideNumber();
 			// System.out.println(string);
 		}
 	}
+
 }
