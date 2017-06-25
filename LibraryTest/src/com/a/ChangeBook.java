@@ -165,8 +165,10 @@ public class ChangeBook implements ActionListener, ItemListener {
 		String bookName = "";
 		String changeValue = "";
 		String ids = input.getText();
-		changeValue = change.getText();
 		id = Integer.parseInt(ids);
+		changeValue = change.getText();
+		
+		
 		if(e.getSource() == back){
 			TestAdminInner tai = new TestAdminInner();
 			changeBook.dispose();

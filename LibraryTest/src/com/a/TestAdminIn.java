@@ -18,12 +18,14 @@ import java.util.spi.LocaleServiceProvider;
 import javax.naming.InitialContext;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class TestAdminIn extends JFrame implements MouseListener, ActionListener {
 	JButton queren, quit;
  static	String userText, passwdText;
-	JTextField user, passwd;
+	JTextField user;
+	JPasswordField passwd;
 
 	public TestAdminIn() {
 	}
@@ -44,7 +46,7 @@ public class TestAdminIn extends JFrame implements MouseListener, ActionListener
 		user = new JTextField(10);
 		user.setBounds(240, 80, 60, 25);
 		add(user);
-		passwd = new JTextField(10);
+		passwd = new JPasswordField(10);
 		Label pwdlabel = new Label("密码:");
 		pwdlabel.setBounds(165, 120, 60, 20);
 		pwdlabel.setFont(new Font("楷体", Font.BOLD, 18));
