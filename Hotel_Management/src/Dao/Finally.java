@@ -20,62 +20,64 @@ public class Finally  implements ActionListener{
 	private JTextField textPrice;
 
 	public Finally() {
-		initialize();
-	}
-
-	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		init();
+	}
+//ä¸­æ–‡
+	private void init() {
 		
-		JLabel label = new JLabel("¿Í»§½áÕË");
+		frame.setLayout(null);
+		
+		
+		JLabel label = new JLabel("é”Ÿé…µä¼™æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
 		label.setBounds(133, 30, 196, 30);
-		label.setFont(new Font("¿¬Ìå",Font.BOLD,27));
-		frame.getContentPane().add(label);
+		label.setFont(new Font("é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·",Font.BOLD,27));
+		frame.add(label);
 		
-		JLabel trueLabel = new JLabel("ÇëÊäÈë·¿¼äºÅ»ò×ÀºÅ:");
+		JLabel trueLabel = new JLabel("é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¯«æˆ¿é”Ÿæ–¤æ‹·å‘•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½:");
 		trueLabel.setBounds(31, 70, 225, 15);
-		frame.getContentPane().add(trueLabel);
+		frame.add(trueLabel);
 		
-		JLabel menu = new JLabel("²Ëµ¥:");
+		JLabel menu = new JLabel("é”Ÿå‰¿ç¢‰æ‹·:");
 		menu.setBounds(37, 95, 54, 15);
-		frame.getContentPane().add(menu);
+		frame.add(menu);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(31, 120, 298, 72);
-		frame.getContentPane().add(textArea);
+		frame.add(textArea);
 		
-		JLabel priceLabel = new JLabel("×Ü½ğ¶î:");
+		JLabel priceLabel = new JLabel("é”Ÿæ°æ–¤æ‹·é”Ÿï¿½:");
 		priceLabel.setBounds(219, 202, 54, 15);
-		frame.getContentPane().add(priceLabel);
+		frame.add(priceLabel);
 		
 		
-		JButton giveMoney = new JButton("½áÕË");
+		JButton giveMoney = new JButton("é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
 		giveMoney.setBounds(273, 229, 93, 23);
-		frame.getContentPane().add(giveMoney);
+		frame.add(giveMoney);
 		
 		HouseAndDesk = new JTextField();
 		HouseAndDesk.setBounds(148, 66, 71, 23);
-		frame.getContentPane().add(HouseAndDesk);
+		frame.add(HouseAndDesk);
 		HouseAndDesk.setColumns(10);
 		
-		JButton queRen = new JButton("È·ÈÏ");
+		JButton queRen = new JButton("ç¡®é”Ÿæ–¤æ‹·");
 		queRen.setBounds(239, 66, 77, 23);
-		frame.getContentPane().add(queRen);
+		frame.add(queRen);
 		
 		textPrice = new JTextField();
 		textPrice.setBounds(274, 200, 67, 19);
-		frame.getContentPane().add(textPrice);
+		frame.add(textPrice);
 		textPrice.setColumns(10);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 434, 21);
 		
 	//	frame.getContentPane().add(menuBar);
-		JMenu menu1 = new JMenu("»áÔ±");
-		JMenu menu2 = new JMenu("É¢¿Í");
+		JMenu menu1 = new JMenu("é”Ÿæ–¤æ‹·å‘˜");
+		JMenu menu2 = new JMenu("æ•£é”Ÿæ–¤æ‹·");
 		menuBar.add(menu1);
 		menuBar.add(menu2);
 		frame.setJMenuBar(menuBar);
@@ -84,7 +86,6 @@ public class Finally  implements ActionListener{
 
 	
 	public void actionPerformed(ActionEvent e) {
-	
-		
+
 	}
 }
