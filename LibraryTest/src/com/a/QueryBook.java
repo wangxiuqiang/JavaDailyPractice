@@ -18,7 +18,7 @@ import com.mysql.jdbc.Statement;
 
 public class QueryBook extends JFrame implements ActionListener {
 
-	JButton queryAll;
+	JButton queryAll, back;
 	JTextArea allBook;
 	List<Book> list = new ArrayList<Book>();
 
@@ -30,8 +30,11 @@ public class QueryBook extends JFrame implements ActionListener {
 	}
 
 	public void init() {
-		setLayout(null);
-
+		getContentPane().setLayout(null);
+		back = new JButton("返回");
+		back.setBounds(292, 244, 80, 25);
+		add(back);
+		back.addActionListener(this);
 		queryAll = new JButton("查询图书");
 		queryAll.setBounds(50, 50, 95, 25);
 		add(queryAll);
@@ -39,11 +42,19 @@ public class QueryBook extends JFrame implements ActionListener {
 		allBook.setBounds(50, 90, 320, 150);
 		allBook.setEditable(false);
 		add(allBook);
-
 		queryAll.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == back) {
+			if(TestAdminIn.userText == null){
+				StudentIn s = new StudentIn();
+				this.dispose();
+			}else{
+			TestAdminInner t = new TestAdminInner();
+			this.dispose();
+			}
+		}
 		if (e.getSource() == queryAll) {
 			try {
 				Class.forName(jdbcDriver.driver);
@@ -66,8 +77,9 @@ public class QueryBook extends JFrame implements ActionListener {
 				}
 				for (int i = 0; i < list.size(); i++) {
 					Book book = list.get(i);
-					allBook.append(book.id + " " + book.name + " " + book.type + " " + book.author + " "
-							+ book.publishingHouse + " " + book.bookCount + " " + book.price + " " + book.dayMoney+"\n");
+					allBook.append(
+							book.id + " " + book.name + " " + book.type + " " + book.author + " " + book.publishingHouse
+									+ " " + book.bookCount + " " + book.price + " " + book.dayMoney + "\n");
 				}
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block

@@ -13,13 +13,14 @@ import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class StudentInner extends JFrame implements MouseListener, ActionListener {
 	JButton queren, quit;
 	static public String userText, passwdText;
 	JTextField user = new JTextField(10);
-	JTextField passwd = new JTextField(10);
+	JPasswordField passwd = new JPasswordField(10);
 
 	public StudentInner() {
 	}
@@ -63,20 +64,20 @@ public class StudentInner extends JFrame implements MouseListener, ActionListene
 		userText = user.getText();
 		passwdText = passwd.getText();
 		if (e.getSource() == queren) {
-			System.out.println(userText);
+			//System.out.println(userText);
 			jdbcDriver jd = new jdbcDriver();
 			try {
 				String name1 , passwd1 = null;
 				Class.forName(jd.driver);
 				Connection connection = DriverManager.getConnection(jd.url, jd.user, jd.password);
-				String sql = "select passwd,name from student where id="+userText;
+				String sql = "select name,passwd from student where id="+userText;
 				Statement statement = connection.createStatement();
 				ResultSet rSet = statement.executeQuery(sql);
 				while (rSet.next()) {
 					name1 = rSet.getString(1);
 					passwd1 = rSet.getString(2);
 				}
-				 System.out.println(passwd1);
+				 //System.out.println(passwd1);
 				 if (passwd1.equals(passwdText)) {
 						StudentIn si = new StudentIn();
 						this.dispose();

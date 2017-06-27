@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 
 public class TestAdminIn extends JFrame implements MouseListener, ActionListener {
 	JButton queren, quit;
- static	String userText, passwdText;
+    static	String userText, passwdText;
 	JTextField user;
 	JPasswordField passwd;
 

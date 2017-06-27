@@ -164,8 +164,13 @@ public class ChangeBook implements ActionListener, ItemListener {
 	public void actionPerformed(ActionEvent e) {
 		String bookName = "";
 		String changeValue = "";
-		String ids = input.getText();
-		id = Integer.parseInt(ids);
+		String ids = null;
+		if(!input.getText().isEmpty()){
+			ids =input.getText();
+			id = Integer.parseInt(ids);
+		}
+		
+		
 		changeValue = change.getText();
 		
 		
