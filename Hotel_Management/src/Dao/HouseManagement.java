@@ -1,9 +1,13 @@
 package Dao;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,6 +19,7 @@ public class HouseManagement  implements ActionListener{
 
 	public HouseManagement() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	private void initialize() {
@@ -24,25 +29,34 @@ public class HouseManagement  implements ActionListener{
 		frame.getContentPane().setLayout(null);
 		
 		JLabel canTing = new JLabel("\u9910\u5385\u7BA1\u7406");
-		canTing.setBounds(170, 34, 54, 15);
+		canTing.setBounds(139, 28, 161, 26);
+		canTing.setFont(new Font("楷体",Font.BOLD,23));
 		frame.getContentPane().add(canTing);
 		
 		JButton houseManage = new JButton("房间管理");
-		
-		houseManage.setBounds(131, 78, 93, 23);
+		houseManage.setBounds(149, 77, 93, 23);
 		frame.getContentPane().add(houseManage);
 		
 		JButton houseQuery = new JButton("房间查询");
-		houseQuery.setBounds(131, 120, 93, 23);
+		houseQuery.setBounds(149, 110, 93, 23);
 		frame.getContentPane().add(houseQuery);
 		
 		JButton reserveHouse = new JButton("预订房间");
-		reserveHouse.setBounds(131, 164, 93, 23);
+		reserveHouse.setBounds(149, 143, 93, 23);
 		frame.getContentPane().add(reserveHouse);
 		
 		JButton startHouse = new JButton("启用房间");
-		startHouse.setBounds(131, 205, 93, 23);
+		startHouse.setBounds(149, 176, 93, 23);
 		frame.getContentPane().add(startHouse);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 434, 21);
+
+		// frame.getContentPane().add(menuBar);
+		JMenu menu1 = new JMenu("房间");
+		JMenu menu2 = new JMenu("大厅");
+		menuBar.add(menu1);
+		menuBar.add(menu2);
+		frame.setJMenuBar(menuBar);
 	}
 
 	

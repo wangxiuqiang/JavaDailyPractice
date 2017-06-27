@@ -1,20 +1,22 @@
 package Dao;
-
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 
-public class chef {
+public class chef implements ActionListener{
 
 	private JFrame frame;
 
 	
 	public chef() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -25,23 +27,45 @@ public class chef {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
-		JLabel chefLabel = new JLabel("ï¿½ï¿½Ê¦ï¿½ï¿½ï¿½ï¿½");
+		
+		JLabel chefLabel = new JLabel("³øÊ¦¹ÜÀí");
 		chefLabel.setBounds(154, 10, 155, 32);
-		chefLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 29));
+		chefLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
 		frame.getContentPane().add(chefLabel);
 		
-		JButton add = new JButton("ï¿½ï¿½Ó³ï¿½Ê¦");
+		add = new JButton("Ìí¼Ó³øÊ¦");
 		add.setBounds(128, 67, 181, 32);
 		frame.getContentPane().add(add);
+		add.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton revise = new JButton("ï¿½Þ¸Ä³ï¿½Ê¦ï¿½ï¿½Ï¢");
+		revise = new JButton("ÐÞ¸Ä³øÊ¦ÐÅÏ¢");
 		revise.setBounds(128, 126, 181, 32);
 		frame.getContentPane().add(revise);
+		revise.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton returnOut = new JButton("ï¿½ï¿½ï¿½ï¿½");
+		returnOut = new JButton("·µ»Ø");
 		returnOut.setBounds(128, 192, 181, 32);
 		frame.getContentPane().add(returnOut);
+		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+	}
+
+	JButton add;
+	JButton revise;
+	JButton returnOut;
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == add){
+			chefAdd s = new chefAdd();
+			frame.dispose();
+		}
+		if(e.getSource() == revise){
+			chefChange s = new chefChange();
+			frame.dispose();
+		}
+		if(e.getSource() == returnOut){
+			staff s = new staff();
+			frame.dispose();
+		}
+		
 	}
 
 }

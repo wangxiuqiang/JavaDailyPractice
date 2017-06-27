@@ -16,6 +16,7 @@ public class deskManage  implements ActionListener{
 
 	public deskManage() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -26,9 +27,9 @@ public class deskManage  implements ActionListener{
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
 		
-		JLabel canTing = new JLabel("\u9910\u5385\u7BA1\u7406");
+		
+		JLabel canTing = new JLabel("餐厅管理");
 		canTing.setBounds(134, 36, 163, 34);
 		canTing.setFont(new Font("宋體",Font.BOLD,30));
 		frame.getContentPane().add(canTing);
@@ -45,11 +46,20 @@ public class deskManage  implements ActionListener{
 		JButton reserveHouse = new JButton("启用餐桌");
 		reserveHouse.setBounds(162, 168, 93, 23);
 		frame.getContentPane().add(reserveHouse);
+		
+		button = new JButton("返回");
+		button.setBounds(162, 207, 93, 23);
+		frame.getContentPane().add(button);
+		button.addActionListener(this);//添加监视器
 
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
+	JButton button;
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource() == button){
+			chef s = new chef();
+			frame.dispose();
+		}
 	}
 }

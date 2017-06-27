@@ -1,5 +1,4 @@
 package Dao;
-
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -10,13 +9,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class member {
+public class member implements ActionListener{
 
 	private JFrame frame;
 
 	
 	public member() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -27,31 +27,54 @@ public class member {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
-		JLabel memberLabel = new JLabel("ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½");
+		
+		JLabel memberLabel = new JLabel("»áÔ±¹ÜÀí");
 		memberLabel.setBounds(164, 27, 136, 34);
-		memberLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 29));
+		memberLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
 		frame.getContentPane().add(memberLabel);
 		
-		JButton add = new JButton("ï¿½ï¿½Ó»ï¿½Ô±");
-		add.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		add = new JButton("Ìí¼Ó»áÔ±");
 		add.setBounds(45, 86, 136, 34);
 		frame.getContentPane().add(add);
+		add.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton revise = new JButton("ï¿½Þ¸Ä»ï¿½Ô±ï¿½ï¿½Ï¢");
+		revise = new JButton("ÐÞ¸Ä»áÔ±ÐÅÏ¢");
 		revise.setBounds(254, 86, 136, 34);
 		frame.getContentPane().add(revise);
+		revise.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton chaXu = new JButton("ï¿½ï¿½Ô±ï¿½ï¿½Ï¢ï¿½ï¿½Ñ¯");
+		chaXu = new JButton("»áÔ±ÐÅÏ¢²éÑ¯");
 		chaXu.setBounds(45, 176, 136, 34);
 		frame.getContentPane().add(chaXu);
+		chaXu.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton returnOut = new JButton("ï¿½ï¿½ï¿½ï¿½");
+		returnOut = new JButton("·µ»Ø");
 		returnOut.setBounds(254, 176, 136, 34);
 		frame.getContentPane().add(returnOut);
+		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+	}
+
+	JButton add;
+	JButton revise;
+	JButton chaXu;
+	JButton returnOut;
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == add){
+			memberAdd s = new memberAdd();
+			frame.dispose();
+		}
+		if(e.getSource() == revise){
+			memberChange s = new memberChange();
+			frame.dispose();
+		}
+		if(e.getSource() == chaXu){
+			
+		}
+		if(e.getSource() == returnOut){
+			system s = new system();
+			frame.dispose();
+		}
+		
 	}
 
 }

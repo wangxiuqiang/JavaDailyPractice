@@ -1,5 +1,4 @@
 package Dao;
-
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -10,13 +9,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class food {
+public class food implements ActionListener{
 
 	private JFrame frame;
 
 	
 	public food() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -27,35 +27,55 @@ public class food {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
-		JLabel foodLabel = new JLabel("ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½");
+		
+		JLabel foodLabel = new JLabel("²ËÆ·¹ÜÀí");
 		foodLabel.setBounds(161, 23, 143, 34);
-		foodLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 29));
+		foodLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
 		frame.getContentPane().add(foodLabel);
 		
-		JButton addCai = new JButton("ï¿½ï¿½Ó²ï¿½Æ·");
+		addCai = new JButton("Ìí¼Ó²ËÆ·");
 		addCai.setBounds(56, 62, 119, 28);
 		frame.getContentPane().add(addCai);
+		addCai.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton addJiu = new JButton("ï¿½ï¿½Ó¾ï¿½Ë®");
+		addJiu = new JButton("Ìí¼Ó¾ÆË®");
 		addJiu.setBounds(245, 62, 119, 28);
 		frame.getContentPane().add(addJiu);
+		addJiu.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton reviseCai = new JButton("ï¿½Þ¸Ä²ï¿½Æ·");
+		reviseCai = new JButton("ÐÞ¸Ä²ËÆ·");
 		reviseCai.setBounds(56, 119, 119, 28);
 		frame.getContentPane().add(reviseCai);
+		reviseCai.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton reviseJiu = new JButton("ï¿½Þ¸Ä¾ï¿½Ë®");
+		reviseJiu = new JButton("ÐÞ¸Ä¾ÆË®");
 		reviseJiu.setBounds(245, 122, 119, 28);
 		frame.getContentPane().add(reviseJiu);
+		reviseJiu.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton chaXu = new JButton("ï¿½ï¿½Ñ¯ï¿½Ëµï¿½");
+		chaXu = new JButton("²éÑ¯²Ëµ¥");
 		chaXu.setBounds(56, 186, 119, 28);
 		frame.getContentPane().add(chaXu);
+		chaXu.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton returnOut = new JButton("ï¿½ï¿½ï¿½ï¿½");
+		returnOut = new JButton("·µ»Ø");
 		returnOut.setBounds(245, 186, 119, 28);
 		frame.getContentPane().add(returnOut);
+		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+	}
+
+	JButton returnOut;
+	JButton chaXu;
+	JButton reviseJiu;
+	JButton reviseCai;
+	JButton addJiu;
+	JButton addCai;
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == returnOut){
+			index s = new index();
+			frame.dispose();
+		}
+		
 	}
 
 }

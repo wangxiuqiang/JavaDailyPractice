@@ -18,11 +18,10 @@ public class memberFinally implements ActionListener {
 	private JTextField zheKouText;
 	private JTextField textPrice;
 
-	/**
-	 * Create the application.
-	 */
+	
 	public memberFinally() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	private void initialize() {
@@ -30,7 +29,7 @@ public class memberFinally implements ActionListener {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
+		
 		JLabel label = new JLabel("øÕªßΩ·’À");
 		label.setBounds(187, 24, 54, 15);
 		frame.getContentPane().add(label);

@@ -1,7 +1,10 @@
 package Dao;
-
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,16 +12,22 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Jdbc.jdbcMysql;
 
-public class index {
+
+
+
+public class index implements ActionListener{
 
 	private JFrame frame;
 	private JTextField textName;
 	private JPasswordField password;
-
+    jdbcMysql jd = new jdbcMysql();
+    
 	
 	public index() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -29,14 +38,14 @@ public class index {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
-		JLabel systemLabel = new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³");
+		
+		JLabel systemLabel = new JLabel("²ÍÌü¹ÜÀíÏµÍ³");
 		systemLabel.setBounds(123, 22, 241, 32);
-		systemLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 29));
+		systemLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
 		frame.getContentPane().add(systemLabel);
 	     
 		
-		JLabel name = new JLabel("ï¿½Ëºï¿½");
+		JLabel name = new JLabel("ÕËºÅ");
 		name.setBounds(115, 90, 54, 15);
 		frame.getContentPane().add(name);
 		
@@ -44,22 +53,66 @@ public class index {
 		textName.setBounds(166, 87, 134, 21);
 		frame.getContentPane().add(textName);
 		textName.setColumns(10);
+		textName.addActionListener(this);
 		
-		JLabel passwd = new JLabel("ï¿½ï¿½ï¿½ï¿½");
+		JLabel passwd = new JLabel("ÃÜÂë");
 		passwd.setBounds(115, 132, 54, 15);
 		frame.getContentPane().add(passwd);
 		
 		password = new JPasswordField();
 		password.setBounds(166, 129, 134, 21);
 		frame.getContentPane().add(password);
+		password.addActionListener(this);
 		
-		JButton submit = new JButton("ï¿½ï¿½Â¼");
-		
+		submit = new JButton("µÇÂ¼");
 		submit.setBounds(125, 160, 65, 23);
 		frame.getContentPane().add(submit);
-		
-		JButton reset = new JButton("ï¿½ï¿½ï¿½ï¿½");
+		submit.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		 reset = new JButton("ÖØÖÃ");
 		reset.setBounds(235, 160, 65, 23);
 		frame.getContentPane().add(reset);
+		reset.addActionListener(this);
+	}
+	JButton submit;
+	JButton reset;
+	public void actionPerformed(ActionEvent e) {
+		String name = textName.getText();
+		String passwd = password.getText();
+		String name1 = null;
+		String passwd1 = null;
+		if(e.getSource() == submit){
+		try {
+			Connection conn = jd.getConn();
+			Statement st = conn.createStatement();
+			String sql = "SELECT * FROM admin";
+			ResultSet rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+				name1 = rs.getString("id");
+				passwd1 = rs.getString("passwd");
+			}
+			rs.close();
+			st.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+			if(name.equals(name1) && passwd.equals(passwd1)){
+				system s = new system();
+				frame.dispose();
+			}
+			else{
+				JTextField s = new JTextField();
+				s.setEditable(false);
+				s.setText("ÕËºÅºÍÃÜÂë²»Æ¥Åä");
+				s.setBounds(166, 110, 134, 21);
+				frame.add(s);
+			}
+			
+		}
+		if (e.getSource() == reset){
+			textName.setText("");
+			password.setText("");
+		}
+		
 	}
 }

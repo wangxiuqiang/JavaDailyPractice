@@ -1,19 +1,21 @@
 package Dao;
-
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
 
-public class system {
+public class system implements ActionListener{
 
 	private JFrame frame;
 
 
 	public system() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -24,35 +26,72 @@ public class system {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
-		JLabel systemLabel = new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³");
+		
+		JLabel systemLabel = new JLabel("²ÍÌü¹ÜÀíÏµÍ³");
 		systemLabel.setBounds(134, 23, 201, 34);
-		systemLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 29));
+		systemLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
 		frame.getContentPane().add(systemLabel);
 		
-		JButton staff = new JButton("Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+	    staff = new JButton("Ô±¹¤¹ÜÀí");
 		staff.setBounds(81, 140, 93, 23);
 		frame.getContentPane().add(staff);
+		staff.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton member = new JButton("ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½");
+	    member = new JButton("»áÔ±¹ÜÀí");
 		member.setBounds(259, 80, 93, 23);
 		frame.getContentPane().add(member);
+		member.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton food = new JButton("ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½");
+		food = new JButton("²ËÆ·¹ÜÀí");
 		food.setBounds(259, 140, 93, 23);
 		frame.getContentPane().add(food);
+		food.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton restaurant = new JButton("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		restaurant = new JButton("²ÍÌü¹ÜÀí");
 		restaurant.setBounds(81, 80, 93, 23);
 		frame.getContentPane().add(restaurant);
+		restaurant.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton checkOut = new JButton("ï¿½ï¿½ï¿½ï¿½");
+		checkOut = new JButton("½áÕË");
 		checkOut.setBounds(81, 192, 93, 23);
 		frame.getContentPane().add(checkOut);
+		checkOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
 		
-		JButton returnOut = new JButton("ï¿½Ë³ï¿½");
+		returnOut = new JButton("ÍË³ö");
 		returnOut.setBounds(259, 192, 93, 23);
 		frame.getContentPane().add(returnOut);
+		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+	}
+
+	JButton staff;
+	JButton member;
+	JButton food;
+	JButton restaurant;
+	JButton checkOut;
+	JButton returnOut;
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == staff){
+			staff s = new staff();
+			frame.dispose();
+		}
+		if(e.getSource() == food){
+			
+		}
+		if(e.getSource() == member){
+			member s = new member();
+			frame.dispose();
+		}
+		if(e.getSource() == restaurant){
+			HouseManagement s = new HouseManagement();
+			frame.dispose();
+		}
+		if(e.getSource() == checkOut){
+			memberFinally s = new memberFinally();
+			frame.dispose();
+		}
+		if(e.getSource() == returnOut){
+			frame.dispose();
+		}
 	}
 
 }
