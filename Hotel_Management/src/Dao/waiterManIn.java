@@ -117,26 +117,24 @@ public class waiterManIn implements ActionListener{
 	JButton addButton,resertButton;
 
 	public void actionPerformed(ActionEvent e) {
-		String ids = idField.getText();
-		int id = Integer.parseInt(ids);
-		String name = nameField.getText();
-		String ages = ageField.getText();
-		int age = Integer.parseInt(ages);
-		String moneys = moneyField.getText();
-		int money = Integer.parseInt(moneys);
-		String adress = adressField.getText();
-		String tel = telField.getText();
-	
+		String ids=null,name=null,ages=null,moneys=null,adress=null,tel=null;
+		int id = 0,age = 0,money = 0;
+		if(!idField.getText().isEmpty()){
+			ids = idField.getText();
+		 id = Integer.parseInt(ids);
+		 name = nameField.getText();
+		 ages = ageField.getText();
+		 age = Integer.parseInt(ages);
+		 moneys = moneyField.getText();
+		 money = Integer.parseInt(moneys);
+		 adress = adressField.getText();
+		 tel = telField.getText();
+		}
+		if(e.getSource() == resertButton){
+			waiterMan w = new waiterMan();
+			frame.dispose();
+		}
 		if(e.getSource() == addButton){
-	
-			if(e.getSource() == resertButton){
-				waiterMan w = new waiterMan();
-				frame.dispose();
-			}
-			if(e.getSource() == resertButton){
-				chef s = new chef();
-				frame.dispose();
-			}
 			if(e.getSource() == addButton){
 				try {
 					Connection conn = jd.getConn();

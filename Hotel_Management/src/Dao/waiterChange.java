@@ -6,18 +6,31 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import com.mysql.jdbc.Statement;
+
+import Jdbc.jdbcMysql;
+
+import javax.sql.rowset.serial.SerialArray;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
-public class waiterChange {
+public class waiterChange  implements ActionListener,ItemListener{
 
 	private JFrame frame;
 	private JTextField IDField;
 	private JTextField comBoxField;
-
-
+	JComboBox comboBox;
+	JButton changeButton;
+	JButton QueRenButton ;
+	String str = null;
+    int id;
+    jdbcMysql jd= new jdbcMysql();
 	public waiterChange() {
 		initialize();
         frame.setVisible(true);
@@ -45,28 +58,100 @@ public class waiterChange {
 		IDField.setBounds(218, 81, 66, 21);
 		frame.getContentPane().add(IDField);
 		IDField.setColumns(10);
+		IDField.addActionListener(this);
 		
-		JButton QueRenButton = new JButton("确认");	
+		QueRenButton = new JButton("确认");	
 		QueRenButton.setBounds(313, 81, 77, 21);
 		frame.getContentPane().add(QueRenButton);
+		QueRenButton.addActionListener(this);
 		
 		JLabel informationLabel = new JLabel("请选择要修改的内容");
 		informationLabel.setBounds(108, 112, 173, 21);
 		frame.getContentPane().add(informationLabel);
 		
-		String[] str = {"编号","姓名","年龄","地址", "电话"};
+		String[] str = {"下拉选择","编号","姓名","年龄","薪水","地址", "电话"};
 		
-		JComboBox comboBox = new JComboBox(str);
+		 comboBox = new JComboBox(str);
 		comboBox.setBounds(105, 143, 95, 21);
 		frame.getContentPane().add(comboBox);
+		comboBox.addItemListener(this);
 		
-		JButton changeButton = new JButton("更改");
+		changeButton = new JButton("更改");
 		changeButton.setBounds(313, 142, 77, 23);
 		frame.getContentPane().add(changeButton);
+		changeButton.addActionListener(this);
 		
 		comBoxField = new JTextField();
 		comBoxField.setBounds(218, 143, 66, 21);
 		frame.getContentPane().add(comBoxField);
 		comBoxField.setColumns(10);
+		comBoxField.addActionListener(this);
+	}
+
+	public String getString1() {
+		if (str.equals("编号")) {
+			return "id";
+		}
+		if (str.equals("姓名")) {
+			return "name";
+		}
+		if (str.equals("电话")) {
+			return "tel";
+		}
+		if (str.equals("地址")) {
+			return "adress";
+		}
+		if (str.equals("年龄")) {
+			return "age";
+		}
+		if (str.equals("薪水")) {
+			return "money";
+		}
+		else {
+			return "";
+		}
+	}
+
+	public void itemStateChanged(ItemEvent e) {
+		str = comboBox.getSelectedItem().toString();
+		
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		String ids =null; 
+		if(!IDField.getText().isEmpty()){
+		 ids = IDField.getText();
+		
+		}
+		String str = comBoxField.getText();
+		String combo = null;
+		if (e.getSource() == QueRenButton) {
+			 id = Integer.parseInt(ids);
+		}
+		if (e.getSource() == changeButton) {
+			combo = getString1();
+			int flag = 1;
+			if(combo.equals("id") && combo.equals("age") &&combo.equals("money")){
+				flag = 0;
+			}
+			// System.out.println(this.str);
+			
+			try {
+				Connection conn = jd.getConn();
+				 Statement st = (Statement) conn.createStatement();
+                 String sql = null;
+                 if(flag == 1){
+                 sql= "update waiter set " +combo+" = '"+ str +"' where id = "+id;
+                 }
+                 else{
+                	 sql= "update waiter set " +combo+" = "+ str +" where id = "+id;
+                 }
+                 st.execute(sql);
+                 st.close();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 }

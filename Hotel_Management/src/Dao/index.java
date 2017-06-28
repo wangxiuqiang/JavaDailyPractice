@@ -81,6 +81,8 @@ public class index implements ActionListener{
 		String name1 = null;
 		String passwd1 = null;
 		if(e.getSource() == submit){
+//			system s = new system();
+//		frame.dispose();
 		try {
 			Connection conn = jd.getConn();
 			Statement st = conn.createStatement();
@@ -88,7 +90,7 @@ public class index implements ActionListener{
 			ResultSet rs = st.executeQuery(sql);
 			
 			while(rs.next()){
-				name1 = rs.getString("id");
+				name1 = rs.getString("name");
 				passwd1 = rs.getString("passwd");
 			}
 			rs.close();
