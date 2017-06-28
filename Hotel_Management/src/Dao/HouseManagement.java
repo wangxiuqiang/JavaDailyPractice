@@ -30,38 +30,42 @@ public class HouseManagement  implements ActionListener{
 		
 		JLabel canTing = new JLabel("\u9910\u5385\u7BA1\u7406");
 		canTing.setBounds(139, 28, 161, 26);
-		canTing.setFont(new Font("¿¬Ìå",Font.BOLD,23));
+		canTing.setFont(new Font("ï¿½ï¿½ï¿½ï¿½",Font.BOLD,23));
 		frame.getContentPane().add(canTing);
 		
-		JButton houseManage = new JButton("·¿¼ä¹ÜÀí");
+		houseManage = new JButton("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		houseManage.setBounds(149, 77, 93, 23);
 		frame.getContentPane().add(houseManage);
 		
-		JButton houseQuery = new JButton("·¿¼ä²éÑ¯");
+		houseQuery = new JButton("ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯");
 		houseQuery.setBounds(149, 110, 93, 23);
 		frame.getContentPane().add(houseQuery);
 		
-		JButton reserveHouse = new JButton("Ô¤¶©·¿¼ä");
+		 reserveHouse = new JButton("Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		reserveHouse.setBounds(149, 143, 93, 23);
 		frame.getContentPane().add(reserveHouse);
 		
-		JButton startHouse = new JButton("ÆôÓÃ·¿¼ä");
+		startHouse = new JButton("ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½");
 		startHouse.setBounds(149, 176, 93, 23);
 		frame.getContentPane().add(startHouse);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 434, 21);
 
 		// frame.getContentPane().add(menuBar);
-		JMenu menu1 = new JMenu("·¿¼ä");
-		JMenu menu2 = new JMenu("´óÌü");
+		JMenu menu1 = new JMenu("ï¿½ï¿½ï¿½ï¿½");
+		JMenu menu2 = new JMenu("ï¿½ï¿½ï¿½ï¿½");
 		menuBar.add(menu1);
 		menuBar.add(menu2);
 		frame.setJMenuBar(menuBar);
 	}
-
-	
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	JButton reserveHouse;
+	JButton startHouse;
+	JButton houseQuery;
+	JButton houseManage;
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == houseManage){
+			roomMangement  s = new roomMangement();
+		}
 		
 	}
 }

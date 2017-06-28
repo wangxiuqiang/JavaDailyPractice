@@ -29,37 +29,42 @@ public class deskManage  implements ActionListener{
 		frame.getContentPane().setLayout(null);
 		
 		
-		JLabel canTing = new JLabel("²ÍÌü¹ÜÀí");
+		JLabel canTing = new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		canTing.setBounds(134, 36, 163, 34);
-		canTing.setFont(new Font("ËÎów",Font.BOLD,30));
+		canTing.setFont(new Font("ï¿½ï¿½ï¿½w",Font.BOLD,30));
 		frame.getContentPane().add(canTing);
 		
-		JButton houseManage = new JButton("²Í×À¹ÜÀí");
+		 houseManage = new JButton("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		
 		houseManage.setBounds(162, 80, 93, 23);
 		frame.getContentPane().add(houseManage);
 		
-		JButton houseQuery = new JButton("²Í×À²éÑ¯");
+		 houseQuery = new JButton("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯");
 		houseQuery.setBounds(162, 125, 93, 23);
 		frame.getContentPane().add(houseQuery);
 		
-		JButton reserveHouse = new JButton("ÆôÓÃ²Í×À");
+		 reserveHouse = new JButton("ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½");
 		reserveHouse.setBounds(162, 168, 93, 23);
 		frame.getContentPane().add(reserveHouse);
 		
-		button = new JButton("·µ»Ø");
+		button = new JButton("ï¿½ï¿½ï¿½ï¿½");
 		button.setBounds(162, 207, 93, 23);
 		frame.getContentPane().add(button);
-		button.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		button.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	}
-
+	JButton houseQuery;
+	JButton reserveHouse;
+	JButton houseManage;
 	JButton button;
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == button){
 			chef s = new chef();
 			frame.dispose();
+		}
+		if(e.getSource() == houseManage){
+			deskMange_1  s = new deskMange_1();
 		}
 	}
 }
