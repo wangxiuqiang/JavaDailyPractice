@@ -28,30 +28,30 @@ public class member implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel memberLabel = new JLabel("»áÔ±¹ÜÀí");
+		JLabel memberLabel = new JLabel("ä¼šå‘˜ç®¡ç†");
 		memberLabel.setBounds(164, 27, 136, 34);
-		memberLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
+		memberLabel.setFont(new Font("æ¥·ä½“", Font.BOLD, 29));
 		frame.getContentPane().add(memberLabel);
 		
-		add = new JButton("Ìí¼Ó»áÔ±");
+		add = new JButton("æ·»åŠ ä¼šå‘˜");
 		add.setBounds(45, 86, 136, 34);
 		frame.getContentPane().add(add);
-		add.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		add.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		revise = new JButton("ĞŞ¸Ä»áÔ±ĞÅÏ¢");
+		revise = new JButton("ä¿®æ”¹ä¼šå‘˜");
 		revise.setBounds(254, 86, 136, 34);
 		frame.getContentPane().add(revise);
-		revise.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		revise.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		chaXu = new JButton("»áÔ±ĞÅÏ¢²éÑ¯");
+		chaXu = new JButton("æŸ¥è¯¢ä¼šå‘˜");
 		chaXu.setBounds(45, 176, 136, 34);
 		frame.getContentPane().add(chaXu);
-		chaXu.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		chaXu.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		returnOut = new JButton("·µ»Ø");
+		returnOut = new JButton("è¿”å›");
 		returnOut.setBounds(254, 176, 136, 34);
 		frame.getContentPane().add(returnOut);
-		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		returnOut.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 
 	JButton add;

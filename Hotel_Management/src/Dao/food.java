@@ -28,40 +28,40 @@ public class food implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel foodLabel = new JLabel("²ËÆ·¹ÜÀí");
+		JLabel foodLabel = new JLabel("èœå“ç®¡ç†");
 		foodLabel.setBounds(161, 23, 143, 34);
-		foodLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
+		foodLabel.setFont(new Font("æ¥·ä½“", Font.BOLD, 29));
 		frame.getContentPane().add(foodLabel);
 		
-		addCai = new JButton("Ìí¼Ó²ËÆ·");
+		addCai = new JButton("æ·»åŠ èœå“");
 		addCai.setBounds(56, 62, 119, 28);
 		frame.getContentPane().add(addCai);
-		addCai.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		addCai.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		addJiu = new JButton("Ìí¼Ó¾ÆË®");
+		addJiu = new JButton("æ·»åŠ é…’å“Ë®");
 		addJiu.setBounds(245, 62, 119, 28);
 		frame.getContentPane().add(addJiu);
-		addJiu.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		addJiu.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		reviseCai = new JButton("ĞŞ¸Ä²ËÆ·");
+		reviseCai = new JButton("ä¿®æ”¹èœå“");
 		reviseCai.setBounds(56, 119, 119, 28);
 		frame.getContentPane().add(reviseCai);
-		reviseCai.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		reviseCai.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		reviseJiu = new JButton("ĞŞ¸Ä¾ÆË®");
+		reviseJiu = new JButton("ä¿®æ”¹é…’æ°´");
 		reviseJiu.setBounds(245, 122, 119, 28);
 		frame.getContentPane().add(reviseJiu);
-		reviseJiu.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		reviseJiu.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		chaXu = new JButton("²éÑ¯²Ëµ¥");
+		chaXu = new JButton("æŸ¥è¯¢èœå•");
 		chaXu.setBounds(56, 186, 119, 28);
 		frame.getContentPane().add(chaXu);
-		chaXu.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		chaXu.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		returnOut = new JButton("·µ»Ø");
+		returnOut = new JButton("è¿”å›");
 		returnOut.setBounds(245, 186, 119, 28);
 		frame.getContentPane().add(returnOut);
-		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		returnOut.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 
 	JButton returnOut;
@@ -72,7 +72,7 @@ public class food implements ActionListener{
 	JButton addCai;
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == returnOut){
-			index s = new index();
+		system s = new system();
 			frame.dispose();
 		}
 		

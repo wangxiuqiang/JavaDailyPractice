@@ -25,25 +25,25 @@ public class staff implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel staffLabel = new JLabel("Ô±¹¤¹ÜÀí");
+		JLabel staffLabel = new JLabel("å‘˜å·¥ç®¡ç†");
 		staffLabel.setBounds(160, 24, 132, 43);
-		staffLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
+		staffLabel.setFont(new Font("æ¥·ä½“", Font.BOLD, 29));
 		frame.getContentPane().add(staffLabel);
 		
-		waiter = new JButton("·şÎñÔ±¹ÜÀí");
+		waiter = new JButton("æœåŠ¡å‘˜ç®¡ç†");
 		waiter.setBounds(160, 77, 132, 31);
 		frame.getContentPane().add(waiter);
-		waiter.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		waiter.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		chef = new JButton("³øÊ¦¹ÜÀí");
+		chef = new JButton("å¨å¸ˆç®¡ç†");
 		chef.setBounds(160, 134, 132, 31);
 		frame.getContentPane().add(chef);
-		chef.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		chef.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		returnOut = new JButton("·µ»Ø");
+		returnOut = new JButton("è¿”å›");
 		returnOut.setBounds(160, 191, 132, 31);
 		frame.getContentPane().add(returnOut);
-		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		returnOut.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 	}
 

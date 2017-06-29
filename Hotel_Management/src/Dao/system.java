@@ -27,40 +27,40 @@ public class system implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel systemLabel = new JLabel("²ÍÌü¹ÜÀíÏµÍ³");
+		JLabel systemLabel = new JLabel("é¤å…ç®¡ç†ç³»ç»Ÿ");
 		systemLabel.setBounds(134, 23, 201, 34);
-		systemLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
+		systemLabel.setFont(new Font("æ¥·ä½“", Font.BOLD, 29));
 		frame.getContentPane().add(systemLabel);
 		
-	    staff = new JButton("Ô±¹¤¹ÜÀí");
+	    staff = new JButton("å‘˜å·¥ç®¡ç†");
 		staff.setBounds(81, 140, 93, 23);
 		frame.getContentPane().add(staff);
-		staff.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		staff.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-	    member = new JButton("»áÔ±¹ÜÀí");
+	    member = new JButton("ä¼šå‘˜ç®¡ç†");
 		member.setBounds(259, 80, 93, 23);
 		frame.getContentPane().add(member);
-		member.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		member.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		food = new JButton("²ËÆ·¹ÜÀí");
+		food = new JButton("èœå“ç®¡ç†");
 		food.setBounds(259, 140, 93, 23);
 		frame.getContentPane().add(food);
-		food.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		food.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		restaurant = new JButton("²ÍÌü¹ÜÀí");
+		restaurant = new JButton("é¤å…ç®¡ç†");
 		restaurant.setBounds(81, 80, 93, 23);
 		frame.getContentPane().add(restaurant);
-		restaurant.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		restaurant.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		checkOut = new JButton("½áÕË");
+		checkOut = new JButton("ç»“è´¦");
 		checkOut.setBounds(81, 192, 93, 23);
 		frame.getContentPane().add(checkOut);
-		checkOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		checkOut.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		returnOut = new JButton("ÍË³ö");
+		returnOut = new JButton("é€€å‡º");
 		returnOut.setBounds(259, 192, 93, 23);
 		frame.getContentPane().add(returnOut);
-		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		returnOut.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 
 	JButton staff;
@@ -90,6 +90,10 @@ public class system implements ActionListener{
 			frame.dispose();
 		}
 		if(e.getSource() == returnOut){
+			frame.dispose();
+		}
+		if(e.getSource() == food){
+			food f = new food();
 			frame.dispose();
 		}
 	}

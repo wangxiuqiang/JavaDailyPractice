@@ -44,12 +44,12 @@ public class chefChange implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel headLabel = new JLabel("ĞŞ¸Ä³øÊ¦ĞÅÏ¢");
-		headLabel.setFont(new Font("¿¬Ìå",Font.BOLD,35));
+		JLabel headLabel = new JLabel("ä¿®æ”¹ä¿¡æ¯");
+		headLabel.setFont(new Font("æ¥·ä½“",Font.BOLD,35));
 		headLabel.setBounds(108, 10, 282, 41);
 		frame.getContentPane().add(headLabel);
 		
-		JLabel IDLabel = new JLabel("±àºÅ");
+		JLabel IDLabel = new JLabel("ç¼–å·");
 		IDLabel.setBounds(108, 73, 88, 36);
 		frame.getContentPane().add(IDLabel);
 		
@@ -58,21 +58,21 @@ public class chefChange implements ActionListener{
 		frame.getContentPane().add(IDField);
 		IDField.setColumns(10);
 		
-		QueRenButton = new JButton("È·ÈÏ");	
+		QueRenButton = new JButton("ç¡®è®¤");	
 		QueRenButton.setBounds(313, 81, 77, 21);
 		frame.getContentPane().add(QueRenButton);
 		
-		JLabel informationLabel = new JLabel("ÇëÑ¡ÔñÒªĞŞ¸ÄµÄÄÚÈİ");
+		JLabel informationLabel = new JLabel("è¯·é€‰æ‹©è¦ä¿®æ”¹çš„å†…å®¹");
 		informationLabel.setBounds(108, 112, 173, 21);
 		frame.getContentPane().add(informationLabel);
 		
-		String[] str = {"±àºÅ","ĞÕÃû","ÄêÁä","µØÖ·", "µç»°"};
+		String[] str = {"ç¼–å·","å§“å","å¹´é¾„","åœ°å€", "ç”µè¯"};
 		
 		 comboBox = new JComboBox(str);
 		comboBox.setBounds(105, 143, 95, 21);
 		frame.getContentPane().add(comboBox);
 		
-		changeButton = new JButton("¸ü¸Ä");
+		changeButton = new JButton("æ›´æ”¹");
 		changeButton.setBounds(313, 142, 77, 23);
 		frame.getContentPane().add(changeButton);
 		changeButton.addActionListener(this);
@@ -83,29 +83,29 @@ public class chefChange implements ActionListener{
 		comBoxField.setColumns(10);
 		comboBox.addActionListener(this);
 		
-		returnButton = new JButton("·µ»Ø");
+		returnButton = new JButton("è¿”å›");
 		returnButton.setBounds(172, 202, 93, 23);
 		frame.getContentPane().add(returnButton);
-		returnButton.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		returnButton.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 
 	public String getString1() {
-		if (str.equals("±àºÅ")) {
+		if (str.equals("ç¼–å·")) {
 			return "id";
 		}
-		if (str.equals("ĞÕÃû")) {
+		if (str.equals("å§“å")) {
 			return "name";
 		}
-		if (str.equals("µç»°")) {
+		if (str.equals("ç”µè¯")) {
 			return "tel";
 		}
-		if (str.equals("µØÖ·")) {
+		if (str.equals("åœ°å€")) {
 			return "adress";
 		}
-		if (str.equals("ÄêÁä")) {
+		if (str.equals("å¹´é¾„")) {
 			return "age";
 		}
-		if (str.equals("Ğ½Ë®")) {
+		if (str.equals("è–ªæ°´")) {
 			return "money";
 		}
 		else {

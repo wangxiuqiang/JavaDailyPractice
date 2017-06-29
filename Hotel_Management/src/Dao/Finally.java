@@ -31,38 +31,38 @@ public class Finally  implements ActionListener{
 		frame.getContentPane().setLayout(null);
 		
 		
-		JLabel label = new JLabel("¿Í»§½áÕË");
+		JLabel label = new JLabel("å®¢æˆ·ç»“è´¦");
 		label.setBounds(133, 30, 196, 30);
-		label.setFont(new Font("¿¬Ìå",Font.BOLD,27));
+		label.setFont(new Font("æ¥·ä½“",Font.BOLD,27));
 		frame.getContentPane().add(label);
 		
-		JLabel trueLabel = new JLabel("ÇëÊäÈë·¿¼äºÅ»ò×ÀºÅ:");
+		JLabel trueLabel = new JLabel("è¯·è¾“å…¥æˆ¿é—´å·å’Œæ¡Œå·:");
 		trueLabel.setBounds(31, 70, 225, 15);
 		frame.getContentPane().add(trueLabel);
 		
-		JLabel menu = new JLabel("²Ëµ¥:");
+		JLabel menu = new JLabel("èœå•:");
 		menu.setBounds(37, 95, 54, 15);
 		frame.getContentPane().add(menu);
 		
-		JTextArea textArea = new JTextArea();
+		 textArea = new JTextArea();
 		textArea.setBounds(31, 120, 298, 72);
 		frame.getContentPane().add(textArea);
 		
-		JLabel priceLabel = new JLabel("×Ü½ğ¶î:");
+		JLabel priceLabel = new JLabel("æ€»é‡‘é¢");
 		priceLabel.setBounds(219, 202, 54, 15);
 		frame.getContentPane().add(priceLabel);
 		
 		
-		JButton giveMoney = new JButton("½áÕË");
+		 giveMoney = new JButton("ç»“è´¦");
 		giveMoney.setBounds(273, 229, 93, 23);
 		frame.getContentPane().add(giveMoney);
-		
+		giveMoney.addActionListener(this);
 		HouseAndDesk = new JTextField();
 		HouseAndDesk.setBounds(148, 66, 71, 23);
 		frame.getContentPane().add(HouseAndDesk);
 		HouseAndDesk.setColumns(10);
 		
-		JButton queRen = new JButton("È·ÈÏ");
+		 queRen = new JButton("ç¡®è®¤");
 		queRen.setBounds(239, 66, 77, 23);
 		frame.getContentPane().add(queRen);
 		
@@ -71,21 +71,28 @@ public class Finally  implements ActionListener{
 		frame.getContentPane().add(textPrice);
 		textPrice.setColumns(10);
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 434, 21);
 		
 	//	frame.getContentPane().add(menuBar);
-		JMenu menu1 = new JMenu("»áÔ±");
-		JMenu menu2 = new JMenu("É¢¿Í");
+		 menu1 = new JMenu("ä¼šå‘˜");
+		 menu2 = new JMenu("æ•£å®¢");
 		menuBar.add(menu1);
 		menuBar.add(menu2);
 		frame.setJMenuBar(menuBar);
 		
 	}
-
+	 JButton queRen,giveMoney;
+	    JTextArea textArea;
+	    JMenu menu1 ;
+		JMenu menu2;
+		JMenuBar menuBar;
 	
 	public void actionPerformed(ActionEvent e) {
-	
+	   if(e.getSource() == giveMoney){
+		   system s = new system();
+		   frame.dispose();
+	   }
 		
 	}
 }

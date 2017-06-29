@@ -1,19 +1,19 @@
 package Dao;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import Jdbc.jdbcMysql;
 
 import com.mysql.jdbc.PreparedStatement;
+
+import Jdbc.jdbcMysql;
 
 public class chefAdd implements ActionListener {
 
@@ -39,32 +39,32 @@ public class chefAdd implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel headLabel = new JLabel("Ìí¼Ó³øÊ¦");
+		JLabel headLabel = new JLabel("æ·»åŠ å¨å¸ˆ");
 		headLabel.setBounds(109, 0, 200, 41);
-		headLabel.setFont(new Font("¿¬Ìå", Font.BOLD, 30));
+		headLabel.setFont(new Font("å®‹ä½“", Font.BOLD, 30));
 		frame.getContentPane().add(headLabel);
 
-		JLabel idLabel = new JLabel("±àºÅ");
+		JLabel idLabel = new JLabel("ç¼–å·");
 		idLabel.setBounds(100, 40, 76, 30);
 		frame.getContentPane().add(idLabel);
 
-		JLabel nameLabel = new JLabel("ĞÕÃû");
+		JLabel nameLabel = new JLabel("å§“å");
 		nameLabel.setBounds(100, 70, 66, 30);
 		frame.getContentPane().add(nameLabel);
 
-		JLabel ageLabel = new JLabel("ÄêÁä");
+		JLabel ageLabel = new JLabel("å¹´é¾„");
 		ageLabel.setBounds(100, 100, 66, 30);
 		frame.getContentPane().add(ageLabel);
 
-		JLabel moneyLabel = new JLabel("Ğ½Ë®");
+		JLabel moneyLabel = new JLabel("è–ªæ°´");
 		moneyLabel.setBounds(100, 130, 80, 22);
 		frame.getContentPane().add(moneyLabel);
 
-		JLabel adressLabel = new JLabel("µØÖ·");
+		JLabel adressLabel = new JLabel("ä½å€");
 		adressLabel.setBounds(100, 160, 80, 22);
 		frame.getContentPane().add(adressLabel);
 
-		JLabel delLabel = new JLabel("µç»°");
+		JLabel delLabel = new JLabel("ç”µè¯");
 		delLabel.setBounds(100, 189, 97, 22);
 		frame.getContentPane().add(delLabel);
 
@@ -98,15 +98,15 @@ public class chefAdd implements ActionListener {
 		frame.getContentPane().add(telField);
 		telField.setColumns(10);
 
-		addButton = new JButton("Ìí¼Ó");
+		addButton = new JButton("æ·»åŠ ");
 		addButton.setBounds(86, 222, 76, 30);
 		frame.getContentPane().add(addButton);
-		addButton.addActionListener(this);// Ìí¼Ó¼àÊÓÆ÷
+		addButton.addActionListener(this);// ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
-		resertButton = new JButton("·µ»Ø");
+		resertButton = new JButton("è¿”å›");
 		resertButton.setBounds(180, 222, 76, 30);
 		frame.getContentPane().add(resertButton);
-		resertButton.addActionListener(this);// Ìí¼Ó¼àÊÓÆ÷
+		resertButton.addActionListener(this);// ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	}
 
@@ -136,12 +136,7 @@ public class chefAdd implements ActionListener {
 					ps.setString(5, adress);
 					ps.setString(6, tel);
 					ps.executeUpdate();
-					JTextField s = new JTextField();
-					s.setEditable(false);
-					s.setText("Ìí¼Ó³É¹¦");
-					s.setFont(new Font("¿¬Ìå", Font.BOLD, 30));
-					s.setBounds(100, 110, 140, 50);
-					frame.add(s);
+					JOptionPane.showMessageDialog(frame, "æ·»åŠ æˆåŠŸ", "æ·»åŠ æˆåŠŸ", JOptionPane.ERROR_MESSAGE);
 					ps.close();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -149,7 +144,7 @@ public class chefAdd implements ActionListener {
 			}
 		}else{
 			if (e.getSource() == addButton) {
-				idField.setText("ÇëÊäÈëÄÚÈİ");
+				idField.setText("è¯·è¾“å…¥å†…å®¹");
 			}
 		}
 		if (e.getSource() == resertButton) {

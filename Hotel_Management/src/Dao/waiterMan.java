@@ -28,26 +28,26 @@ public class waiterMan implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel waiterLabel = new JLabel("·şÎñÔ±¹ÜÀí");
+		JLabel waiterLabel = new JLabel("æœåŠ¡å‘˜ç®¡ç†");
 		waiterLabel.setBounds(154, 10, 155, 32);
-		waiterLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
+		waiterLabel.setFont(new Font("æ¥·ä½“", Font.BOLD, 29));
 		frame.getContentPane().add(waiterLabel);
 		
-		add = new JButton("Ìí¼Ó·şÎñÔ±");
+		add = new JButton("æ·»åŠ æœåŠ¡å‘˜");
 		add.setBounds(128, 67, 181, 32);
 		frame.getContentPane().add(add);
-		add.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		add.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		
-		revise = new JButton("ĞŞ¸Ä·şÎñÔ±ĞÅÏ¢");
+		revise = new JButton("ä¿®æ”¹æœåŠ¡å‘˜");
 		revise.setBounds(128, 126, 181, 32);
 		frame.getContentPane().add(revise);
-		revise.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		revise.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		returnOut = new JButton("·µ»Ø");
+		returnOut = new JButton("è¿”å›");
 		returnOut.setBounds(128, 192, 181, 32);
 		frame.getContentPane().add(returnOut);
-		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		returnOut.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 
 	JButton returnOut;

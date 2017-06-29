@@ -29,28 +29,28 @@ public class deskManage  implements ActionListener{
 		frame.getContentPane().setLayout(null);
 		
 		
-		JLabel canTing = new JLabel("��������");
+		JLabel canTing = new JLabel("大厅管理");
 		canTing.setBounds(134, 36, 163, 34);
-		canTing.setFont(new Font("���w",Font.BOLD,30));
+		canTing.setFont(new Font("",Font.BOLD,30));
 		frame.getContentPane().add(canTing);
 		
-		 houseManage = new JButton("��������");
+		 houseManage = new JButton("餐厅管理");
 		
 		houseManage.setBounds(162, 80, 93, 23);
 		frame.getContentPane().add(houseManage);
 		
-		 houseQuery = new JButton("������ѯ");
+		 houseQuery = new JButton("餐桌查询");
 		houseQuery.setBounds(162, 125, 93, 23);
 		frame.getContentPane().add(houseQuery);
 		
-		 reserveHouse = new JButton("���ò���");
+		 reserveHouse = new JButton("启用餐桌");
 		reserveHouse.setBounds(162, 168, 93, 23);
 		frame.getContentPane().add(reserveHouse);
 		
-		button = new JButton("����");
+		button = new JButton("返回");
 		button.setBounds(162, 207, 93, 23);
 		frame.getContentPane().add(button);
-		button.addActionListener(this);//��Ӽ�����
+		button.addActionListener(this);
 
 	}
 	JButton houseQuery;
@@ -65,6 +65,9 @@ public class deskManage  implements ActionListener{
 		}
 		if(e.getSource() == houseManage){
 			deskMange_1  s = new deskMange_1();
+		}
+		if(e.getSource() == button ){
+			
 		}
 	}
 }

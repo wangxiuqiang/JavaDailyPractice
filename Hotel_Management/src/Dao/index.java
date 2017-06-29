@@ -9,6 +9,7 @@ import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -39,13 +40,13 @@ public class index implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel systemLabel = new JLabel("²ÍÌü¹ÜÀíÏµÍ³");
+		JLabel systemLabel = new JLabel("é¤å…ç®¡ç†ç³»ç»Ÿ");
 		systemLabel.setBounds(123, 22, 241, 32);
-		systemLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
+		systemLabel.setFont(new Font("æ¥·ä½“", Font.BOLD, 29));
 		frame.getContentPane().add(systemLabel);
 	     
 		
-		JLabel name = new JLabel("ÕËºÅ");
+		JLabel name = new JLabel("ç”¨æˆ·å");
 		name.setBounds(115, 90, 54, 15);
 		frame.getContentPane().add(name);
 		
@@ -55,7 +56,7 @@ public class index implements ActionListener{
 		textName.setColumns(10);
 		textName.addActionListener(this);
 		
-		JLabel passwd = new JLabel("ÃÜÂë");
+		JLabel passwd = new JLabel("å¯†ç ");
 		passwd.setBounds(115, 132, 54, 15);
 		frame.getContentPane().add(passwd);
 		
@@ -64,11 +65,11 @@ public class index implements ActionListener{
 		frame.getContentPane().add(password);
 		password.addActionListener(this);
 		
-		submit = new JButton("µÇÂ¼");
+		submit = new JButton("ç™»å½•");
 		submit.setBounds(125, 160, 65, 23);
 		frame.getContentPane().add(submit);
-		submit.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
-		 reset = new JButton("ÖØÖÃ");
+		submit.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
+		 reset = new JButton("é‡ç½®");
 		reset.setBounds(235, 160, 65, 23);
 		frame.getContentPane().add(reset);
 		reset.addActionListener(this);
@@ -103,11 +104,7 @@ public class index implements ActionListener{
 				frame.dispose();
 			}
 			else{
-				JTextField s = new JTextField();
-				s.setEditable(false);
-				s.setText("ÕËºÅºÍÃÜÂë²»Æ¥Åä");
-				s.setBounds(166, 110, 134, 21);
-				frame.add(s);
+				JOptionPane.showMessageDialog(frame, "è´¦æˆ·å’Œå¯†ç ä¸åŒ¹é…","é”™è¯¯",JOptionPane.ERROR_MESSAGE);
 			}
 			
 		}

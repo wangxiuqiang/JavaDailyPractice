@@ -28,25 +28,25 @@ public class chef implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel chefLabel = new JLabel("³øÊ¦¹ÜÀí");
+		JLabel chefLabel = new JLabel("å¨å¸ˆç®¡ç†");
 		chefLabel.setBounds(154, 10, 155, 32);
-		chefLabel.setFont(new Font("ËÎÌå", Font.BOLD, 29));
+		chefLabel.setFont(new Font("æ¥·ä½“", Font.BOLD, 29));
 		frame.getContentPane().add(chefLabel);
 		
-		add = new JButton("Ìí¼Ó³øÊ¦");
+		add = new JButton("æ·»åŠ å¨å¸ˆ");
 		add.setBounds(128, 67, 181, 32);
 		frame.getContentPane().add(add);
-		add.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		add.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		revise = new JButton("ĞŞ¸Ä³øÊ¦ĞÅÏ¢");
+		revise = new JButton("ä¿®æ”¹å¨å¸ˆ");
 		revise.setBounds(128, 126, 181, 32);
 		frame.getContentPane().add(revise);
-		revise.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		revise.addActionListener(this);
 		
-		returnOut = new JButton("·µ»Ø");
+		returnOut = new JButton("è¿”å›");
 		returnOut.setBounds(128, 192, 181, 32);
 		frame.getContentPane().add(returnOut);
-		returnOut.addActionListener(this);//Ìí¼Ó¼àÊÓÆ÷
+		returnOut.addActionListener(this);//ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 
 	JButton add;

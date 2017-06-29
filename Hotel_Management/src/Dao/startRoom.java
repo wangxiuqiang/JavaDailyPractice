@@ -11,8 +11,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
-public class startRoom {
+public class startRoom implements ActionListener,ItemListener{
 
 	private JFrame frame;
 	private JTextField food11;
@@ -23,33 +27,14 @@ public class startRoom {
 	private JTextField food66;
 	private JTextField food77;
 	private JTextField food88;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					startRoom window = new startRoom();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
+	JCheckBox food1,food2,food3,food4,food5,food6,food7,food8;
+	JButton queRenButton,backButton;
 	public startRoom() {
 		initialize();
+		frame.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
@@ -74,7 +59,7 @@ public class startRoom {
 		JMenu driver = new JMenu("酒品");
 		menuBar.add(driver);
 		
-		JCheckBox food1 = new JCheckBox("New check box");
+		 food1 = new JCheckBox("1");
 		food1.setBounds(24, 66, 94, 34);
 		frame.getContentPane().add(food1);
 		
@@ -83,15 +68,15 @@ public class startRoom {
 		frame.getContentPane().add(food11);
 		food11.setColumns(10);
 		
-		JCheckBox food2 = new JCheckBox("New check box");
+		 food2 = new JCheckBox("2");
 		food2.setBounds(24, 102, 94, 34);
 		frame.getContentPane().add(food2);
 		
-		JCheckBox food3 = new JCheckBox("New check box");
+		 food3 = new JCheckBox("3");
 		food3.setBounds(24, 138, 94, 34);
 		frame.getContentPane().add(food3);
 		
-		JCheckBox food4 = new JCheckBox("New check box");
+		 food4 = new JCheckBox("4");
 		food4.setBounds(24, 174, 94, 34);
 		frame.getContentPane().add(food4);
 		
@@ -110,19 +95,19 @@ public class startRoom {
 		food44.setBounds(136, 181, 39, 21);
 		frame.getContentPane().add(food44);
 		
-		JCheckBox food5 = new JCheckBox("New check box");
+		 food5 = new JCheckBox("5");
 		food5.setBounds(237, 66, 94, 34);
 		frame.getContentPane().add(food5);
 		
-		JCheckBox food6 = new JCheckBox("New check box");
+		 food6 = new JCheckBox("6");
 		food6.setBounds(237, 102, 94, 34);
 		frame.getContentPane().add(food6);
 		
-		JCheckBox food7 = new JCheckBox("New check box");
+		 food7 = new JCheckBox("7");
 		food7.setBounds(237, 138, 94, 34);
 		frame.getContentPane().add(food7);
 		
-		JCheckBox food8 = new JCheckBox("New check box");
+		 food8 = new JCheckBox("8");
 		food8.setBounds(237, 174, 94, 34);
 		frame.getContentPane().add(food8);
 		
@@ -146,11 +131,11 @@ public class startRoom {
 		food88.setBounds(332, 181, 39, 21);
 		frame.getContentPane().add(food88);
 		
-		JButton queRenButton = new JButton("确认");
+		 queRenButton = new JButton("确认");
 		queRenButton.setBounds(115, 214, 71, 23);
 		frame.getContentPane().add(queRenButton);
 		
-		JButton backButton = new JButton("返回");
+		 backButton = new JButton("返回");
 		backButton.setBounds(227, 214, 71, 23);
 		frame.getContentPane().add(backButton);
 		
@@ -185,6 +170,20 @@ public class startRoom {
 		JLabel label_8 = new JLabel("/\u4EFD");
 		label_8.setBounds(372, 184, 39, 15);
 		frame.getContentPane().add(label_8);
+	}
+
+
+	
+	public void itemStateChanged(ItemEvent e) {
+	   if(e.getItem() == food1){
+		   
+	   }
+	}
+
+
+	
+	public void actionPerformed(ActionEvent e) {
+	
 	}
 }
 

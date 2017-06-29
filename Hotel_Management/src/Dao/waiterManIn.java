@@ -9,6 +9,7 @@ import java.sql.Connection;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -38,32 +39,32 @@ public class waiterManIn implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel headLabel = new JLabel("Ìí¼Ó·şÎñÔ±");
+		JLabel headLabel = new JLabel("æ·»åŠ æœåŠ¡å‘˜");
 		headLabel.setBounds(109, 0, 200, 50);
-		headLabel.setFont(new Font("¿¬Ìå",Font.BOLD,30));
+		headLabel.setFont(new Font("æ¥·ä½“",Font.BOLD,30));
 		frame.getContentPane().add(headLabel);
 		
-		JLabel idLabel = new JLabel("±àºÅ");
+		JLabel idLabel = new JLabel("ç¼–å·");
 		idLabel.setBounds(100, 40, 76, 30);
 		frame.getContentPane().add(idLabel);
 		
-		JLabel nameLabel = new JLabel("ĞÕÃû");
+		JLabel nameLabel = new JLabel("å§“å");
 		nameLabel.setBounds(100, 70, 66, 30);
 		frame.getContentPane().add(nameLabel);
 		
-		JLabel ageLabel = new JLabel("ÄêÁä");
+		JLabel ageLabel = new JLabel("å¹´é¾„");
 		ageLabel.setBounds(100, 100, 66, 30);
 		frame.getContentPane().add(ageLabel);
 		
-		JLabel moneyLabel = new JLabel("Ğ½Ë®");
+		JLabel moneyLabel = new JLabel("è–ªæ°´");
 		moneyLabel.setBounds(100, 130, 80, 22);
 		frame.getContentPane().add(moneyLabel);
 		
-		JLabel adressLabel = new JLabel("µØÖ·");
+		JLabel adressLabel = new JLabel("åœ°å€");
 		adressLabel.setBounds(100,160, 80, 22);
 		frame.getContentPane().add(adressLabel);
 		
-		JLabel delLabel = new JLabel("µç»°");
+		JLabel delLabel = new JLabel("ç”µè¯");
 		delLabel.setBounds(100, 189, 97, 22);
 		frame.getContentPane().add(delLabel);
 		
@@ -103,12 +104,12 @@ public class waiterManIn implements ActionListener{
 		telField.setColumns(10);
 		telField.addActionListener(this);
 		
-		 addButton = new JButton("Ìí¼Ó");
+		 addButton = new JButton("æ·»åŠ ");
 		addButton.setBounds(86, 222, 76, 30);
 		frame.getContentPane().add(addButton);
 		addButton.addActionListener(this);
 		
-		 resertButton = new JButton("·µ»Ø");
+		 resertButton = new JButton("è¿”å›");
 		resertButton.setBounds(180, 222, 76, 30);
 		frame.getContentPane().add(resertButton);
 		resertButton.addActionListener(this);
@@ -147,12 +148,7 @@ public class waiterManIn implements ActionListener{
 					ps.setString(5, adress);
 					ps.setString(6, tel);
 					ps.executeUpdate();
-					JTextField s = new JTextField();
-					s.setEditable(false);
-					s.setText("Ìí¼Ó³É¹¦");
-					s.setFont(new Font("¿¬Ìå",Font.BOLD,30));
-					s.setBounds(100,110, 140, 50);
-					frame.add(s);
+					JOptionPane.showMessageDialog(frame, "æ·»åŠ æˆåŠŸ","æˆåŠŸ",JOptionPane.DEFAULT_OPTION);
 					ps.close();
 					
 				} catch (Exception e1) {

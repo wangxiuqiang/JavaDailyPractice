@@ -44,12 +44,12 @@ public class memberChange implements ActionListener, ItemListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel headLabel = new JLabel("修改会员信息");
-		headLabel.setFont(new Font("楷体", Font.BOLD, 35));
+		JLabel headLabel = new JLabel("淇敼浼氬憳");
+		headLabel.setFont(new Font("妤蜂綋", Font.BOLD, 35));
 		headLabel.setBounds(108, 10, 282, 41);
 		frame.getContentPane().add(headLabel);
 
-		JLabel IDLabel = new JLabel("编号");
+		JLabel IDLabel = new JLabel("缂栧彿");
 		IDLabel.setBounds(108, 73, 88, 36);
 		frame.getContentPane().add(IDLabel);
 
@@ -59,23 +59,23 @@ public class memberChange implements ActionListener, ItemListener {
 		IDField.setColumns(10);
 		IDField.addActionListener(this);
 
-		QueRenButton = new JButton("确认");
+		QueRenButton = new JButton("纭");
 		QueRenButton.setBounds(313, 81, 77, 21);
 		frame.getContentPane().add(QueRenButton);
 		QueRenButton.addActionListener(this);
 
-		JLabel informationLabel = new JLabel("请选择要修改的内容");
+		JLabel informationLabel = new JLabel("璇烽�夋嫨淇敼鍐呭");
 		informationLabel.setBounds(108, 112, 173, 21);
 		frame.getContentPane().add(informationLabel);
 
-		String[] str = { "下拉选择", "id", "姓名", "电话" };
+		String[] str = { "涓嬫媺閫夋嫨", "id", "濮撳悕", "鐢佃瘽" };
 
 		comboBox = new JComboBox(str);
 		comboBox.setBounds(105, 143, 95, 21);
 		frame.getContentPane().add(comboBox);
 		comboBox.addItemListener(this);
 
-		changeButton = new JButton("更改");
+		changeButton = new JButton("鏇存敼");
 		changeButton.setBounds(313, 142, 77, 23);
 		frame.getContentPane().add(changeButton);
 		changeButton.addActionListener(this);
@@ -90,10 +90,10 @@ public class memberChange implements ActionListener, ItemListener {
 		if (str.equals("id")) {
 			return "id";
 		}
-		if (str.equals("姓名")) {
+		if (str.equals("濮撳悕")) {
 			return "name";
 		}
-		if (str.equals("电话")) {
+		if (str.equals("鐢佃瘽")) {
 			return "tel";
 		}
 		else {

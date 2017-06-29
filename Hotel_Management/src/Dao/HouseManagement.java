@@ -30,30 +30,30 @@ public class HouseManagement  implements ActionListener{
 		
 		JLabel canTing = new JLabel("\u9910\u5385\u7BA1\u7406");
 		canTing.setBounds(139, 28, 161, 26);
-		canTing.setFont(new Font("����",Font.BOLD,23));
+		canTing.setFont(new Font("楷体",Font.BOLD,23));
 		frame.getContentPane().add(canTing);
 		
-		houseManage = new JButton("�������");
+		houseManage = new JButton("房间管理");
 		houseManage.setBounds(149, 77, 93, 23);
 		frame.getContentPane().add(houseManage);
 		
-		houseQuery = new JButton("�����ѯ");
+		houseQuery = new JButton("房间查询");
 		houseQuery.setBounds(149, 110, 93, 23);
 		frame.getContentPane().add(houseQuery);
 		
-		 reserveHouse = new JButton("Ԥ������");
+		 reserveHouse = new JButton("预定房间");
 		reserveHouse.setBounds(149, 143, 93, 23);
 		frame.getContentPane().add(reserveHouse);
 		
-		startHouse = new JButton("���÷���");
+		startHouse = new JButton("启用房间");
 		startHouse.setBounds(149, 176, 93, 23);
 		frame.getContentPane().add(startHouse);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 434, 21);
 
 		// frame.getContentPane().add(menuBar);
-		JMenu menu1 = new JMenu("����");
-		JMenu menu2 = new JMenu("����");
+		JMenu menu1 = new JMenu("会员");
+		JMenu menu2 = new JMenu("散客");
 		menuBar.add(menu1);
 		menuBar.add(menu2);
 		frame.setJMenuBar(menuBar);
