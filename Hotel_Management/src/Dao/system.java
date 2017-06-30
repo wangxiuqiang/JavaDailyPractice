@@ -96,6 +96,9 @@ public class system implements ActionListener{
 			food f = new food();
 			frame.dispose();
 		}
+		if(e.getSource() == checkOut){
+			
+		}
 	}
 
 }

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 public class deskMange_1 implements ActionListener{
 
@@ -34,6 +35,7 @@ public class deskMange_1 implements ActionListener{
 		frame.getContentPane().add(roomLabel);
 		
 		addButton = new JButton("添加餐桌");
+		//addButton.setBackground(Color.LIGHT_GRAY);
 		addButton.setBounds(125, 73, 158, 35);
 		frame.getContentPane().add(addButton);
 		addButton.addActionListener(this);//添加监视器
