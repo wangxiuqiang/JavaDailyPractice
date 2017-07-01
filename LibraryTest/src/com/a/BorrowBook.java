@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class BorrowBook extends JFrame implements ActionListener{
-    public JButton borrowBook ;
+    public JButton borrowBook ,back;
     public JTextField field;
     public JLabel label;
 	public BorrowBook(){
@@ -31,11 +31,18 @@ public class BorrowBook extends JFrame implements ActionListener{
 	   field.setBounds(220,80,50,18);
 	   add(field);
 	   borrowBook=new JButton("借阅");
-	   borrowBook.setBounds(160,120,80,25);
+	   borrowBook.setBounds(160,120,60,25);
 	   add(borrowBook);
+	   back = new JButton("返回");
+	   back.setBounds(260,120,60,25);
+	   add(back);
+	   back.addActionListener(this);
 	   
    }
 	public void actionPerformed(ActionEvent e) {
-
-	}
+         if (e.getSource() == back){
+        	 StudentIn studentIn = new StudentIn();
+        	 this.dispose();
+         }
+	} 
 }
