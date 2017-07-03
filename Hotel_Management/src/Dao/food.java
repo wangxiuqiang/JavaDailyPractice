@@ -76,7 +76,24 @@ public class food implements ActionListener{
 			frame.dispose();
 		}
 		if (e.getSource() == chaXu) {
-			
+			queryMenu q  = new queryMenu();
+			frame.dispose();
+		}
+		if (e.getSource() == reviseCai) {
+			foodChange f = new foodChange();
+			frame.dispose();
+		}
+		if (e.getSource() == reviseJiu) {
+			wineChange f = new wineChange();
+			frame.dispose();
+		}
+		if (e.getSource() == addCai) {
+			foodAdd f = new foodAdd();
+			frame.dispose();
+		}
+		if (e.getSource() == addJiu) {
+			wineAdd f = new wineAdd();
+			frame.dispose();
 		}
 		
 	}

@@ -28,13 +28,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.ResultSet;
 
-public class startRoomSoup implements ActionListener,MenuListener , ItemListener{
-  
+public class startRoomSoup implements ActionListener, MenuListener {
+
 	String string;
 	int id1;
 	String str[] = new String[9];
 	int num[] = new int[9];
- 	private JFrame frame;
+	private JFrame frame;
 	private JTextField soup11, house;
 	private JTextField soup22;
 	private JTextField soup33;
@@ -44,7 +44,7 @@ public class startRoomSoup implements ActionListener,MenuListener , ItemListener
 	JMenuBar menuBar;
 	JMenu food, soup, driver;
 
-	public startRoomSoup(){
+	public startRoomSoup() {
 		initialize();
 		frame.setVisible(true);
 	}
@@ -71,12 +71,12 @@ public class startRoomSoup implements ActionListener,MenuListener , ItemListener
 
 		soup = new JMenu("汤类");
 		menuBar.add(soup);
-        food.addMenuListener(this);
+		food.addMenuListener(this);
 		driver = new JMenu("酒品");
 		menuBar.add(driver);
-        driver.addMenuListener(this);
-		soup1 = new JCheckBox("New check box");
-		soup1.setBounds(24, 66, 94, 34);
+		driver.addMenuListener(this);
+		soup1 = new JCheckBox("三鲜汤 40");
+		soup1.setBounds(9, 66, 94, 34);
 		frame.getContentPane().add(soup1);
 
 		soup11 = new JTextField();
@@ -84,12 +84,12 @@ public class startRoomSoup implements ActionListener,MenuListener , ItemListener
 		frame.getContentPane().add(soup11);
 		soup11.setColumns(10);
 
-		soup2 = new JCheckBox("New check box");
-		soup2.setBounds(24, 119, 94, 34);
+		soup2 = new JCheckBox("青菜豆腐汤 20");
+		soup2.setBounds(9, 119, 119, 34);
 		frame.getContentPane().add(soup2);
 
-		soup3 = new JCheckBox("New check box");
-		soup3.setBounds(24, 174, 94, 34);
+		soup3 = new JCheckBox("酸菜粉丝汤 30");
+		soup3.setBounds(11, 174, 117, 34);
 		frame.getContentPane().add(soup3);
 
 		soup22 = new JTextField();
@@ -102,16 +102,16 @@ public class startRoomSoup implements ActionListener,MenuListener , ItemListener
 		soup33.setBounds(136, 181, 39, 21);
 		frame.getContentPane().add(soup33);
 
-		soup4 = new JCheckBox("New check box");
-		soup4.setBounds(237, 66, 94, 34);
+		soup4 = new JCheckBox("紫菜蛋花汤  50");
+		soup4.setBounds(199, 66, 132, 34);
 		frame.getContentPane().add(soup4);
 
-		soup5 = new JCheckBox("New check box");
-		soup5.setBounds(237, 119, 94, 34);
+		soup5 = new JCheckBox("西红柿鸡蛋汤 20");
+		soup5.setBounds(199, 119, 132, 34);
 		frame.getContentPane().add(soup5);
 
-		soup6 = new JCheckBox("New check box");
-		soup6.setBounds(237, 174, 94, 34);
+		soup6 = new JCheckBox("凤凰玉米羹 60");
+		soup6.setBounds(199, 174, 132, 34);
 		frame.getContentPane().add(soup6);
 
 		soup44 = new JTextField();
@@ -136,6 +136,7 @@ public class startRoomSoup implements ActionListener,MenuListener , ItemListener
 		backButton = new JButton("返回");
 		backButton.setBounds(227, 214, 71, 23);
 		frame.getContentPane().add(backButton);
+		backButton.addActionListener(this);
 
 		JLabel label_1 = new JLabel("/\u4EFD");
 		label_1.setBounds(177, 76, 54, 15);
@@ -168,7 +169,7 @@ public class startRoomSoup implements ActionListener,MenuListener , ItemListener
 		house.setBounds(60, 37, 33, 15);
 		frame.getContentPane().add(house);
 		house.setColumns(10);
-		
+
 		house.addActionListener(this);
 		soup11.addActionListener(this);
 		soup22.addActionListener(this);
@@ -176,13 +177,7 @@ public class startRoomSoup implements ActionListener,MenuListener , ItemListener
 		soup44.addActionListener(this);
 		soup55.addActionListener(this);
 		soup66.addActionListener(this);
-		soup1.addItemListener(this);
-		soup2.addItemListener(this);
-		soup3.addItemListener(this);
-		soup4.addItemListener(this);
-		soup5.addItemListener(this);
-		soup6.addItemListener(this);
-		
+	
 		queRenButton.addActionListener(this);
 		backButton.addActionListener(this);
 	}
@@ -201,124 +196,113 @@ public class startRoomSoup implements ActionListener,MenuListener , ItemListener
 			name = rs.getString("name");
 			price = rs.getInt("price");
 		}
-		String sql2 = "insert into menuIn(id,name,price,flag,num) values(" + id1 + " ," + name + ", " + price+","+1+num[id]+")";
+		String sql2 = "insert into menuIn(id,name,price,flag,num) values(" + id1 + " ," + name + ", " + price + "," + 1
+				+ num[id] + ")";
 		statement.execute(sql2);
 		statement.close();
 		rs.close();
 	}
 
-	public void itemStateChanged(ItemEvent e) {
-
-		if (e.getItem() == soup1) {
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == backButton) {
+			HouseManagement h = new HouseManagement();
+			frame.dispose();
+		}
+		if (!house.getText().isEmpty()) {
+			string = house.getText();
+			// System.out.println(string);
+			id1 = Integer.parseInt(string);
+		}
+		if (!soup11.getText().isEmpty()) {
+			str[1] = soup11.getText();
+			// System.out.println(str[1]);
+			num[1] = Integer.parseInt(str[1]);
+			// System.out.println(num[1]);
+		}
+		if (!soup22.getText().isEmpty()) {
+			str[2] = soup22.getText();
+			num[2] = Integer.parseInt(str[2]);
+		}
+		if (!soup33.getText().isEmpty()) {
+			str[3] = soup33.getText();
+			num[3] = Integer.parseInt(str[3]);
+		}
+		if (!soup44.getText().isEmpty()) {
+			str[4] = soup44.getText();
+			num[4] = Integer.parseInt(str[4]);
+		}
+		if (!soup55.getText().isEmpty()) {
+			str[5] = soup55.getText();
+			num[5] = Integer.parseInt(str[5]);
+		}
+		if (!soup66.getText().isEmpty()) {
+			str[6] = soup66.getText();
+			num[6] = Integer.parseInt(str[6]);
+		}
+		if (e.getSource() == queRenButton) {
 			if (soup1.isSelected() == true) {
 				try {
 					jdbcDao(1);
 				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == soup2) {
-			if (soup2.isSelected() == true) {
-				try {
-					jdbcDao(2);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == soup3) {
-			if (soup3.isSelected() == true) {
-				try {
-					// System.out.println(3);
-					jdbcDao(3);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == soup4) {
-			if (soup4.isSelected() == true) {
-				try {
-					jdbcDao(4);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == soup5) {
-			if (soup5.isSelected() == true) {
-				try {
-					jdbcDao(5);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == soup6) {
-			if (soup6.isSelected() == true) {
-				try {
-					jdbcDao(6);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
 
+					e1.printStackTrace();
+				}
+				if (soup2.isSelected() == true) {
+					try {
+						jdbcDao(2);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (soup3.isSelected() == true) {
+					try {
+						// System.out.println(3);
+						jdbcDao(3);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (soup4.isSelected() == true) {
+					try {
+						jdbcDao(4);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (soup5.isSelected() == true) {
+					try {
+						jdbcDao(5);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (soup6.isSelected() == true) {
+					try {
+						jdbcDao(6);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
 		}
+	}
 
-	}
-     
-	public void actionPerformed(ActionEvent e) {
-        string = house.getText();
-      //  System.out.println(string);
-        id1 =Integer.parseInt(string);
-        if(!soup11.getText().isEmpty()){
-      	  str[1] = soup11.getText();
-      	 // System.out.println(str[1]);
-      	  num[1] = Integer.parseInt(str[1]);
-      	 // System.out.println(num[1]);
-        }
-        if(!soup22.getText().isEmpty()){
-      	  str[2] = soup22.getText();
-      	  num[2] = Integer.parseInt(str[2]);
-        }
-        if(!soup33.getText().isEmpty()){
-      	  str[3] = soup33.getText();
-      	  num[3] = Integer.parseInt(str[3]);
-        }
-        if(!soup44.getText().isEmpty()){
-      	  str[4] = soup44.getText();
-      	  num[4] = Integer.parseInt(str[4]);
-        }
-        if(!soup55.getText().isEmpty()){
-      	  str[5] = soup55.getText();
-      	  num[5] = Integer.parseInt(str[5]);
-        }
-        if(!soup66.getText().isEmpty()){
-      	  str[6] = soup66.getText();
-      	  num[6] = Integer.parseInt(str[6]);
-        }
-        
-	}
 	public void menuSelected(MenuEvent e) {
 		if (e.getSource() == food) {
 			startRoom s = new startRoom();
 			frame.dispose();
 		}
-		if(e.getSource() == driver){
+		if (e.getSource() == driver) {
 			startRoomDriver s = new startRoomDriver();
 			frame.dispose();
 		}
 	}
 
-	
 	public void menuDeselected(MenuEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-	public void menuCanceled(MenuEvent e) {	
+	public void menuCanceled(MenuEvent e) {
 	}
 }
-

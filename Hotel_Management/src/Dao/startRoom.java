@@ -16,25 +16,18 @@ import com.mysql.jdbc.Statement;
 
 import Jdbc.jdbcMysql;
 
-public class startRoom implements ActionListener, ItemListener, MenuListener {
+public class startRoom implements ActionListener, MenuListener {
 	int id1;
 	int num[] = new int[9];
 	private JFrame frame;
-	private JTextField food11;
-	private JTextField food22;
-	private JTextField food33;
-	private JTextField food44;
-	private JTextField food55;
-	private JTextField food66;
-	private JTextField food77;
-	private JTextField food88;
+
 	JMenu food, soup, driver;
 	String[] str = new String[9];
 	JMenuBar menuBar;
 
-	JCheckBox food1, food2, food3, food4, food5, food6, food7, food8;
-
+	JCheckBox fooda[] = new JCheckBox[8];
 	JButton queRenButton, backButton;
+	JTextField foodd[] = new JTextField[8];
 
 	public startRoom() {
 		initialize();
@@ -64,80 +57,80 @@ public class startRoom implements ActionListener, ItemListener, MenuListener {
 
 		driver = new JMenu("酒品");
 		menuBar.add(driver);
-		food.addActionListener(this);
-		soup.addActionListener(this);
+		soup.addMenuListener(this);
 		driver.addMenuListener(this);
-		food1 = new JCheckBox("1");
-		food1.setBounds(24, 66, 94, 34);
-		frame.getContentPane().add(food1);
 
-		food11 = new JTextField();
-		food11.setBounds(136, 73, 39, 21);
-		frame.getContentPane().add(food11);
-		food11.setColumns(10);
+		fooda[0] = new JCheckBox("香辣虾  90");
+		fooda[0].setBounds(24, 66, 94, 34);
+		frame.getContentPane().add(fooda[0]);
 
-		food2 = new JCheckBox("2");
-		food2.setBounds(24, 102, 94, 34);
-		frame.getContentPane().add(food2);
+		foodd[0] = new JTextField();
+		foodd[0].setBounds(136, 73, 39, 21);
+		frame.getContentPane().add(foodd[0]);
+		foodd[0].setColumns(10);
 
-		food3 = new JCheckBox("3");
-		food3.setBounds(24, 138, 94, 34);
-		frame.getContentPane().add(food3);
+		fooda[1] = new JCheckBox("回锅肉  58");
+		fooda[1].setBounds(24, 102, 94, 34);
+		frame.getContentPane().add(fooda[1]);
 
-		food4 = new JCheckBox("4");
-		food4.setBounds(24, 174, 94, 34);
-		frame.getContentPane().add(food4);
+		fooda[2] = new JCheckBox("老式肉片  38");
+		fooda[2].setBounds(24, 138, 105, 34);
+		frame.getContentPane().add(fooda[2]);
 
-		food22 = new JTextField();
-		food22.setBounds(136, 109, 39, 21);
-		frame.getContentPane().add(food22);
-		food22.setColumns(10);
+		fooda[3] = new JCheckBox("酸菜鱼  68");
+		fooda[3].setBounds(24, 174, 104, 34);
+		frame.getContentPane().add(fooda[3]);
 
-		food33 = new JTextField();
-		food33.setBounds(136, 145, 39, 21);
-		food33.setColumns(10);
-		frame.getContentPane().add(food33);
+		foodd[1] = new JTextField();
+		foodd[1].setBounds(136, 109, 39, 21);
+		frame.getContentPane().add(foodd[1]);
+		foodd[1].setColumns(10);
 
-		food44 = new JTextField();
-		food44.setBounds(136, 181, 39, 21);
-		food44.setColumns(10);
-		frame.getContentPane().add(food44);
+		foodd[2] = new JTextField();
+		foodd[2].setBounds(136, 145, 39, 21);
+		foodd[2].setColumns(10);
+		frame.getContentPane().add(foodd[2]);
 
-		food5 = new JCheckBox("5");
-		food5.setBounds(237, 66, 94, 34);
-		frame.getContentPane().add(food5);
+		foodd[3] = new JTextField();
+		foodd[3].setBounds(136, 181, 39, 21);
+		foodd[3].setColumns(10);
+		frame.getContentPane().add(foodd[3]);
 
-		food6 = new JCheckBox("6");
-		food6.setBounds(237, 102, 94, 34);
-		frame.getContentPane().add(food6);
+		fooda[4] = new JCheckBox("红烧茄子  35");
+		fooda[4].setBounds(197, 68, 121, 34);
+		frame.getContentPane().add(fooda[4]);
 
-		food7 = new JCheckBox("7");
-		food7.setBounds(237, 138, 94, 34);
-		frame.getContentPane().add(food7);
+		fooda[5] = new JCheckBox("酸辣土豆丝  25");
+		fooda[5].setBounds(197, 102, 121, 34);
+		frame.getContentPane().add(fooda[5]);
 
-		food8 = new JCheckBox("8");
-		food8.setBounds(237, 174, 94, 34);
-		frame.getContentPane().add(food8);
+		fooda[6] = new JCheckBox("麻婆豆腐  30");
+		fooda[6].setBounds(197, 138, 121, 34);
+		frame.getContentPane().add(fooda[6]);
 
-		food55 = new JTextField();
-		food55.setBounds(332, 73, 39, 21);
-		food55.setColumns(10);
-		frame.getContentPane().add(food55);
+		fooda[7] = new JCheckBox("鱼香肉丝  60");
+		fooda[7].setBounds(197, 174, 121, 34);
+		frame.getContentPane().add(fooda[7]);
 
-		food66 = new JTextField();
-		food66.setBounds(332, 109, 39, 21);
-		food66.setColumns(10);
-		frame.getContentPane().add(food66);
+		foodd[4] = new JTextField();
+		foodd[4].setBounds(332, 73, 39, 21);
+		foodd[4].setColumns(10);
+		frame.getContentPane().add(foodd[4]);
 
-		food77 = new JTextField();
-		food77.setBounds(332, 145, 39, 21);
-		food77.setColumns(10);
-		frame.getContentPane().add(food77);
+		foodd[5] = new JTextField();
+		foodd[5].setBounds(332, 109, 39, 21);
+		foodd[5].setColumns(10);
+		frame.getContentPane().add(foodd[5]);
 
-		food88 = new JTextField();
-		food88.setBounds(332, 181, 39, 21);
-		food88.setColumns(10);
-		frame.getContentPane().add(food88);
+		foodd[6] = new JTextField();
+		foodd[6].setBounds(332, 145, 39, 21);
+		foodd[6].setColumns(10);
+		frame.getContentPane().add(foodd[6]);
+
+		foodd[7] = new JTextField();
+		foodd[7].setBounds(332, 181, 39, 21);
+		foodd[7].setColumns(10);
+		frame.getContentPane().add(foodd[7]);
 
 		queRenButton = new JButton("确认");
 		queRenButton.setBounds(125, 243, 71, 23);
@@ -146,7 +139,7 @@ public class startRoom implements ActionListener, ItemListener, MenuListener {
 		backButton = new JButton("返回");
 		backButton.setBounds(227, 243, 71, 23);
 		frame.getContentPane().add(backButton);
-
+		backButton.addActionListener(this);
 		JLabel label_1 = new JLabel("/\u4EFD");
 		label_1.setBounds(176, 76, 39, 15);
 		frame.getContentPane().add(label_1);
@@ -189,22 +182,14 @@ public class startRoom implements ActionListener, ItemListener, MenuListener {
 		house.setColumns(10);
 
 		house.addActionListener(this);
-		food11.addActionListener(this);
-		food22.addActionListener(this);
-		food33.addActionListener(this);
-		food44.addActionListener(this);
-		food55.addActionListener(this);
-		food66.addActionListener(this);
-		food77.addActionListener(this);
-		food88.addActionListener(this);
-		food1.addItemListener(this);
-		food2.addItemListener(this);
-		food3.addItemListener(this);
-		food4.addItemListener(this);
-		food5.addItemListener(this);
-		food6.addItemListener(this);
-		food7.addItemListener(this);
-		food8.addItemListener(this);
+		foodd[0].addActionListener(this);
+		foodd[1].addActionListener(this);
+		foodd[2].addActionListener(this);
+		foodd[3].addActionListener(this);
+		foodd[4].addActionListener(this);
+		foodd[5].addActionListener(this);
+		foodd[6].addActionListener(this);
+		foodd[7].addActionListener(this);
 
 		queRenButton.addActionListener(this);
 		backButton.addActionListener(this);
@@ -219,6 +204,8 @@ public class startRoom implements ActionListener, ItemListener, MenuListener {
 		Connection conn = (Connection) jd.getConn();
 		Statement statement = (Statement) conn.createStatement();
 		String sql = "select name,price from menu where id = " + id;
+		String sql3 = "update houseanddesk set flag = 2 where id =" + id1;
+		statement.execute(sql3);
 		ResultSet rs = statement.executeQuery(sql);
 		String name = null;
 		int price = 0;
@@ -226,137 +213,131 @@ public class startRoom implements ActionListener, ItemListener, MenuListener {
 			name = rs.getString("name");
 			price = rs.getInt("price");
 		}
-		String sql2 = "insert into menuin(id,name,price,flag,num) values(" + id1 + "," + name + "," + price + "," + 1
+		// System.out.println(id1);
+		// System.out.println(num[id]);
+		String sql2 = "insert into menuin(id,name,price,flag,num) values(" + id1 + ",'" + name + "'," + price + "," + 1
 				+ "," + num[id] + ")";
 		statement.execute(sql2);
 		statement.close();
 		rs.close();
 	}
 
-	public void itemStateChanged(ItemEvent e) {
-
-		if (e.getItem() == food1) {
-			if (food1.isSelected() == true) {
-				try {
-					jdbcDao(1);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == food2) {
-			if (food2.isSelected() == true) {
-				try {
-					jdbcDao(2);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == food3) {
-			if (food3.isSelected() == true) {
-				try {
-					// System.out.println(3);
-					jdbcDao(3);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == food4) {
-			if (food4.isSelected() == true) {
-				try {
-					jdbcDao(4);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == food5) {
-			if (food5.isSelected() == true) {
-				try {
-					jdbcDao(5);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == food6) {
-			if (food6.isSelected() == true) {
-				try {
-					jdbcDao(6);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-
-		}
-		if (e.getItem() == food7) {
-			if (food7.isSelected() == true) {
-				try {
-					jdbcDao(7);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == food8) {
-			if (food8.isSelected() == true) {
-				try {
-					jdbcDao(8);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-
-	}
-
 	public void actionPerformed(ActionEvent e) {
-		// if(e.getActionCommand() == "酒品"){
-		// startRoomDriver s = new startRoomDriver();
-		// frame.dispose();
-		// }
+
 		if (!house.getText().isEmpty()) {
 			string = house.getText();
 			// System.out.println(string);
 			id1 = Integer.parseInt(string);
 		}
-		if (!food11.getText().isEmpty()) {
-			str[1] = food11.getText();
+		if (!foodd[0].getText().isEmpty()) {
+			str[1] = foodd[0].getText();
 			// System.out.println(str[1]);
 			num[1] = Integer.parseInt(str[1]);
 			// System.out.println(num[1]);
 		}
-		if (!food22.getText().isEmpty()) {
-			str[2] = food22.getText();
+		if (!foodd[1].getText().isEmpty()) {
+			str[2] = foodd[1].getText();
 			num[2] = Integer.parseInt(str[2]);
 		}
-		if (!food33.getText().isEmpty()) {
-			str[3] = food33.getText();
+		if (!foodd[2].getText().isEmpty()) {
+			str[3] = foodd[2].getText();
 			num[3] = Integer.parseInt(str[3]);
 		}
-		if (!food44.getText().isEmpty()) {
-			str[4] = food44.getText();
+		if (!foodd[3].getText().isEmpty()) {
+			str[4] = foodd[3].getText();
 			num[4] = Integer.parseInt(str[4]);
 		}
-		if (!food55.getText().isEmpty()) {
-			str[5] = food55.getText();
+		if (!foodd[4].getText().isEmpty()) {
+			str[5] = foodd[4].getText();
 			num[5] = Integer.parseInt(str[5]);
 		}
-		if (!food66.getText().isEmpty()) {
-			str[6] = food66.getText();
+		if (!foodd[5].getText().isEmpty()) {
+			str[6] = foodd[5].getText();
 			num[6] = Integer.parseInt(str[6]);
 		}
-		if (!food77.getText().isEmpty()) {
-			str[7] = food77.getText();
+		if (!foodd[6].getText().isEmpty()) {
+			str[7] = foodd[6].getText();
 			num[7] = Integer.parseInt(str[7]);
 		}
-		if (!food88.getText().isEmpty()) {
-			str[8] = food88.getText();
+		if (!foodd[7].getText().isEmpty()) {
+			str[8] = foodd[7].getText();
 			num[8] = Integer.parseInt(str[8]);
 		}
+		if (e.getSource() == backButton) {
+			HouseManagement h = new HouseManagement();
+			frame.dispose();
+		}
+		if (e.getSource() == queRenButton) {
+			if (house.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(frame, "错误", "房间号不能为空", JOptionPane.ERROR_MESSAGE);
 
+			} else {
+				if (fooda[0].isSelected() == true) {
+					try {
+						jdbcDao(1);
+					} catch (Exception e1) {
+
+						e1.printStackTrace();
+					}
+				}
+				if (fooda[1].isSelected() == true) {
+					try {
+						jdbcDao(2);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (fooda[2].isSelected() == true) {
+					try {
+						// System.out.println(3);
+						jdbcDao(3);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (fooda[3].isSelected() == true) {
+					try {
+						jdbcDao(4);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (fooda[4].isSelected() == true) {
+					try {
+						jdbcDao(5);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (fooda[5].isSelected() == true) {
+					try {
+						jdbcDao(6);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+
+				}
+				if (fooda[6].isSelected() == true) {
+					try {
+						jdbcDao(7);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (fooda[7].isSelected() == true) {
+					try {
+						jdbcDao(8);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				house.setText("");
+				for (int i = 0; i < 8; i++) {
+					fooda[i].setSelected(false);
+					foodd[i].setText("");
+				}
+			}
+		}
 	}
 
 	public void menuSelected(MenuEvent e) {
@@ -365,7 +346,7 @@ public class startRoom implements ActionListener, ItemListener, MenuListener {
 			startRoomDriver s = new startRoomDriver();
 			frame.dispose();
 		}
-		if(e.getSource() == soup){
+		if (e.getSource() == soup) {
 			startRoomSoup s = new startRoomSoup();
 			frame.dispose();
 		}
@@ -374,9 +355,9 @@ public class startRoom implements ActionListener, ItemListener, MenuListener {
 	public void menuDeselected(MenuEvent e) {
 	}
 
-	
 	public void menuCanceled(MenuEvent e) {
 		// TODO Auto-generated method stub
 
 	}
+
 }

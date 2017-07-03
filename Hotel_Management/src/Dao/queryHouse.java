@@ -10,7 +10,12 @@ import java.sql.ResultSet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 import com.mysql.jdbc.Statement;
 
@@ -18,14 +23,19 @@ import Jdbc.jdbcMysql;
 
 public class queryHouse implements ActionListener {
 
+	String info[][] = new String[15][3];
 	private JFrame frame;
 	JTextArea textArea;
 	JButton button;
+	JTable query;
+	JTableHeader header;
 
 	public queryHouse() {
 		initialize();
 		frame.setVisible(true);
 	}
+
+	DefaultTableCellRenderer tcr;
 
 	private void initialize() {
 		frame = new JFrame();
@@ -34,33 +44,64 @@ public class queryHouse implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel label = new JLabel("房间信息");
+		JLabel label = new JLabel("餐厅信息");
 		label.setFont(new Font("文泉驿微米黑", Font.BOLD, 27));
-		label.setBounds(176, 28, 162, 33);
+		label.setBounds(159, 12, 162, 33);
 		frame.getContentPane().add(label);
 
-		textArea = new JTextArea();
-		textArea.setBounds(87, 73, 297, 141);
-		textArea.setEditable(false);
-		textArea.append("名称\t\t\t状态\n");
-		frame.getContentPane().add(textArea);
+		if (deskManage.z == 2) {
+			String[] title = {"房间号","状态","预订人"};
+			query = new JTable(info, title);
+			tcr = new DefaultTableCellRenderer();
+			tcr.setHorizontalAlignment(JLabel.CENTER);
+			query.getColumn("状态").setCellRenderer(tcr);
+			query.getColumn("房间号").setCellRenderer(tcr);
+		} else {
+			String[] title = {"桌号","状态"};
+			query = new JTable(info, title);
+			tcr = new DefaultTableCellRenderer();
+			tcr.setHorizontalAlignment(JLabel.CENTER);
+			query.getColumn("状态").setCellRenderer(tcr);
+			query.getColumn("桌号").setCellRenderer(tcr);
+		}
+		s = new JScrollPane();
+		query.setBackground(Color.LIGHT_GRAY);
+		frame.getContentPane().add(s);
+//		header = query.getTableHeader();
+		s.setBounds(73, 49, 300, 150);
+//		frame.getContentPane().add(header);
+//		frame.getContentPane().add(query);
+		
+		
+		s.setViewportView(query);
+
 		try {
+			int i = 0;
 			Connection conn = jd.getConn();
-			String sql = "select * from houseanddesk";
+			String sql;
+			if (deskManage.z == 2) {
+				sql = "select * from houseanddesk where tag = 1";
+			} else {
+				sql = "select * from houseanddesk where tag = 2";
+			}
 			Statement statement = (Statement) conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 			while (rs.next()) {
-				idString = rs.getString("id");
+				idString = rs.getString("names");
 				flags = rs.getString(2);
+				String name = rs.getString("name");
+				info[i][0] = idString;
+				info[i][2] = name;
 				if (flags.equals("1")) {
-					textArea.append("  "+idString + "\t\t\t" + "已预订\n");
+					info[i][1] = "已预订";
 				}
 				if (flags.equals("2")) {
-					textArea.append("  "+idString + "\t\t\t" + "已使用\n");
+					info[i][1] = "使用中";
 				}
 				if (flags.equals("0")) {
-					textArea.append("  "+idString + "\t\t\t" + "未使用\n");
+					info[i][1] = "未使用";
 				}
+				i++;
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -70,11 +111,13 @@ public class queryHouse implements ActionListener {
 		button.setBackground(Color.LIGHT_GRAY);
 		button.setBounds(329, 226, 72, 23);
 		frame.getContentPane().add(button);
+
 		button.addActionListener(this);
 	}
 
 	String idString, flags;
 	jdbcMysql jd = new jdbcMysql();
+	JScrollPane s;
 
 	public void actionPerformed(ActionEvent e) {
 

@@ -28,12 +28,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.ResultSet;
 
-public class startRoomDriver implements ItemListener,ActionListener,MenuListener{
+public class startRoomDriver implements ActionListener, MenuListener {
 
 	int id1;
 	int num[] = new int[9];
 	JMenuBar menuBar;
-	JMenu food,soup,driver;
+	JMenu food, soup, driver;
 	private JFrame frame;
 	private JTextField driver11, house;
 	private JTextField driver22;
@@ -42,8 +42,9 @@ public class startRoomDriver implements ItemListener,ActionListener,MenuListener
 	private JTextField driver55;
 	private JTextField driver66;
 	JCheckBox driver1, driver2, driver3, driver4, driver5, driver6;
-    String string;
-    String str[] = new String[9];
+	String string;
+	String str[] = new String[9];
+
 	public startRoomDriver() {
 		initialize();
 		frame.setVisible(true);
@@ -60,20 +61,20 @@ public class startRoomDriver implements ItemListener,ActionListener,MenuListener
 		label.setBounds(141, 26, 157, 34);
 		frame.getContentPane().add(label);
 
-		 menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 105, 21);
 		frame.getContentPane().add(menuBar);
 
-		 food = new JMenu("菜品");
+		food = new JMenu("菜品");
 		menuBar.add(food);
-         food.addMenuListener(this);
-		 soup = new JMenu("汤类");
+		food.addMenuListener(this);
+		soup = new JMenu("汤类");
 		menuBar.add(soup);
-        soup.addMenuListener(this);
-		 driver = new JMenu("酒品");
+		soup.addMenuListener(this);
+		driver = new JMenu("酒品");
 		menuBar.add(driver);
 
-		driver1 = new JCheckBox("New check box");
+		driver1 = new JCheckBox("可乐 5");
 		driver1.setBounds(24, 66, 94, 34);
 		frame.getContentPane().add(driver1);
 
@@ -82,11 +83,11 @@ public class startRoomDriver implements ItemListener,ActionListener,MenuListener
 		frame.getContentPane().add(driver11);
 		driver11.setColumns(10);
 
-		driver2 = new JCheckBox("New check box");
+		driver2 = new JCheckBox("苏打水 2");
 		driver2.setBounds(24, 119, 94, 34);
 		frame.getContentPane().add(driver2);
 
-		driver3 = new JCheckBox("New check box");
+		driver3 = new JCheckBox("啤酒 8");
 		driver3.setBounds(24, 174, 94, 34);
 		frame.getContentPane().add(driver3);
 
@@ -100,15 +101,15 @@ public class startRoomDriver implements ItemListener,ActionListener,MenuListener
 		driver33.setBounds(136, 181, 39, 21);
 		frame.getContentPane().add(driver33);
 
-		driver4 = new JCheckBox("New check box");
+		driver4 = new JCheckBox("雪碧 5");
 		driver4.setBounds(237, 66, 94, 34);
 		frame.getContentPane().add(driver4);
 
-		driver5 = new JCheckBox("New check box");
+		driver5 = new JCheckBox("茅台 900");
 		driver5.setBounds(237, 119, 94, 34);
 		frame.getContentPane().add(driver5);
 
-		driver6 = new JCheckBox("New check box");
+		driver6 = new JCheckBox("国窖 500");
 		driver6.setBounds(237, 174, 94, 34);
 		frame.getContentPane().add(driver6);
 
@@ -130,10 +131,11 @@ public class startRoomDriver implements ItemListener,ActionListener,MenuListener
 		queRenButton = new JButton("确认");
 		queRenButton.setBounds(115, 214, 71, 23);
 		frame.getContentPane().add(queRenButton);
-        
+
 		backButton = new JButton("返回");
 		backButton.setBounds(227, 214, 71, 23);
 		frame.getContentPane().add(backButton);
+		backButton.addActionListener(this);
 
 		JLabel label_1 = new JLabel("/\u74F6");
 		label_1.setBounds(177, 76, 54, 15);
@@ -158,7 +160,7 @@ public class startRoomDriver implements ItemListener,ActionListener,MenuListener
 		JLabel label_6 = new JLabel("/\u74F6");
 		label_6.setBounds(370, 184, 54, 15);
 		frame.getContentPane().add(label_6);
-		
+
 		JLabel label_9 = new JLabel("房间号");
 		label_9.setBounds(10, 39, 63, 13);
 		frame.getContentPane().add(label_9);
@@ -174,14 +176,7 @@ public class startRoomDriver implements ItemListener,ActionListener,MenuListener
 		driver44.addActionListener(this);
 		driver55.addActionListener(this);
 		driver66.addActionListener(this);
-		
-		driver1.addItemListener(this);
-		driver2.addItemListener(this);
-		driver3.addItemListener(this);
-		driver4.addItemListener(this);
-		driver5.addItemListener(this);
-		driver6.addItemListener(this);
-		
+
 		queRenButton.addActionListener(this);
 		backButton.addActionListener(this);
 	}
@@ -200,125 +195,116 @@ public class startRoomDriver implements ItemListener,ActionListener,MenuListener
 			name = rs.getString("name");
 			price = rs.getInt("price");
 		}
-		String sql2 = "insert into menuIn(id,name,price,flag,num) values(" + id1 + " ," + name + ", " + price+","+1+","+num[id]+")";
+		String sql2 = "insert into menuIn(id,name,price,flag,num) values(" + id1 + " ," + name + ", " + price + "," + 1
+				+ "," + num[id] + ")";
 		statement.execute(sql2);
 		statement.close();
 		rs.close();
 	}
 
-	public void itemStateChanged(ItemEvent e) {
-
-		if (e.getItem() == driver1) {
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == backButton) {
+			HouseManagement h = new HouseManagement();
+			frame.dispose();
+		}
+		if (!house.getText().isEmpty()) {
+			string = house.getText();
+			// System.out.println(string);
+			id1 = Integer.parseInt(string);
+		}
+	
+		if (!driver11.getText().isEmpty()) {
+			str[1] = driver11.getText();
+			// System.out.println(str[1]);
+			num[1] = Integer.parseInt(str[1]);
+			// System.out.println(num[1]);
+		}
+		if (!driver22.getText().isEmpty()) {
+			str[2] = driver22.getText();
+			num[2] = Integer.parseInt(str[2]);
+		}
+		if (!driver33.getText().isEmpty()) {
+			str[3] = driver33.getText();
+			num[3] = Integer.parseInt(str[3]);
+		}
+		if (!driver44.getText().isEmpty()) {
+			str[4] = driver44.getText();
+			num[4] = Integer.parseInt(str[4]);
+		}
+		if (!driver55.getText().isEmpty()) {
+			str[5] = driver55.getText();
+			num[5] = Integer.parseInt(str[5]);
+		}
+		if (!driver66.getText().isEmpty()) {
+			str[6] = driver66.getText();
+			num[6] = Integer.parseInt(str[6]);
+		}
+		if (e.getSource() == queRenButton) {
 			if (driver1.isSelected() == true) {
 				try {
 					jdbcDao(1);
 				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == driver2) {
-			if (driver2.isSelected() == true) {
-				try {
-					jdbcDao(2);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == driver3) {
-			if (driver3.isSelected() == true) {
-				try {
-					//System.out.println(3);
-					 jdbcDao(3);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == driver4) {
-			if (driver4.isSelected() == true) {
-				try {
-					jdbcDao(4);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == driver5) {
-			if (driver5.isSelected() == true) {
-				try {
-					jdbcDao(5);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
-		if (e.getItem() == driver6) {
-			if (driver6.isSelected() == true) {
-				try {
-					jdbcDao(6);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
 
+					e1.printStackTrace();
+				}
+				if (driver2.isSelected() == true) {
+					try {
+						jdbcDao(2);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (driver3.isSelected() == true) {
+					try {
+						// System.out.println(3);
+						jdbcDao(3);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (driver4.isSelected() == true) {
+					try {
+						jdbcDao(4);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (driver5.isSelected() == true) {
+					try {
+						jdbcDao(5);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				if (driver6.isSelected() == true) {
+					try {
+						jdbcDao(6);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
 		}
-
-	}
-	public void actionPerformed(ActionEvent e) {
-        string = house.getText();
-      //  System.out.println(string);
-        id1 =Integer.parseInt(string);
-        if(!driver11.getText().isEmpty()){
-      	  str[1] = driver11.getText();
-      	 // System.out.println(str[1]);
-      	  num[1] = Integer.parseInt(str[1]);
-      	 // System.out.println(num[1]);
-        }
-        if(!driver22.getText().isEmpty()){
-      	  str[2] = driver22.getText();
-      	  num[2] = Integer.parseInt(str[2]);
-        }
-        if(!driver33.getText().isEmpty()){
-      	  str[3] = driver33.getText();
-      	  num[3] = Integer.parseInt(str[3]);
-        }
-        if(!driver44.getText().isEmpty()){
-      	  str[4] = driver44.getText();
-      	  num[4] = Integer.parseInt(str[4]);
-        }
-        if(!driver55.getText().isEmpty()){
-      	  str[5] = driver55.getText();
-      	  num[5] = Integer.parseInt(str[5]);
-        }
-        if(!driver66.getText().isEmpty()){
-      	  str[6] = driver66.getText();
-      	  num[6] = Integer.parseInt(str[6]);
-        } 
 	}
 
-	
 	public void menuSelected(MenuEvent e) {
 		if (e.getSource() == food) {
 			startRoom s = new startRoom();
 			frame.dispose();
 		}
-		if(e.getSource() == soup){
+		if (e.getSource() == soup) {
 			startRoomSoup s = new startRoomSoup();
 			frame.dispose();
 		}
 	}
 
-	
 	public void menuDeselected(MenuEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
 	public void menuCanceled(MenuEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

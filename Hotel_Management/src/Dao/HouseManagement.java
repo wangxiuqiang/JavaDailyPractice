@@ -41,7 +41,7 @@ public class HouseManagement implements ActionListener ,MenuListener{
 		houseManage.setBounds(149, 77, 93, 23);
 		frame.getContentPane().add(houseManage);
 		houseManage.addActionListener(this);
-
+       
 		houseQuery = new JButton("房间查询");
 		houseQuery.setBounds(149, 110, 93, 23);
 		frame.getContentPane().add(houseQuery);
@@ -81,6 +81,7 @@ public class HouseManagement implements ActionListener ,MenuListener{
 			frame.dispose();
 		}
 		if (e.getSource() == houseQuery) {
+			deskManage.z =2;
 			queryHouse q = new queryHouse();
 			frame.dispose();
 		}
