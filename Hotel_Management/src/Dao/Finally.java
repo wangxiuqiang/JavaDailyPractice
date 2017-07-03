@@ -10,10 +10,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Finally  implements ActionListener{
+public class Finally  implements ActionListener,MenuListener{
 
 	private JFrame frame;
 	private JTextField HouseAndDesk;
@@ -77,6 +80,7 @@ public class Finally  implements ActionListener{
 	//	frame.getContentPane().add(menuBar);
 		 menu1 = new JMenu("会员");
 		 menu2 = new JMenu("散客");
+		 menu1.addMenuListener(this);
 		menuBar.add(menu1);
 		menuBar.add(menu2);
 		frame.setJMenuBar(menuBar);
@@ -93,6 +97,25 @@ public class Finally  implements ActionListener{
 		   system s = new system();
 		   frame.dispose();
 	   }
+		
+	}
+
+	
+	public void menuSelected(MenuEvent e) {
+		if(e.getSource() == menu1){
+			memberFinally m = new memberFinally();
+			frame.dispose();
+		}
+	}
+
+	public void menuDeselected(MenuEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void menuCanceled(MenuEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

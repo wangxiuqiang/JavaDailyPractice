@@ -150,7 +150,8 @@ public class waiterManIn implements ActionListener{
 					ps.executeUpdate();
 					JOptionPane.showMessageDialog(frame, "添加成功","成功",JOptionPane.DEFAULT_OPTION);
 					ps.close();
-					
+					waiterMan s = new waiterMan();
+					frame.dispose();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

@@ -10,8 +10,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
-public class memberFinally implements ActionListener {
+public class memberFinally implements ActionListener , MenuListener{
 
 	private JFrame frame;
 	private JTextField HouseAndDesk;
@@ -86,6 +88,7 @@ public class memberFinally implements ActionListener {
 		 menu2 = new JMenu("散客");
 		menuBar.add(menu1);
 		menuBar.add(menu2);
+		menu2.addMenuListener(this);
 		frame.setJMenuBar(menuBar);
 	}
     JButton queRen,giveMoney;
@@ -99,5 +102,21 @@ public class memberFinally implements ActionListener {
         	system s = new system();
         	frame.dispose();
         }
+	}
+
+
+	public void menuSelected(MenuEvent e) {
+            if(e.getSource() == menu2){
+            	Finally f = new Finally();
+            	frame.dispose();
+            }
+	}
+
+	public void menuDeselected(MenuEvent e) {
+
+	}
+
+	public void menuCanceled(MenuEvent e) {
+		
 	}
 }

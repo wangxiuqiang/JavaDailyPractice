@@ -106,6 +106,8 @@ public class memberAdd implements ActionListener {
 				ps.executeUpdate();
 				JOptionPane.showMessageDialog(frame, "添加成功", "消息", JOptionPane.DEFAULT_OPTION);
 				ps.close();
+				member m = new member();
+				frame.dispose();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

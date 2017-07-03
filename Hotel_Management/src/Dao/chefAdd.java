@@ -138,6 +138,8 @@ public class chefAdd implements ActionListener {
 					ps.executeUpdate();
 					JOptionPane.showMessageDialog(frame, "添加成功", "添加成功", JOptionPane.ERROR_MESSAGE);
 					ps.close();
+					chef c = new chef();
+					frame.dispose();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

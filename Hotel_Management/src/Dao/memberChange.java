@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.mysql.jdbc.Statement;
@@ -126,6 +127,9 @@ public class memberChange implements ActionListener, ItemListener {
                  String sql = "update member set " +combo+" = '"+ str +"' where id = "+id;
                  st.execute(sql);
                  st.close();
+                 JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
+			      member m = new member();
+			      frame.dispose();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

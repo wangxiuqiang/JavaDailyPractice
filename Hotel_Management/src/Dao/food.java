@@ -75,6 +75,9 @@ public class food implements ActionListener{
 		system s = new system();
 			frame.dispose();
 		}
+		if (e.getSource() == chaXu) {
+			
+		}
 		
 	}
 
