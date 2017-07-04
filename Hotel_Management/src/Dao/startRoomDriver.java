@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
@@ -35,13 +36,10 @@ public class startRoomDriver implements ActionListener, MenuListener {
 	JMenuBar menuBar;
 	JMenu food, soup, driver;
 	private JFrame frame;
-	private JTextField driver11, house;
-	private JTextField driver22;
-	private JTextField driver33;
-	private JTextField driver44;
-	private JTextField driver55;
-	private JTextField driver66;
-	JCheckBox driver1, driver2, driver3, driver4, driver5, driver6;
+	private JTextField house;
+	private JTextField driverd[] = new JTextField[7];
+
+	JCheckBox drivera[] = new JCheckBox[7];
 	String string;
 	String str[] = new String[9];
 
@@ -68,65 +66,65 @@ public class startRoomDriver implements ActionListener, MenuListener {
 		food = new JMenu("菜品");
 		menuBar.add(food);
 		food.addMenuListener(this);
-		soup = new JMenu("汤类");
+		soup = new JMenu("汤品");
 		menuBar.add(soup);
 		soup.addMenuListener(this);
 		driver = new JMenu("酒品");
 		menuBar.add(driver);
 
-		driver1 = new JCheckBox("可乐 5");
-		driver1.setBounds(24, 66, 94, 34);
-		frame.getContentPane().add(driver1);
+		drivera[1] = new JCheckBox("可乐 5");
+		drivera[1].setBounds(24, 66, 94, 34);
+		frame.getContentPane().add(drivera[1]);
 
-		driver11 = new JTextField();
-		driver11.setBounds(136, 73, 39, 21);
-		frame.getContentPane().add(driver11);
-		driver11.setColumns(10);
+		driverd[1] = new JTextField();
+		driverd[1].setBounds(136, 73, 39, 21);
+		frame.getContentPane().add(driverd[1]);
+		driverd[1].setColumns(10);
 
-		driver2 = new JCheckBox("苏打水 2");
-		driver2.setBounds(24, 119, 94, 34);
-		frame.getContentPane().add(driver2);
+		drivera[2] = new JCheckBox("苏打水 2");
+		drivera[2].setBounds(24, 119, 94, 34);
+		frame.getContentPane().add(drivera[2]);
 
-		driver3 = new JCheckBox("啤酒 8");
-		driver3.setBounds(24, 174, 94, 34);
-		frame.getContentPane().add(driver3);
+		drivera[3] = new JCheckBox("啤酒 8");
+		drivera[3].setBounds(24, 174, 94, 34);
+		frame.getContentPane().add(drivera[3]);
 
-		driver22 = new JTextField();
-		driver22.setBounds(136, 126, 39, 21);
-		frame.getContentPane().add(driver22);
-		driver22.setColumns(10);
+		driverd[2] = new JTextField();
+		driverd[2].setBounds(136, 126, 39, 21);
+		frame.getContentPane().add(driverd[2]);
+		driverd[2].setColumns(10);
 
-		driver33 = new JTextField();
-		driver33.setColumns(10);
-		driver33.setBounds(136, 181, 39, 21);
-		frame.getContentPane().add(driver33);
+		driverd[3] = new JTextField();
+		driverd[3].setColumns(10);
+		driverd[3].setBounds(136, 181, 39, 21);
+		frame.getContentPane().add(driverd[3]);
 
-		driver4 = new JCheckBox("雪碧 5");
-		driver4.setBounds(237, 66, 94, 34);
-		frame.getContentPane().add(driver4);
+		drivera[4] = new JCheckBox("雪碧 5");
+		drivera[4].setBounds(237, 66, 94, 34);
+		frame.getContentPane().add(drivera[4]);
 
-		driver5 = new JCheckBox("茅台 900");
-		driver5.setBounds(237, 119, 94, 34);
-		frame.getContentPane().add(driver5);
+		drivera[5] = new JCheckBox("茅台 900");
+		drivera[5].setBounds(237, 119, 94, 34);
+		frame.getContentPane().add(drivera[5]);
 
-		driver6 = new JCheckBox("国窖 500");
-		driver6.setBounds(237, 174, 94, 34);
-		frame.getContentPane().add(driver6);
+		drivera[6] = new JCheckBox("国窖 500");
+		drivera[6].setBounds(237, 174, 94, 34);
+		frame.getContentPane().add(drivera[6]);
 
-		driver44 = new JTextField();
-		driver44.setColumns(10);
-		driver44.setBounds(332, 73, 39, 21);
-		frame.getContentPane().add(driver44);
+		driverd[4] = new JTextField();
+		driverd[4].setColumns(10);
+		driverd[4].setBounds(332, 73, 39, 21);
+		frame.getContentPane().add(driverd[4]);
 
-		driver55 = new JTextField();
-		driver55.setColumns(10);
-		driver55.setBounds(332, 126, 39, 21);
-		frame.getContentPane().add(driver55);
+		driverd[5] = new JTextField();
+		driverd[5].setColumns(10);
+		driverd[5].setBounds(332, 126, 39, 21);
+		frame.getContentPane().add(driverd[5]);
 
-		driver66 = new JTextField();
-		driver66.setColumns(10);
-		driver66.setBounds(332, 181, 39, 21);
-		frame.getContentPane().add(driver66);
+		driverd[6] = new JTextField();
+		driverd[6].setColumns(10);
+		driverd[6].setBounds(332, 181, 39, 21);
+		frame.getContentPane().add(driverd[6]);
 
 		queRenButton = new JButton("确认");
 		queRenButton.setBounds(115, 214, 71, 23);
@@ -170,12 +168,12 @@ public class startRoomDriver implements ActionListener, MenuListener {
 		frame.getContentPane().add(house);
 		house.setColumns(10);
 		house.addActionListener(this);
-		driver11.addActionListener(this);
-		driver22.addActionListener(this);
-		driver33.addActionListener(this);
-		driver44.addActionListener(this);
-		driver55.addActionListener(this);
-		driver66.addActionListener(this);
+		driverd[1].addActionListener(this);
+		driverd[2].addActionListener(this);
+		driverd[3].addActionListener(this);
+		driverd[4].addActionListener(this);
+		driverd[5].addActionListener(this);
+		driverd[6].addActionListener(this);
 
 		queRenButton.addActionListener(this);
 		backButton.addActionListener(this);
@@ -212,49 +210,55 @@ public class startRoomDriver implements ActionListener, MenuListener {
 			// System.out.println(string);
 			id1 = Integer.parseInt(string);
 		}
-	
-		if (!driver11.getText().isEmpty()) {
-			str[1] = driver11.getText();
+
+		if (!driverd[1].getText().isEmpty()) {
+			str[1] = driverd[1].getText();
 			// System.out.println(str[1]);
 			num[1] = Integer.parseInt(str[1]);
 			// System.out.println(num[1]);
 		}
-		if (!driver22.getText().isEmpty()) {
-			str[2] = driver22.getText();
+		if (!driverd[2].getText().isEmpty()) {
+			str[2] = driverd[2].getText();
 			num[2] = Integer.parseInt(str[2]);
 		}
-		if (!driver33.getText().isEmpty()) {
-			str[3] = driver33.getText();
+		if (!driverd[3].getText().isEmpty()) {
+			str[3] = driverd[3].getText();
 			num[3] = Integer.parseInt(str[3]);
 		}
-		if (!driver44.getText().isEmpty()) {
-			str[4] = driver44.getText();
+		if (!driverd[4].getText().isEmpty()) {
+			str[4] = driverd[4].getText();
 			num[4] = Integer.parseInt(str[4]);
 		}
-		if (!driver55.getText().isEmpty()) {
-			str[5] = driver55.getText();
+		if (!driverd[5].getText().isEmpty()) {
+			str[5] = driverd[5].getText();
 			num[5] = Integer.parseInt(str[5]);
 		}
-		if (!driver66.getText().isEmpty()) {
-			str[6] = driver66.getText();
+		if (!driverd[6].getText().isEmpty()) {
+			str[6] = driverd[6].getText();
 			num[6] = Integer.parseInt(str[6]);
 		}
 		if (e.getSource() == queRenButton) {
-			if (driver1.isSelected() == true) {
-				try {
-					jdbcDao(1);
-				} catch (Exception e1) {
+			if (house.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(frame, "房间号不能为空", "错误", JOptionPane.ERROR_MESSAGE);
 
-					e1.printStackTrace();
+			} else {
+
+				if (drivera[1].isSelected() == true) {
+					try {
+						jdbcDao(1);
+					} catch (Exception e1) {
+
+						e1.printStackTrace();
+					}
 				}
-				if (driver2.isSelected() == true) {
+				if (drivera[2].isSelected() == true) {
 					try {
 						jdbcDao(2);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
-				if (driver3.isSelected() == true) {
+				if (drivera[3].isSelected() == true) {
 					try {
 						// System.out.println(3);
 						jdbcDao(3);
@@ -262,26 +266,32 @@ public class startRoomDriver implements ActionListener, MenuListener {
 						e1.printStackTrace();
 					}
 				}
-				if (driver4.isSelected() == true) {
+				if (drivera[4].isSelected() == true) {
 					try {
 						jdbcDao(4);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
-				if (driver5.isSelected() == true) {
+				if (drivera[5].isSelected() == true) {
 					try {
 						jdbcDao(5);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
-				if (driver6.isSelected() == true) {
+				if (drivera[6].isSelected() == true) {
 					try {
 						jdbcDao(6);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
+				}
+				JOptionPane.showMessageDialog(frame, "点菜成功", "消息", JOptionPane.DEFAULT_OPTION);
+				house.setText("");
+				for (int i = 1; i < 7; i++) {
+					drivera[i].setSelected(false);
+					driverd[i].setText("");
 				}
 			}
 		}

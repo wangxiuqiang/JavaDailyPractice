@@ -86,6 +86,7 @@ public class HouseManagement implements ActionListener ,MenuListener{
 			frame.dispose();
 		}
 		if (e.getSource() == startHouse) {
+			deskManage.z =2;
 			startRoom s = new startRoom();
 			frame.dispose();
 		}

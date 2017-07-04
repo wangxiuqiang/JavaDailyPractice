@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
@@ -35,12 +36,8 @@ public class startRoomSoup implements ActionListener, MenuListener {
 	String str[] = new String[9];
 	int num[] = new int[9];
 	private JFrame frame;
-	private JTextField soup11, house;
-	private JTextField soup22;
-	private JTextField soup33;
-	private JTextField soup44;
-	private JTextField soup55;
-	private JTextField soup66;
+	private JTextField house;
+	private JTextField soupd[] = new JTextField[7];
 	JMenuBar menuBar;
 	JMenu food, soup, driver;
 
@@ -49,7 +46,7 @@ public class startRoomSoup implements ActionListener, MenuListener {
 		frame.setVisible(true);
 	}
 
-	JCheckBox soup6, soup1, soup2, soup3, soup4, soup5;
+	JCheckBox soupa[] = new JCheckBox[7];
 
 	private void initialize() {
 		frame = new JFrame();
@@ -75,65 +72,65 @@ public class startRoomSoup implements ActionListener, MenuListener {
 		driver = new JMenu("酒品");
 		menuBar.add(driver);
 		driver.addMenuListener(this);
-		soup1 = new JCheckBox("三鲜汤 40");
-		soup1.setBounds(9, 66, 94, 34);
-		frame.getContentPane().add(soup1);
+		soupa[1] = new JCheckBox("三鲜汤 40");
+		soupa[1].setBounds(9, 66, 94, 34);
+		frame.getContentPane().add(soupa[1]);
 
-		soup11 = new JTextField();
-		soup11.setBounds(136, 73, 39, 21);
-		frame.getContentPane().add(soup11);
-		soup11.setColumns(10);
+		soupd[1] = new JTextField();
+		soupd[1].setBounds(136, 73, 39, 21);
+		frame.getContentPane().add(soupd[1]);
+		soupd[1].setColumns(10);
 
-		soup2 = new JCheckBox("青菜豆腐汤 20");
-		soup2.setBounds(9, 119, 119, 34);
-		frame.getContentPane().add(soup2);
+		soupa[2] = new JCheckBox("青菜豆腐汤 20");
+		soupa[2].setBounds(9, 119, 119, 34);
+		frame.getContentPane().add(soupa[2]);
 
-		soup3 = new JCheckBox("酸菜粉丝汤 30");
-		soup3.setBounds(11, 174, 117, 34);
-		frame.getContentPane().add(soup3);
+		soupa[3] = new JCheckBox("酸菜粉丝汤 30");
+		soupa[3].setBounds(11, 174, 117, 34);
+		frame.getContentPane().add(soupa[3]);
 
-		soup22 = new JTextField();
-		soup22.setBounds(136, 126, 39, 21);
-		frame.getContentPane().add(soup22);
-		soup22.setColumns(10);
+		soupd[2] = new JTextField();
+		soupd[2].setBounds(136, 126, 39, 21);
+		frame.getContentPane().add(soupd[2]);
+		soupd[2].setColumns(10);
 
-		soup33 = new JTextField();
-		soup33.setColumns(10);
-		soup33.setBounds(136, 181, 39, 21);
-		frame.getContentPane().add(soup33);
+		soupd[3] = new JTextField();
+		soupd[3].setColumns(10);
+		soupd[3].setBounds(136, 181, 39, 21);
+		frame.getContentPane().add(soupd[3]);
 
-		soup4 = new JCheckBox("紫菜蛋花汤  50");
-		soup4.setBounds(199, 66, 132, 34);
-		frame.getContentPane().add(soup4);
+		soupa[4] = new JCheckBox("紫菜蛋花汤 50");
+		soupa[4].setBounds(199, 66, 132, 34);
+		frame.getContentPane().add(soupa[4]);
 
-		soup5 = new JCheckBox("西红柿鸡蛋汤 20");
-		soup5.setBounds(199, 119, 132, 34);
-		frame.getContentPane().add(soup5);
+		soupa[5] = new JCheckBox("西红柿鸡蛋汤 20");
+		soupa[5].setBounds(199, 119, 132, 34);
+		frame.getContentPane().add(soupa[5]);
 
-		soup6 = new JCheckBox("凤凰玉米羹 60");
-		soup6.setBounds(199, 174, 132, 34);
-		frame.getContentPane().add(soup6);
+		soupa[6] = new JCheckBox("凤凰玉米羹 60");
+		soupa[6].setBounds(199, 174, 132, 34);
+		frame.getContentPane().add(soupa[6]);
 
-		soup44 = new JTextField();
-		soup44.setColumns(10);
-		soup44.setBounds(332, 73, 39, 21);
-		frame.getContentPane().add(soup44);
+		soupd[4] = new JTextField();
+		soupd[4].setColumns(10);
+		soupd[4].setBounds(332, 73, 39, 21);
+		frame.getContentPane().add(soupd[4]);
 
-		soup55 = new JTextField();
-		soup55.setColumns(10);
-		soup55.setBounds(332, 126, 39, 21);
-		frame.getContentPane().add(soup55);
+		soupd[5] = new JTextField();
+		soupd[5].setColumns(10);
+		soupd[5].setBounds(332, 126, 39, 21);
+		frame.getContentPane().add(soupd[5]);
 
-		soup66 = new JTextField();
-		soup66.setColumns(10);
-		soup66.setBounds(332, 181, 39, 21);
-		frame.getContentPane().add(soup66);
+		soupd[6] = new JTextField();
+		soupd[6].setColumns(10);
+		soupd[6].setBounds(332, 181, 39, 21);
+		frame.getContentPane().add(soupd[6]);
 
-		queRenButton = new JButton("确认");
+		queRenButton = new JButton("纭");
 		queRenButton.setBounds(115, 214, 71, 23);
 		frame.getContentPane().add(queRenButton);
 
-		backButton = new JButton("返回");
+		backButton = new JButton("杩斿洖");
 		backButton.setBounds(227, 214, 71, 23);
 		frame.getContentPane().add(backButton);
 		backButton.addActionListener(this);
@@ -161,7 +158,7 @@ public class startRoomSoup implements ActionListener, MenuListener {
 		JLabel label_6 = new JLabel("/\u4EFD");
 		label_6.setBounds(373, 184, 39, 15);
 		frame.getContentPane().add(label_6);
-		JLabel label_9 = new JLabel("房间号");
+		JLabel label_9 = new JLabel("鎴块棿鍙�");
 		label_9.setBounds(10, 39, 63, 13);
 		frame.getContentPane().add(label_9);
 
@@ -171,13 +168,13 @@ public class startRoomSoup implements ActionListener, MenuListener {
 		house.setColumns(10);
 
 		house.addActionListener(this);
-		soup11.addActionListener(this);
-		soup22.addActionListener(this);
-		soup33.addActionListener(this);
-		soup44.addActionListener(this);
-		soup55.addActionListener(this);
-		soup66.addActionListener(this);
-	
+		soupd[1].addActionListener(this);
+		soupd[2].addActionListener(this);
+		soupd[3].addActionListener(this);
+		soupd[4].addActionListener(this);
+		soupd[5].addActionListener(this);
+		soupd[6].addActionListener(this);
+
 		queRenButton.addActionListener(this);
 		backButton.addActionListener(this);
 	}
@@ -213,48 +210,54 @@ public class startRoomSoup implements ActionListener, MenuListener {
 			// System.out.println(string);
 			id1 = Integer.parseInt(string);
 		}
-		if (!soup11.getText().isEmpty()) {
-			str[1] = soup11.getText();
+		if (!soupd[1].getText().isEmpty()) {
+			str[1] = soupd[1].getText();
 			// System.out.println(str[1]);
 			num[1] = Integer.parseInt(str[1]);
 			// System.out.println(num[1]);
 		}
-		if (!soup22.getText().isEmpty()) {
-			str[2] = soup22.getText();
+		if (!soupd[2].getText().isEmpty()) {
+			str[2] = soupd[2].getText();
 			num[2] = Integer.parseInt(str[2]);
 		}
-		if (!soup33.getText().isEmpty()) {
-			str[3] = soup33.getText();
+		if (!soupd[3].getText().isEmpty()) {
+			str[3] = soupd[3].getText();
 			num[3] = Integer.parseInt(str[3]);
 		}
-		if (!soup44.getText().isEmpty()) {
-			str[4] = soup44.getText();
+		if (!soupd[4].getText().isEmpty()) {
+			str[4] = soupd[4].getText();
 			num[4] = Integer.parseInt(str[4]);
 		}
-		if (!soup55.getText().isEmpty()) {
-			str[5] = soup55.getText();
+		if (!soupd[5].getText().isEmpty()) {
+			str[5] = soupd[5].getText();
 			num[5] = Integer.parseInt(str[5]);
 		}
-		if (!soup66.getText().isEmpty()) {
-			str[6] = soup66.getText();
+		if (!soupd[6].getText().isEmpty()) {
+			str[6] = soupd[6].getText();
 			num[6] = Integer.parseInt(str[6]);
 		}
 		if (e.getSource() == queRenButton) {
-			if (soup1.isSelected() == true) {
-				try {
-					jdbcDao(1);
-				} catch (Exception e1) {
 
-					e1.printStackTrace();
+			if (house.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(frame, "房间号不能为空", "错误", JOptionPane.ERROR_MESSAGE);
+
+			} else {
+				if (soupa[1].isSelected() == true) {
+
+					try {
+						jdbcDao(1);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
-				if (soup2.isSelected() == true) {
+				if (soupa[2].isSelected() == true) {
 					try {
 						jdbcDao(2);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
-				if (soup3.isSelected() == true) {
+				if (soupa[3].isSelected() == true) {
 					try {
 						// System.out.println(3);
 						jdbcDao(3);
@@ -262,26 +265,32 @@ public class startRoomSoup implements ActionListener, MenuListener {
 						e1.printStackTrace();
 					}
 				}
-				if (soup4.isSelected() == true) {
+				if (soupa[4].isSelected() == true) {
 					try {
 						jdbcDao(4);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
-				if (soup5.isSelected() == true) {
+				if (soupa[5].isSelected() == true) {
 					try {
 						jdbcDao(5);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
-				if (soup6.isSelected() == true) {
+				if (soupa[6].isSelected() == true) {
 					try {
 						jdbcDao(6);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
+				}
+				JOptionPane.showMessageDialog(frame, "点菜成功", "消息", JOptionPane.DEFAULT_OPTION);
+				house.setText("");
+				for (int i = 1; i < 7; i++) {
+					soupa[i].setSelected(false);
+					soupd[i].setText("");
 				}
 			}
 		}

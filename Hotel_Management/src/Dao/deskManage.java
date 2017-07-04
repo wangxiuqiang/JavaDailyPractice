@@ -94,6 +94,7 @@ public class deskManage implements ActionListener ,MenuListener{
 			frame.dispose();
 		}
 		if (e.getSource() == reserveHouse) {
+			z=1;
 			startRoom s = new startRoom();
 			frame.dispose();
 		}

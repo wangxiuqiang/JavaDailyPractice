@@ -139,7 +139,7 @@ public class startRoom implements ActionListener, MenuListener {
 		backButton = new JButton("返回");
 		backButton.setBounds(227, 243, 71, 23);
 		frame.getContentPane().add(backButton);
-		backButton.addActionListener(this);
+		
 		JLabel label_1 = new JLabel("/\u4EFD");
 		label_1.setBounds(176, 76, 39, 15);
 		frame.getContentPane().add(label_1);
@@ -204,7 +204,7 @@ public class startRoom implements ActionListener, MenuListener {
 		Connection conn = (Connection) jd.getConn();
 		Statement statement = (Statement) conn.createStatement();
 		String sql = "select name,price from menu where id = " + id;
-		String sql3 = "update houseanddesk set flag = 2 where id =" + id1;
+		String sql3 = "update houseanddesk set flag = 2, name = null where id =" + id1;
 		statement.execute(sql3);
 		ResultSet rs = statement.executeQuery(sql);
 		String name = null;
@@ -228,6 +228,20 @@ public class startRoom implements ActionListener, MenuListener {
 			string = house.getText();
 			// System.out.println(string);
 			id1 = Integer.parseInt(string);
+			if (deskManage.z == 1) {
+				id1 = id1 + 5;
+			}
+
+		}
+	
+		if (e.getSource() == backButton) {
+			if (deskManage.z == 2) {
+				HouseManagement h = new HouseManagement();
+				this.frame.dispose();
+			}else{
+				deskManage h = new deskManage();
+				this.frame.dispose();
+			}
 		}
 		if (!foodd[0].getText().isEmpty()) {
 			str[1] = foodd[0].getText();
@@ -263,13 +277,10 @@ public class startRoom implements ActionListener, MenuListener {
 			str[8] = foodd[7].getText();
 			num[8] = Integer.parseInt(str[8]);
 		}
-		if (e.getSource() == backButton) {
-			HouseManagement h = new HouseManagement();
-			frame.dispose();
-		}
+
 		if (e.getSource() == queRenButton) {
 			if (house.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(frame, "错误", "房间号不能为空", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(frame, "房间号不能为空", "错误", JOptionPane.ERROR_MESSAGE);
 
 			} else {
 				if (fooda[0].isSelected() == true) {
@@ -331,6 +342,7 @@ public class startRoom implements ActionListener, MenuListener {
 						e1.printStackTrace();
 					}
 				}
+				JOptionPane.showMessageDialog(frame, "点菜成功", "消息", JOptionPane.DEFAULT_OPTION);
 				house.setText("");
 				for (int i = 0; i < 8; i++) {
 					fooda[i].setSelected(false);
