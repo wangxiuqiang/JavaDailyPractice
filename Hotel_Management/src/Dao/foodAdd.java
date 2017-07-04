@@ -4,11 +4,15 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import com.mysql.jdbc.PreparedStatement;
 
 import Jdbc.jdbcMysql;
 
@@ -86,7 +90,35 @@ public class foodAdd implements ActionListener{
 
 	
 	public void actionPerformed(ActionEvent e) {
+		if (!idField.getText().isEmpty()) {
 
+			String ids = idField.getText();
+			int id = Integer.parseInt(ids);
+			String name = nameField.getText();
+			String moneys = sizeField.getText();
+			int money = Integer.parseInt(moneys);
+			if (e.getSource() == addButton) {
+				try {
+					Connection conn = jd.getConn();
+					String sql = "insert into menu(id,name,money) values (?,?,?)";
+					PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
+					ps.setInt(1, id);
+					ps.setString(2, name);
+					ps.setInt(3, money);
+					ps.executeUpdate();
+					JOptionPane.showMessageDialog(frame, "添加成功", "消息", JOptionPane.ERROR_MESSAGE);
+					ps.close();
+					chef c = new chef();
+					frame.dispose();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		}else{
+			if (e.getSource() == addButton) {
+				idField.setText("请输入内容");
+			}
+		}
 		if(e.getSource() == resertButton){
 			food s = new food();
 			frame.dispose();

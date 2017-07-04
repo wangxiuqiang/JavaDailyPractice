@@ -156,19 +156,24 @@ public class memberFinally implements ActionListener, MenuListener {
 
 				query = new JTable(info, title);
 
-				// header = query.getTableHeader();
-				// tcr = new DefaultTableCellRenderer();
-				// tcr.setHorizontalAlignment(Label.CENTER);
-				// query.getColumn("名称").setCellRenderer(tcr);
-				// query.getColumn("价格").setCellRenderer(tcr);
-				// query.getColumn("数量").setCellRenderer(tcr);
+//				sp = new JScrollPane();
+//				query.setBackground(Color.LIGHT_GRAY);
+//				frame.getContentPane().add(sp);
+//				sp.setBounds(31, 95, 298, 72);
+//				sp.setViewportView(query);
+				query = new JTable(info, title);
+				tcr = new DefaultTableCellRenderer();
+				tcr.setHorizontalAlignment(JLabel.CENTER);
+				query.getColumn("名称").setCellRenderer(tcr);
+				query.getColumn("价格").setCellRenderer(tcr);
+				query.getColumn("数量").setCellRenderer(tcr);
 				sp = new JScrollPane();
 				query.setBackground(Color.LIGHT_GRAY);
 				frame.getContentPane().add(sp);
 				sp.setBounds(31, 95, 298, 72);
 				sp.setViewportView(query);
 				textPrice.setText("" + sumMoney);
-				zheKouText.setText("" + sumMoney * 0.95);
+				zheKouText.setText("" + sumMoney * 0.5);
 			} else {
 				JOptionPane.showMessageDialog(frame, "房间号不能为空", "错误", JOptionPane.ERROR_MESSAGE);
 			}

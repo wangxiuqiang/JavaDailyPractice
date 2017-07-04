@@ -126,11 +126,11 @@ public class startRoomSoup implements ActionListener, MenuListener {
 		soupd[6].setBounds(332, 181, 39, 21);
 		frame.getContentPane().add(soupd[6]);
 
-		queRenButton = new JButton("纭");
+		queRenButton = new JButton("确认");
 		queRenButton.setBounds(115, 214, 71, 23);
 		frame.getContentPane().add(queRenButton);
 
-		backButton = new JButton("杩斿洖");
+		backButton = new JButton("返回");
 		backButton.setBounds(227, 214, 71, 23);
 		frame.getContentPane().add(backButton);
 		backButton.addActionListener(this);
@@ -158,7 +158,7 @@ public class startRoomSoup implements ActionListener, MenuListener {
 		JLabel label_6 = new JLabel("/\u4EFD");
 		label_6.setBounds(373, 184, 39, 15);
 		frame.getContentPane().add(label_6);
-		JLabel label_9 = new JLabel("鎴块棿鍙�");
+		JLabel label_9 = new JLabel("房间号");
 		label_9.setBounds(10, 39, 63, 13);
 		frame.getContentPane().add(label_9);
 
@@ -176,7 +176,7 @@ public class startRoomSoup implements ActionListener, MenuListener {
 		soupd[6].addActionListener(this);
 
 		queRenButton.addActionListener(this);
-		backButton.addActionListener(this);
+		
 	}
 
 	JButton queRenButton, backButton;
@@ -185,7 +185,8 @@ public class startRoomSoup implements ActionListener, MenuListener {
 	public void jdbcDao(int id) throws Exception {
 		Connection conn = (Connection) jd.getConn();
 		Statement statement = (Statement) conn.createStatement();
-		String sql = "select name,price from menu where id = " + id;
+		int s = id + 8;
+		String sql = "select name,price from menu where id = " + s;
 		ResultSet rs = statement.executeQuery(sql);
 		String name = null;
 		int price = 0;
@@ -193,8 +194,8 @@ public class startRoomSoup implements ActionListener, MenuListener {
 			name = rs.getString("name");
 			price = rs.getInt("price");
 		}
-		String sql2 = "insert into menuIn(id,name,price,flag,num) values(" + id1 + " ," + name + ", " + price + "," + 1
-				+ num[id] + ")";
+		String sql2 = "insert into menuin(id,name,price,flag,num) values(" + id1 + " , '" + name + " ', " + price + "," + 1
+			+	","+ num[id] + ")";
 		statement.execute(sql2);
 		statement.close();
 		rs.close();
@@ -209,6 +210,9 @@ public class startRoomSoup implements ActionListener, MenuListener {
 			string = house.getText();
 			// System.out.println(string);
 			id1 = Integer.parseInt(string);
+			if (deskManage.z == 1) {
+				id1 = id1 + 5;
+			}
 		}
 		if (!soupd[1].getText().isEmpty()) {
 			str[1] = soupd[1].getText();

@@ -111,7 +111,6 @@ public class queryHouse implements ActionListener {
 		button.setBackground(Color.LIGHT_GRAY);
 		button.setBounds(329, 226, 72, 23);
 		frame.getContentPane().add(button);
-
 		button.addActionListener(this);
 	}
 

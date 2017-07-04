@@ -111,7 +111,7 @@ public class bookRoom implements ActionListener {
 				Connection conn = (Connection) jd.getConn();
 				Statement sm = (Statement) conn.createStatement();
 				String sql = "update houseanddesk set flag = 1 , name = '" + name + "' where id = " + room;
-				JOptionPane.showMessageDialog(frame, "消息", "预定成功", JOptionPane.DEFAULT_OPTION);
+				JOptionPane.showMessageDialog(frame, "预定成功","消息",  JOptionPane.DEFAULT_OPTION);
 				sm.execute(sql);
 				sm.close();
 				HouseManagement s = new HouseManagement();

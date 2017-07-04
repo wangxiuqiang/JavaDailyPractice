@@ -176,7 +176,7 @@ public class startRoomDriver implements ActionListener, MenuListener {
 		driverd[6].addActionListener(this);
 
 		queRenButton.addActionListener(this);
-		backButton.addActionListener(this);
+	
 	}
 
 	JButton queRenButton, backButton;
@@ -185,7 +185,8 @@ public class startRoomDriver implements ActionListener, MenuListener {
 	public void jdbcDao(int id) throws Exception {
 		Connection conn = (Connection) jd.getConn();
 		Statement statement = (Statement) conn.createStatement();
-		String sql = "select name,price from menu where id = " + id;
+		int s = id + 14;
+		String sql = "select name,price from menu where id = " + s;
 		ResultSet rs = statement.executeQuery(sql);
 		String name = null;
 		int price = 0;
@@ -193,7 +194,7 @@ public class startRoomDriver implements ActionListener, MenuListener {
 			name = rs.getString("name");
 			price = rs.getInt("price");
 		}
-		String sql2 = "insert into menuIn(id,name,price,flag,num) values(" + id1 + " ," + name + ", " + price + "," + 1
+		String sql2 = "insert into menuin(id,name,price,flag,num) values(" + id1 + " ,'" + name + "' ," + price + "," + 1
 				+ "," + num[id] + ")";
 		statement.execute(sql2);
 		statement.close();
@@ -209,6 +210,9 @@ public class startRoomDriver implements ActionListener, MenuListener {
 			string = house.getText();
 			// System.out.println(string);
 			id1 = Integer.parseInt(string);
+			if (deskManage.z == 1) {
+				id1 = id1 + 5;
+			}
 		}
 
 		if (!driverd[1].getText().isEmpty()) {

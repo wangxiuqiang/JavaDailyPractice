@@ -38,7 +38,7 @@ public class food implements ActionListener{
 		frame.getContentPane().add(addCai);
 		addCai.addActionListener(this);//��Ӽ�����
 		
-		addJiu = new JButton("添加酒品ˮ");
+		addJiu = new JButton("添加酒品");
 		addJiu.setBounds(245, 62, 119, 28);
 		frame.getContentPane().add(addJiu);
 		addJiu.addActionListener(this);//��Ӽ�����

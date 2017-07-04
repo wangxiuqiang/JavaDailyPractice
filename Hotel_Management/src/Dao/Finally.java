@@ -75,7 +75,6 @@ public class Finally implements ActionListener, MenuListener {
 		giveMoney1 = new JButton("结账");
 		giveMoney1.setBounds(273, 229, 93, 23);
 		frame.getContentPane().add(giveMoney1);
-		giveMoney1.addActionListener(this);
 		HouseAndDesk = new JTextField();
 		HouseAndDesk.setBounds(148, 66, 71, 23);
 		frame.getContentPane().add(HouseAndDesk);
@@ -154,15 +153,18 @@ public class Finally implements ActionListener, MenuListener {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
+//				query = new JTable(info, title);
+//				sp = new JScrollPane();
+//				query.setBackground(Color.LIGHT_GRAY);
+//				frame.getContentPane().add(sp);
+//				sp.setBounds(31, 95, 298, 72);
+//				sp.setViewportView(query);
 				query = new JTable(info, title);
-
-				// header = query.getTableHeader();
-				// tcr = new DefaultTableCellRenderer();
-				// tcr.setHorizontalAlignment(Label.CENTER);
-				// query.getColumn("名称").setCellRenderer(tcr);
-				// query.getColumn("价格").setCellRenderer(tcr);
-				// query.getColumn("数量").setCellRenderer(tcr);
+				tcr = new DefaultTableCellRenderer();
+				tcr.setHorizontalAlignment(JLabel.CENTER);
+				query.getColumn("名称").setCellRenderer(tcr);
+				query.getColumn("价格").setCellRenderer(tcr);
+				query.getColumn("数量").setCellRenderer(tcr);
 				sp = new JScrollPane();
 				query.setBackground(Color.LIGHT_GRAY);
 				frame.getContentPane().add(sp);

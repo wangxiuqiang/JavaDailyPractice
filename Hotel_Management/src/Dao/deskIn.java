@@ -9,6 +9,7 @@ import java.sql.Connection;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Jdbc.jdbcMysql;
@@ -96,7 +97,34 @@ public class deskIn implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		
+		if (!idField.getText().isEmpty()) {
 
+			String ids = idField.getText();
+			int id = Integer.parseInt(ids);
+			String name = nameField.getText();
+			if (e.getSource() == addButton) {
+				try {
+					Connection conn = jd.getConn();
+					String sql = "insert into houseanddesk(id,name,tag,flag) values (?,?,?)";
+					PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
+					ps.setInt(1, id);
+					ps.setString(2, name);
+					ps.setInt(3, 2);
+					ps.setInt(4, 0);
+					ps.executeUpdate();
+					JOptionPane.showMessageDialog(frame, "添加成功", "消息", JOptionPane.ERROR_MESSAGE);
+					ps.close();
+					chef c = new chef();
+					frame.dispose();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		}else{
+			if (e.getSource() == addButton) {
+				idField.setText("请输入内容");
+			}
+		}
 		if (e.getSource() == resertButton) {
 			deskMange_1 s = new deskMange_1();
 			frame.dispose();
