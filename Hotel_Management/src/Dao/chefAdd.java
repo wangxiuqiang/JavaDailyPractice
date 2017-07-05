@@ -128,7 +128,7 @@ public class chefAdd implements ActionListener {
 			if (e.getSource() == addButton) {
 				try {
 					Connection conn = jd.getConn();
-					String sql = "insert into chef(id,name,age,money,adress,tel) values (?,?,?,?,?,?)";
+					String sql = "insert into chef(id,name,age,money,address,tel) values (?,?,?,?,?,?)";
 					PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
 					ps.setInt(1, id);
 					ps.setString(2, name);

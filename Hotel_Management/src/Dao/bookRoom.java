@@ -17,6 +17,7 @@ import com.mysql.jdbc.Statement;
 
 import Jdbc.jdbcMysql;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.JButton;
 
 public class bookRoom implements ActionListener {
@@ -108,17 +109,35 @@ public class bookRoom implements ActionListener {
 			name = roomField_1.getText();
 		}
 		if (e.getSource() == bookButton) {
-			try {
-				Connection conn = (Connection) jd.getConn();
-				Statement sm = (Statement) conn.createStatement();
-				String sql = "update houseanddesk set flag = 1 , name = '" + name + "' where id = " + room;
-				JOptionPane.showMessageDialog(frame, "预定成功","消息",  JOptionPane.DEFAULT_OPTION);
-				sm.execute(sql);
-				sm.close();
-				HouseManagement s = new HouseManagement();
-				frame.dispose();
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			if (!roomField.getText().isEmpty()) {
+				try {
+					Connection conn = (Connection) jd.getConn();
+					Statement sm = (Statement) conn.createStatement();
+					String sqlQuery = "select flag from houseanddesk where id = " + room;
+					ResultSet rs = sm.executeQuery(sqlQuery);
+					int flag = 0;
+					while (rs.next()) {
+						flag = rs.getInt("flag");
+					}
+					if (flag == 0) {
+						String sql = "update houseanddesk set flag = 1 , name = '" + name + "' where id = " + room;
+						JOptionPane.showMessageDialog(frame, "预定成功", "消息", JOptionPane.DEFAULT_OPTION);
+						sm.execute(sql);
+						sm.close();
+						HouseManagement s = new HouseManagement();
+						frame.dispose();
+					} else if (flag == 1){
+						JOptionPane.showMessageDialog(frame, "房间已预订，请重新选择", "提示", JOptionPane.DEFAULT_OPTION);
+					}
+					else {
+						JOptionPane.showMessageDialog(frame, "房间正在使用，请重新选择", "提示", JOptionPane.DEFAULT_OPTION);
+					}
+
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(frame, "预定的房间不能为空", "提示", JOptionPane.DEFAULT_OPTION);
 			}
 		}
 		if (e.getSource() == returnButton) {

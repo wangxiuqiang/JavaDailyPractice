@@ -103,7 +103,7 @@ public class chefChange implements ActionListener {
 			return "tel";
 		}
 		if (str.equals("地址")) {
-			return "adress";
+			return "address";
 		}
 		if (str.equals("年龄")) {
 			return "age";
