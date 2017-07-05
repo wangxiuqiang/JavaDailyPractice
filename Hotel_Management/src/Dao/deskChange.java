@@ -19,7 +19,7 @@ import com.mysql.jdbc.Statement;
 
 import Jdbc.jdbcMysql;
 
-public class deskChange implements ActionListener ,ItemListener{
+public class deskChange implements ActionListener, ItemListener {
 
 	private JFrame frame;
 	private JTextField IDField;
@@ -35,6 +35,7 @@ public class deskChange implements ActionListener ,ItemListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -63,7 +64,7 @@ public class deskChange implements ActionListener ,ItemListener{
 
 		String[] str = { "编号", "餐桌名", "大小", "可容纳人数" };
 
-		 comboBox = new JComboBox(str);
+		comboBox = new JComboBox(str);
 		comboBox.setBounds(105, 143, 95, 21);
 		frame.getContentPane().add(comboBox);
 
@@ -124,31 +125,39 @@ public class deskChange implements ActionListener ,ItemListener{
 		String str = comBoxField.getText();
 		String combo = null;
 		if (e.getSource() == QueRenButton) {
-			id = Integer.parseInt(ids);
+			if (!IDField.getText().isEmpty()) {
+				id = Integer.parseInt(ids);
+			}
 		}
 		if (e.getSource() == changeButton) {
-			combo = getString1();
-			int flag = 1;
-			if (combo.equals("id")) {
-				flag = 0;
-			}
-			// System.out.println(this.str);
-
-			try {
-				Connection conn = jd.getConn();
-				Statement st = (Statement) conn.createStatement();
-				String sql = null;
-				if (flag == 1) {
-					sql = "update houseanddesk set " + combo + " = '" + str + "' where id = " + id;
-				} else {
-					sql = "update houseanddesk set " + combo + " = " + str + " where id = " + id;
+			if (!IDField.getText().isEmpty()) {
+				combo = getString1();
+				int flag = 1;
+				if (combo.equals("id")) {
+					flag = 0;
 				}
-				st.execute(sql);
-				st.close();
-				JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				// System.out.println(this.str);
+
+				try {
+					Connection conn = jd.getConn();
+					Statement st = (Statement) conn.createStatement();
+					String sql = null;
+					if (flag == 1) {
+						sql = "update houseanddesk set " + combo + " = '" + str + "' where id = " + id;
+					} else {
+						sql = "update houseanddesk set " + combo + " = " + str + " where id = " + id;
+					}
+					st.execute(sql);
+					st.close();
+					JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(frame, "编号不能为空", "消息", JOptionPane.DEFAULT_OPTION);
+				deskMange_1 d = new deskMange_1();
+				frame.dispose();
 			}
 		}
 	}

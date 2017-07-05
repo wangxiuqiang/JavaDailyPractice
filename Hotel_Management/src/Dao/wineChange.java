@@ -19,7 +19,7 @@ import com.mysql.jdbc.Statement;
 
 import Jdbc.jdbcMysql;
 
-public class wineChange implements ActionListener,ItemListener{
+public class wineChange implements ActionListener, ItemListener {
 
 	private JFrame frame;
 	private JTextField IDField;
@@ -28,7 +28,6 @@ public class wineChange implements ActionListener,ItemListener{
 	JButton changeButton;
 	JButton returnButton;
 
-	
 	public wineChange() {
 		initialize();
 		frame.setVisible(true);
@@ -39,47 +38,48 @@ public class wineChange implements ActionListener,ItemListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JLabel headLabel = new JLabel("修改酒品信息");
-		headLabel.setFont(new Font("楷体",Font.BOLD,35));
+		headLabel.setFont(new Font("楷体", Font.BOLD, 35));
 		headLabel.setBounds(108, 10, 282, 41);
 		frame.getContentPane().add(headLabel);
-		
+
 		JLabel IDLabel = new JLabel("编号");
 		IDLabel.setBounds(108, 73, 88, 36);
 		frame.getContentPane().add(IDLabel);
-		
+
 		IDField = new JTextField();
 		IDField.setBounds(218, 81, 66, 21);
 		frame.getContentPane().add(IDField);
 		IDField.setColumns(10);
-		
-		QueRenButton = new JButton("确认");	
+
+		QueRenButton = new JButton("确认");
 		QueRenButton.setBounds(313, 81, 77, 21);
 		frame.getContentPane().add(QueRenButton);
-		
+
 		JLabel informationLabel = new JLabel("请选择要修改的内容");
 		informationLabel.setBounds(108, 112, 173, 21);
 		frame.getContentPane().add(informationLabel);
-		
-		String[] str = {"编号","酒名","每份金额"};
-		
-		 comboBox = new JComboBox(str);
+
+		String[] str = { "编号", "酒名", "每份金额" };
+
+		comboBox = new JComboBox(str);
 		comboBox.setBounds(105, 143, 95, 21);
 		frame.getContentPane().add(comboBox);
-		
+
 		changeButton = new JButton("更改");
 		changeButton.setBounds(313, 142, 77, 23);
 		frame.getContentPane().add(changeButton);
-		
+
 		comBoxField = new JTextField();
 		comBoxField.setBounds(218, 143, 66, 21);
 		frame.getContentPane().add(comBoxField);
 		comBoxField.setColumns(10);
-		
+
 		returnButton = new JButton("返回");
 		returnButton.setBounds(172, 202, 93, 23);
 		frame.getContentPane().add(returnButton);
@@ -88,7 +88,7 @@ public class wineChange implements ActionListener,ItemListener{
 		changeButton.addActionListener(this);
 		comBoxField.addActionListener(this);
 		comboBox.addItemListener(this);
-		returnButton.addActionListener(this);//添加监视器
+		returnButton.addActionListener(this);// 添加监视器
 	}
 
 	jdbcMysql jd = new jdbcMysql();
@@ -127,31 +127,38 @@ public class wineChange implements ActionListener,ItemListener{
 		String combo = null;
 		if (e.getSource() == QueRenButton) {
 			id = Integer.parseInt(ids);
-//			System.out.println(id);
-//			System.out.println(str);
+			// System.out.println(id);
+			// System.out.println(str);
 		}
 		if (e.getSource() == changeButton) {
-			combo = getString1();
-			int flag = 1;
-			if (combo.equals("id") || combo.equals("price")) {
-				flag = 0;
-			}
-			try {
-				Connection conn = jd.getConn();
-				Statement st = (Statement) conn.createStatement();
-				String sql = null;
-				if (flag == 1) {
-					sql = "update menu set " + combo + " = '" + str + "' where id = " + id;
-				} else {
-					sql = "update menu set " + combo + " = " + str + " where id = " + id;
+			if (!IDField.getText().isEmpty()) {
+
+				combo = getString1();
+				int flag = 1;
+				if (combo.equals("id") || combo.equals("price")) {
+					flag = 0;
 				}
-				st.execute(sql);
-				st.close();
-				JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
-			} catch (Exception e1) {
-				e1.printStackTrace();
+				try {
+					Connection conn = jd.getConn();
+					Statement st = (Statement) conn.createStatement();
+					String sql = null;
+					if (flag == 1) {
+						sql = "update menu set " + combo + " = '" + str + "' where id = " + id;
+					} else {
+						sql = "update menu set " + combo + " = " + str + " where id = " + id;
+					}
+					st.execute(sql);
+					st.close();
+					JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(frame, "编号不能为空", "消息", JOptionPane.DEFAULT_OPTION);
+				food f = new food();
+				frame.dispose();
 			}
 		}
+
 	}
 }
-

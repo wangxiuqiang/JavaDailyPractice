@@ -24,7 +24,7 @@ public class foodAdd implements ActionListener{
 	private JTextField sizeField;
 	private JTextField peopleField;
 	private JTextField adressField;
-	private JTextField telField;
+	private JTextField telField,chefField;
 	JButton addButton;
 	JButton resertButton;
 	jdbcMysql jd = new jdbcMysql();
@@ -39,6 +39,7 @@ public class foodAdd implements ActionListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -60,6 +61,9 @@ public class foodAdd implements ActionListener{
 		sizeLabel.setBounds(100, 100, 66, 30);
 		frame.getContentPane().add(sizeLabel);
 		
+		JLabel chefLabel = new JLabel("制作厨师：");
+		chefLabel.setBounds(100, 130, 66, 30);
+		frame.getContentPane().add(chefLabel);
 		
 		idField = new JTextField();
 		idField.setBounds(184, 40, 66, 21);
@@ -76,6 +80,10 @@ public class foodAdd implements ActionListener{
 		frame.getContentPane().add(sizeField);
 		sizeField.setColumns(10);
 		
+		chefField = new JTextField();
+		chefField.setBounds(184, 130, 66, 21);
+		frame.getContentPane().add(chefField);
+		chefField.setColumns(10);
 		
 		addButton = new JButton("添加");
 		addButton.setBounds(86, 222, 76, 30);
@@ -100,7 +108,7 @@ public class foodAdd implements ActionListener{
 			if (e.getSource() == addButton) {
 				try {
 					Connection conn = jd.getConn();
-					String sql = "insert into menu(id,name,money) values (?,?,?)";
+					String sql = "insert into menu(id,name,price,flag) values (?,?,?,1)";
 					PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
 					ps.setInt(1, id);
 					ps.setString(2, name);
@@ -108,7 +116,7 @@ public class foodAdd implements ActionListener{
 					ps.executeUpdate();
 					JOptionPane.showMessageDialog(frame, "添加成功", "消息", JOptionPane.ERROR_MESSAGE);
 					ps.close();
-					chef c = new chef();
+					food s = new food();
 					frame.dispose();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -116,7 +124,7 @@ public class foodAdd implements ActionListener{
 			}
 		}else{
 			if (e.getSource() == addButton) {
-				idField.setText("请输入内容");
+				JOptionPane.showMessageDialog(frame, "请输入内容","提示",JOptionPane.DEFAULT_OPTION);
 			}
 		}
 		if(e.getSource() == resertButton){

@@ -41,6 +41,7 @@ public class memberChange implements ActionListener, ItemListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -96,22 +97,20 @@ public class memberChange implements ActionListener, ItemListener {
 		}
 		if (str.equals("电话")) {
 			return "tel";
-		}
-		else {
+		} else {
 			return "";
 		}
 	}
 
 	public void itemStateChanged(ItemEvent e) {
 		str = comboBox.getSelectedItem().toString();
-		
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		String ids =null; 
-		if(!IDField.getText().isEmpty()){
-		 ids = IDField.getText();
-		
+		String ids = null;
+		if (!IDField.getText().isEmpty()) {
+			ids = IDField.getText();
 		}
 		String str = comBoxField.getText();
 		String combo = null;
@@ -119,20 +118,26 @@ public class memberChange implements ActionListener, ItemListener {
 			id = Integer.parseInt(ids);
 		}
 		if (e.getSource() == changeButton) {
-			combo = getString1();
-			// System.out.println(this.str);
-			try {
-				Connection conn = jd.getConn();
-				 Statement st = (Statement) conn.createStatement();
-                 String sql = "update member set " +combo+" = '"+ str +"' where id = "+id;
-                 st.execute(sql);
-                 st.close();
-                 JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
-			      member m = new member();
-			      frame.dispose();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if (!IDField.getText().isEmpty()) {
+				combo = getString1();
+				// System.out.println(this.str);
+				try {
+					Connection conn = jd.getConn();
+					Statement st = (Statement) conn.createStatement();
+					String sql = "update member set " + combo + " = '" + str + "' where id = " + id;
+					st.execute(sql);
+					st.close();
+					JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
+					member m = new member();
+					frame.dispose();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(frame, "编号不能为空", "消息", JOptionPane.DEFAULT_OPTION);
+				member m = new member();
+				frame.dispose();
 			}
 		}
 	}

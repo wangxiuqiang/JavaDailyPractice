@@ -36,6 +36,7 @@ public class startRoom implements ActionListener, MenuListener {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

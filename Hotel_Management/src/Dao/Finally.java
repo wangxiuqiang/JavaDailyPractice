@@ -2,18 +2,20 @@ package Dao;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -23,12 +25,6 @@ import javax.swing.table.JTableHeader;
 import com.mysql.jdbc.Statement;
 
 import Jdbc.jdbcMysql;
-
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
 
 public class Finally implements ActionListener, MenuListener {
 
@@ -51,6 +47,7 @@ public class Finally implements ActionListener, MenuListener {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.setBounds(100, 100, 450, 328);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -105,7 +102,7 @@ public class Finally implements ActionListener, MenuListener {
 	}
 
 	JButton queRen, giveMoney1;
-
+	int flag = 0;
 	JMenu menu1;
 	JMenu menu2;
 	JMenuBar menuBar;
@@ -113,21 +110,36 @@ public class Finally implements ActionListener, MenuListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == giveMoney1) {
-			String sql = "delete from menuin where id = " + id1;
-			String sql1 = "update houseanddesk set flag = 0 where id =" + id1;
-			try {
-				Statement sm = (Statement) conn.createStatement();
-				sm.execute(sql);
-				sm.execute(sql1);
-			} catch (SQLException e1) {
+			if (!HouseAndDesk.getText().isEmpty()) {
 
-				e1.printStackTrace();
+				if (flag == 2) {
+					String sql = "delete from menuin where id = " + id1;
+					String sql1 = "update houseanddesk set flag = 0 where id =" + id1;
+					try {
+						Connection conn = jd.getConn();
+						Statement sm = (Statement) conn.createStatement();
+						sm.execute(sql);
+						sm.execute(sql1);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					JOptionPane.showMessageDialog(frame, "结账成功", "提示", JOptionPane.DEFAULT_OPTION);
+					system s = new system();
+					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(frame, "餐桌尚未启用", "错误", JOptionPane.ERROR_MESSAGE);
+					system s = new system();
+					frame.dispose();
+				}
+			} else {
+				JOptionPane.showMessageDialog(frame, "没有顾客信息", "消息", JOptionPane.DEFAULT_OPTION);
+				system s = new system();
+				frame.dispose();
 			}
-
-			JOptionPane.showMessageDialog(frame, "结账成功", "提示", JOptionPane.DEFAULT_OPTION);
-			system s = new system();
-			frame.dispose();
 		}
+
 		if (e.getSource() == queRen) {
 			if (!HouseAndDesk.getText().isEmpty()) {
 				id1 = HouseAndDesk.getText();
@@ -135,42 +147,47 @@ public class Finally implements ActionListener, MenuListener {
 				try {
 					int i = 0;
 					conn = jd.getConn();
+					String sqlQuery = "select flag from houseanddesk where id = " + id1;
 					String sql = "select name,price,num from menuin where id = " + id1;
 					Statement statement = (Statement) conn.createStatement();
-					ResultSet rs = statement.executeQuery(sql);
+					ResultSet rs = statement.executeQuery(sqlQuery);
+
 					while (rs.next()) {
-						String idString = rs.getString("name");
-						String name = rs.getString("price");
-						int price = rs.getInt("price");
-						int num = rs.getInt("num");
-						info[i][0] = idString;
-						info[i][1] = name;
-						info[i][2] = num + "";
-						sumMoney += (price * num);
-						i++;
+						flag = rs.getInt("flag");
+					}
+					if (flag == 2) {
+						rs = statement.executeQuery(sql);
+						while (rs.next()) {
+							String idString = rs.getString("name");
+							String name = rs.getString("price");
+							int price = rs.getInt("price");
+							int num = rs.getInt("num");
+							info[i][0] = idString;
+							info[i][1] = name;
+							info[i][2] = num + "";
+							sumMoney += (price * num);
+							i++;
+						}
+						query = new JTable(info, title);
+						query.setEnabled(false);
+						tcr = new DefaultTableCellRenderer();
+						tcr.setHorizontalAlignment(JLabel.CENTER);
+						query.getColumn("名称").setCellRenderer(tcr);
+						query.getColumn("价格").setCellRenderer(tcr);
+						query.getColumn("数量").setCellRenderer(tcr);
+						sp = new JScrollPane();
+						query.setBackground(Color.LIGHT_GRAY);
+						frame.getContentPane().add(sp);
+						sp.setBounds(31, 95, 298, 72);
+						sp.setViewportView(query);
+						textPrice.setText("" + sumMoney);
+					} else {
+						JOptionPane.showMessageDialog(frame, "餐桌尚未启用", "错误", JOptionPane.ERROR_MESSAGE);
 					}
 					// textPrice.setText(""+sumMoney);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-//				query = new JTable(info, title);
-//				sp = new JScrollPane();
-//				query.setBackground(Color.LIGHT_GRAY);
-//				frame.getContentPane().add(sp);
-//				sp.setBounds(31, 95, 298, 72);
-//				sp.setViewportView(query);
-				query = new JTable(info, title);
-				tcr = new DefaultTableCellRenderer();
-				tcr.setHorizontalAlignment(JLabel.CENTER);
-				query.getColumn("名称").setCellRenderer(tcr);
-				query.getColumn("价格").setCellRenderer(tcr);
-				query.getColumn("数量").setCellRenderer(tcr);
-				sp = new JScrollPane();
-				query.setBackground(Color.LIGHT_GRAY);
-				frame.getContentPane().add(sp);
-				sp.setBounds(31, 95, 298, 72);
-				sp.setViewportView(query);
-				textPrice.setText("" + sumMoney);
 			} else {
 				JOptionPane.showMessageDialog(frame, "房间号不能为空", "错误", JOptionPane.ERROR_MESSAGE);
 			}

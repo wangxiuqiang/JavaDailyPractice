@@ -42,6 +42,7 @@ public class chefChange implements ActionListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -123,38 +124,50 @@ public class chefChange implements ActionListener {
 		String ids = null;
 		if (!IDField.getText().isEmpty()) {
 			ids = IDField.getText();
-
+		}
+		if (e.getSource() == returnButton) {
+			chef chef = new chef();
+			frame.dispose();
 		}
 		String str = comBoxField.getText();
 		String combo = null;
 		if (e.getSource() == QueRenButton) {
-			id = Integer.parseInt(ids);
+			if (!IDField.getText().isEmpty()) {
+				id = Integer.parseInt(ids);
+			}
 		}
 		if (e.getSource() == changeButton) {
-			combo = getString1();
-			int flag = 1;
-			if (combo.equals("id") && combo.equals("age") && combo.equals("money")) {
-				flag = 0;
-			}
-			// System.out.println(this.str);
 
-			try {
-				Connection conn = jd.getConn();
-				Statement st = (Statement) conn.createStatement();
-				String sql = null;
-				if (flag == 1) {
-					sql = "update waiter set " + combo + " = '" + str + "' where id = " + id;
-				} else {
-					sql = "update waiter set " + combo + " = " + str + " where id = " + id;
+			if (!IDField.getText().isEmpty()) {
+				combo = getString1();
+				int flag = 1;
+				if (combo.equals("id") && combo.equals("age") && combo.equals("money")) {
+					flag = 0;
 				}
-				st.execute(sql);
-				st.close();
-				JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
+				// System.out.println(this.str);
+
+				try {
+					Connection conn = jd.getConn();
+					Statement st = (Statement) conn.createStatement();
+					String sql = null;
+					if (flag == 1) {
+						sql = "update waiter set " + combo + " = '" + str + "' where id = " + id;
+					} else {
+						sql = "update waiter set " + combo + " = " + str + " where id = " + id;
+					}
+					st.execute(sql);
+					st.close();
+					JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
+					chef chef = new chef();
+					frame.dispose();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(frame, "编号不能为空", "消息", JOptionPane.DEFAULT_OPTION);
 				chef chef = new chef();
 				frame.dispose();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
 		}
 	}

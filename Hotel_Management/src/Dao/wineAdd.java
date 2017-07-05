@@ -38,11 +38,12 @@ public class wineAdd implements ActionListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel roomLabel = new JLabel("添加菜品");
+		JLabel roomLabel = new JLabel("添加酒水");
 		roomLabel.setBounds(109, 0, 200, 41);
 		roomLabel.setFont(new Font("楷体",Font.BOLD,30));
 		frame.getContentPane().add(roomLabel);

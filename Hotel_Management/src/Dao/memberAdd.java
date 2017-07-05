@@ -33,6 +33,7 @@ public class memberAdd implements ActionListener {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -88,28 +89,34 @@ public class memberAdd implements ActionListener {
 	JButton addButton;
 
 	public void actionPerformed(ActionEvent e) {
-		String ids = idField.getText();
-		int id = Integer.parseInt(ids);
-		// System.out.println(id);
-		String name = nameField.getText();
-		String tel = telField.getText();
-		// System.out.println(name);
-		// System.out.println(tel);
+		String ids, name = null, tel = null;
+		int id = 0;
+		if (!idField.getText().isEmpty()) {
+			ids = idField.getText();
+			id = Integer.parseInt(ids);
+			// System.out.println(id);
+			name = nameField.getText();
+			tel = telField.getText();
+		}
 		if (e.getSource() == addButton) {
-			try {
-				Connection conn = jd.getConn();
-				String sql = "insert into member(id,name,tel) values (?,?,?)";
-				PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
-				ps.setInt(1, id);
-				ps.setString(2, name);
-				ps.setString(3, tel);
-				ps.executeUpdate();
-				JOptionPane.showMessageDialog(frame, "添加成功", "消息", JOptionPane.DEFAULT_OPTION);
-				ps.close();
-				member m = new member();
-				frame.dispose();
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			if (!idField.getText().isEmpty()) {
+				try {
+					Connection conn = jd.getConn();
+					String sql = "insert into member(id,name,tel) values (?,?,?)";
+					PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
+					ps.setInt(1, id);
+					ps.setString(2, name);
+					ps.setString(3, tel);
+					ps.executeUpdate();
+					JOptionPane.showMessageDialog(frame, "添加成功", "消息", JOptionPane.DEFAULT_OPTION);
+					ps.close();
+					member m = new member();
+					frame.dispose();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			} else {
+                 JOptionPane.showMessageDialog(frame, "ID不能为空", "提示", JOptionPane.DEFAULT_OPTION);
 			}
 		}
 		if (e.getSource() == resertButton) {

@@ -19,7 +19,7 @@ import com.mysql.jdbc.Statement;
 
 import Jdbc.jdbcMysql;
 
-public class foodChange implements ActionListener,ItemListener {
+public class foodChange implements ActionListener, ItemListener {
 
 	private JFrame frame;
 	private JTextField IDField;
@@ -35,6 +35,7 @@ public class foodChange implements ActionListener,ItemListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("管理员登录");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -61,9 +62,9 @@ public class foodChange implements ActionListener,ItemListener {
 		informationLabel.setBounds(108, 112, 173, 21);
 		frame.getContentPane().add(informationLabel);
 
-		String[] str = { "编号", "菜名", "每份金额" };
+		String[] str = {"下拉选择", "编号", "菜名", "每份金额" };
 
-		 comboBox = new JComboBox(str);
+		comboBox = new JComboBox(str);
 		comboBox.setBounds(105, 143, 95, 21);
 		frame.getContentPane().add(comboBox);
 
@@ -94,7 +95,6 @@ public class foodChange implements ActionListener,ItemListener {
 	int id;
 	JComboBox comboBox;
 	String str;
-	
 
 	public String getString1() {
 		if (str.equals("编号")) {
@@ -130,25 +130,32 @@ public class foodChange implements ActionListener,ItemListener {
 			id = Integer.parseInt(ids);
 		}
 		if (e.getSource() == changeButton) {
-			combo = getString1();
-			int flag = 1;
-			if (combo.equals("id") || combo.equals("price")) {
-				flag = 0;
-			}
-			try {
-				Connection conn = jd.getConn();
-				Statement st = (Statement) conn.createStatement();
-				String sql = null;
-				if (flag == 1) {
-					sql = "update menu set " + combo + " = '" + str + "' where id = " + id;
-				} else {
-					sql = "update menu set " + combo + " = " + str + " where id = " + id;
+
+			if (!IDField.getText().isEmpty()) {
+				combo = getString1();
+				int flag = 1;
+				if (combo.equals("id") || combo.equals("price")) {
+					flag = 0;
 				}
-				st.execute(sql);
-				st.close();
-				JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
-			} catch (Exception e1) {
-				e1.printStackTrace();
+				try {
+					Connection conn = jd.getConn();
+					Statement st = (Statement) conn.createStatement();
+					String sql = null;
+					if (flag == 1) {
+						sql = "update menu set " + combo + " = '" + str + "' where id = " + id;
+					} else {
+						sql = "update menu set " + combo + " = " + str + " where id = " + id;
+					}
+					st.execute(sql);
+					st.close();
+					JOptionPane.showMessageDialog(frame, "更改成功", "消息", JOptionPane.DEFAULT_OPTION);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(frame, "编号不能为空", "消息", JOptionPane.DEFAULT_OPTION);
+				food food = new food();
+				frame.dispose();
 			}
 		}
 	}

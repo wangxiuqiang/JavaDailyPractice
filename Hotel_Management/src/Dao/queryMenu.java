@@ -71,7 +71,11 @@ public class queryMenu extends JFrame implements ActionListener {
 			this.dispose();
 		}
 		if (e.getSource() == ok) {
-
+			for (int z = 0; z < 20; z++) {
+				for (int g = 0; g < 2; g++) {
+					info[z][g] = "";
+				}
+			}
 			String[] title = { "名称", "价格" };
 			try {
 				Connection conn = (Connection) jd.getConn();
@@ -87,6 +91,7 @@ public class queryMenu extends JFrame implements ActionListener {
 					i++;
 				}
 				query = new JTable(info, title);
+				query.setEnabled(false);
 				tcr = new DefaultTableCellRenderer();
 				tcr.setHorizontalAlignment(JLabel.CENTER);
 				query.getColumn("价格").setCellRenderer(tcr);

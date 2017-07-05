@@ -39,6 +39,7 @@ public class queryHouse implements ActionListener {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("闲居阁");
 		frame.getContentPane().setFont(new Font("文泉驿微米黑", Font.PLAIN, 17));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +53,7 @@ public class queryHouse implements ActionListener {
 		if (deskManage.z == 2) {
 			String[] title = {"房间号","状态","预订人"};
 			query = new JTable(info, title);
+			query.setEnabled(false);
 			tcr = new DefaultTableCellRenderer();
 			tcr.setHorizontalAlignment(JLabel.CENTER);
 			query.getColumn("状态").setCellRenderer(tcr);
@@ -59,6 +61,7 @@ public class queryHouse implements ActionListener {
 		} else {
 			String[] title = {"桌号","状态"};
 			query = new JTable(info, title);
+			query.setEnabled(false);
 			tcr = new DefaultTableCellRenderer();
 			tcr.setHorizontalAlignment(JLabel.CENTER);
 			query.getColumn("状态").setCellRenderer(tcr);
