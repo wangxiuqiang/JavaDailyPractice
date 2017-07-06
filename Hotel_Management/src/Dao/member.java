@@ -71,7 +71,8 @@ public class member implements ActionListener{
 			frame.dispose();
 		}
 		if(e.getSource() == chaXu){
-			
+			queryMember q = new queryMember();
+			frame.dispose();
 		}
 		if(e.getSource() == returnOut){
 			system s = new system();

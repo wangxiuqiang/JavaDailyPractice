@@ -40,16 +40,19 @@ public class staff implements ActionListener{
 		chef.setBounds(160, 134, 132, 31);
 		frame.getContentPane().add(chef);
 		chef.addActionListener(this);//��Ӽ�����
-		
+		chaXu = new JButton("查询");
+		chaXu.setBounds(160, 191, 132, 31);
+		frame.getContentPane().add(chaXu);
+		chaXu.addActionListener(this);//��Ӽ�����
 		returnOut = new JButton("返回");
-		returnOut.setBounds(160, 191, 132, 31);
+		returnOut.setBounds(160, 242, 132, 31);
 		frame.getContentPane().add(returnOut);
 		returnOut.addActionListener(this);//��Ӽ�����
 		
 	}
 
 	
-	JButton waiter;
+	JButton waiter,chaXu;
 	JButton chef;
 	JButton returnOut;
 	public void actionPerformed(ActionEvent e) {
@@ -63,6 +66,10 @@ public class staff implements ActionListener{
 		}
 		if(e.getSource() == returnOut){
 			system s = new system();
+			frame.dispose();
+		}
+		if (e.getSource() == chaXu) {
+			queryChefAndWaiter q = new queryChefAndWaiter();
 			frame.dispose();
 		}
 	}
