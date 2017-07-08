@@ -74,8 +74,6 @@ public class queryHouse implements ActionListener {
 		s.setBounds(73, 49, 300, 150);
 //		frame.getContentPane().add(header);
 //		frame.getContentPane().add(query);
-		
-		
 		s.setViewportView(query);
 
 		try {
