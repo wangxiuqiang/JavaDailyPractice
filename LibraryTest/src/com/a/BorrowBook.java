@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 public class BorrowBook extends JFrame implements ActionListener {
 	public JButton borrowBook, back;
 	public JTextField field, field1;
-	public JLabel label;
+	public JLabel label,label1;
 
 	public BorrowBook() {
 		init();
@@ -37,15 +37,17 @@ public class BorrowBook extends JFrame implements ActionListener {
 		field = new JTextField();
 		field.setBounds(220, 80, 50, 18);
 		add(field);
-		label = new JLabel("请输入要借的天数");
-		label.setFont(new Font("宋体", Font.BOLD, 15));
-		label.setBounds(50, 120, 260, 18);
+		label1 = new JLabel("请输入要借的天数");
+		label1.setFont(new Font("宋体", Font.BOLD, 15));
+		label1.setBounds(50, 120, 260, 18);
+		add(label1);
 		field1 = new JTextField();
 		field1.setBounds(220, 120, 50, 18);
 		add(field1);
 		borrowBook = new JButton("借阅");
 		borrowBook.setBounds(160, 160, 60, 25);
 		add(borrowBook);
+		borrowBook.addActionListener(this);
 		back = new JButton("返回");
 		back.setBounds(260, 160, 60, 25);
 		add(back);
@@ -92,75 +94,82 @@ public class BorrowBook extends JFrame implements ActionListener {
 				 * 判断库存是不是有书
 				 */
 				if (bookCount == 0) {
-					JOptionPane.showMessageDialog(this,"没有该书", "提示" , JOptionPane.DEFAULT_OPTION);
+					JOptionPane.showMessageDialog(this, "没有该书或该书已经被借光", "提示", JOptionPane.DEFAULT_OPTION);
 				} else {
 					// System.out.println(maining.id);
 					/**
 					 * 如果有 首先判断钱够不够 不够就冲
 					 */
-					String sqlStuMoney = "SELECT money FROM student where id=";
+					String sqlStuMoney = "SELECT money FROM student where id=" +StudentInner.userText;
 					rSet = statement2.executeQuery(sqlStuMoney);
 					while (rSet.next()) {
 						money = rSet.getFloat(1);
 					}
+				    
+					if (dayMoney * day > money) {
+						JOptionPane.showMessageDialog(this, "余额不足，请充值", "消息", JOptionPane.DEFAULT_OPTION);
+					
+					}
 					// System.out.println(money);
+					else {
+						// 学生的id也要添加过来然后把他们的bookCount数加1 学生帐号里 的钱扣除
+						// 并且学生借的书也放入数据库
+						/*
+						 * sql2 表示更改书库的存量 修改flag 表示该书 尚有书未还 sqljoin表示 把学生借的书
+						 * 按照学生的id 存放在studentborrow表中 sqlqu 表示把书籍的一部分字段 取出 以便放到
+						 * student borrow表中 sql1 修改学生的借书的数量
+						 */
 
-					// 学生的id也要添加过来然后把他们的bookCount数加1 学生帐号里 的钱扣除 并且学生借的书也放入数据库
-					/*
-					 * sql2 表示更改书库的存量 修改flag 表示该书 尚有书未还 sqljoin表示 把学生借的书 按照学生的id
-					 * 存放在studentborrow表中 sqlqu 表示把书籍的一部分字段 取出 以便放到 student
-					 * borrow表中 sql1 修改学生的借书的数量
-					 */
-					System.out.println("需要借阅的图书为:");
+						String sqlQueryStuId = "SELECT bookCount FROM student where id=" + StudentInner.userText;// 学生的bookCount
+						// 也需要修改
+						String sqlChangeMoney = "update student set money = " + (money - day * dayMoney);
+						String sqlBookCount = "update  book set bookCount=" + (bookCount - 1) + ",flag= " + 3
+								+ " where id=" + Bookid;
 
-					String sqlQueryStuId = "SELECT bookCount FROM student where id=" + StudentInner.userText;// 学生的bookCount
-					// 也需要修改
-					String sqlBookCount = "update  book set bookCount=" + (bookCount - 1) + ",flag=" + 3 + " where id="
-							+ Bookid;
+						ResultSet resultSet = statement.executeQuery(sqlQueryStuId);
+						int bookCountStu = 0;
+						while (resultSet.next()) {
+							bookCountStu = resultSet.getInt(1);
+						}
+						int a = bookCountStu;
+						String sqlstudentBookCount = "update student set bookCount=" + (bookCountStu + 1) + " where id="
+								+ StudentInner.userText;
+						statement2.execute(sqlBookCount);
+						statement2.execute(sqlChangeMoney);
+						statement2.execute(sqlstudentBookCount);
+						String sqljoin = "insert studentborrow(bookid,id,name,type,publishingHouse,author) values(?,?,?,?,?,?)";
+						String sqlqu = "select id,name,type,publishingHouse,author from book where id=" + Bookid;
+						int bookid = 0;
+						String name = "", type = "", publishingHouse = "", author = "";
+						ResultSet rSet2 = statement2.executeQuery(sqlqu);
+						while (rSet2.next()) {
+							bookid = rSet2.getInt(1);
+							name = rSet2.getString(2);
+							type = rSet2.getString(3);
+							publishingHouse = rSet2.getString(4);
+							author = rSet2.getString(5);
+						}
 
-					ResultSet resultSet = statement.executeQuery(sqlQueryStuId);
-					int bookCountStu = 0;
-					while (resultSet.next()) {
-						bookCountStu = resultSet.getInt(1);
+						// System.out.println(money);测试使用
+						/**
+						 * sqlmoney 用来更改学生的金额 借了书要减去租金 = 天数 * 日租金
+						 */
+						int id = Integer.parseInt(StudentInner.userText);
+						PreparedStatement statement3 = connection.prepareStatement(sqljoin);
+						statement3.setInt(1, bookid);
+						statement3.setInt(2, id);//表示哪个学生借了该书
+						statement3.setString(3, name);
+						statement3.setString(4, type);
+						statement3.setString(5, publishingHouse);
+						statement3.setString(6, author);
+						statement3.executeUpdate();
+						statement2.close();
+						statement.close();
+						statement3.close();
+						rSet.close();
+						rSet2.close();
+						connection.close();
 					}
-					int a = bookCountStu;
-					String sqlstudentBookCount = "update student set bookCount=" + (bookCountStu + 1) + " where id="
-							+ StudentInner.userText;
-					statement2.execute(sqlBookCount);
-					statement2.execute(sqlstudentBookCount);
-					String sqljoin = "insert studentborrow(bookid,id,name,type,publishingHouse,author) values(?,?,?,?,?,?)";
-					String sqlqu = "select id,name,type,publishingHouse,author from book where id=" + Bookid;
-					int bookid = 0;
-					String name = "", type = "", publishingHouse = "", author = "";
-					ResultSet rSet2 = statement2.executeQuery(sqlqu);
-					while (rSet2.next()) {
-						bookid = rSet2.getInt(1);
-						name = rSet2.getString(2);
-						type = rSet2.getString(3);
-						publishingHouse = rSet2.getString(4);
-						author = rSet2.getString(5);
-					}
-
-					// System.out.println(money);测试使用
-					/**
-					 * sqlmoney 用来更改学生的金额 借了书要减去租金 = 天数 * 日租金
-					 */
-					int id = Integer.parseInt(StudentInner.userText);
-					PreparedStatement statement3 = connection.prepareStatement(sqljoin);
-					statement3.setInt(1, bookid);
-					statement3.setInt(2, id);//
-					statement3.setString(3, name);
-					statement3.setString(4, type);
-					statement3.setString(5, publishingHouse);
-					statement3.setString(6, author);
-					statement3.executeUpdate();
-					statement2.close();
-					statement.close();
-					statement3.close();
-					rSet.close();
-					rSet2.close();
-					connection.close();
-
 				}
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block

@@ -83,6 +83,7 @@ public class QueryBook extends JFrame implements ActionListener {
 					info[i][5] = book.getDayMoney() + "";
 					info[i][6] = book.getPublishingHouse();
 					info[i][7] = book.getType() + "";
+					i++;
 				}
 				String[] title = { "编号", "名称", "价格", "作者", "数量", "日租金", "出版社", "种类" };
 				query = new JTable(info, title);
@@ -90,12 +91,12 @@ public class QueryBook extends JFrame implements ActionListener {
 				tcr.setHorizontalAlignment(JLabel.CENTER);
 				query.getColumn("名称").setCellRenderer(tcr);
 				query.getColumn("编号").setCellRenderer(tcr);
-				 query.getColumn("价格").setCellRenderer(tcr);
-				 query.getColumn("作者").setCellRenderer(tcr);
-				 query.getColumn("数量").setCellRenderer(tcr);
-				 query.getColumn("日租金").setCellRenderer(tcr);
-				 query.getColumn("出版社").setCellRenderer(tcr);
-				 query.getColumn("种类").setCellRenderer(tcr);
+				query.getColumn("价格").setCellRenderer(tcr);
+				query.getColumn("作者").setCellRenderer(tcr);
+				query.getColumn("数量").setCellRenderer(tcr);
+				query.getColumn("日租金").setCellRenderer(tcr);
+				query.getColumn("出版社").setCellRenderer(tcr);
+				query.getColumn("种类").setCellRenderer(tcr);
 				JScrollPane sc = new JScrollPane();
 				sc.setBounds(50, 90, 390, 150);
 				query.setEnabled(false);
