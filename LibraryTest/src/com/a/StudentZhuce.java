@@ -111,9 +111,7 @@ public class StudentZhuce implements ActionListener {
 		frame.getContentPane().add(Rest);
 		Rest.addActionListener(this);
 	}
-
 	JButton submit, Rest;
-
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == submit) {
 			if (!nameField.getText().isEmpty()) {
