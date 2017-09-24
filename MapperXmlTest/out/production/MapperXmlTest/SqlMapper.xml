@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- typeAliases 将mapper中的parameterType 和resultType指定别名,方便管理开发-->
+    <typeAliases>
+        <package name="com.mybatis.first"/>
+    </typeAliases>
      <environments default="development">
        <environment id="development">
         <transactionManager type="JDBC"/>
@@ -15,6 +19,9 @@
        </environment>
     </environments>
     <mappers>
-        <mapper resource="useMapper.xml"/>
+        <!--<mapper resource="useMapper.xml"/>-->
+        <!--用class的方式加载mapper配置文件 , 遵循规范 1,xml文件的名字和接口名字一样
+        2, 1的前提是必须遵循mapper开发的规范 -->
+        <mapper class="com.mybatis.Imp.UserFunction"/>
     </mappers>
 </configuration>

@@ -37,7 +37,7 @@ public void test() throws Exception {
             SqlSession sqlSession = sqlSessionFactory.openSession();
             UserFunction userFunction = sqlSession.getMapper(UserFunction.class);
             User user = userFunction.query(1);
-           System.out.println(user);
+            System.out.println(user);
 
 }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.Imp.UserFunction">   <!--在原始的方法中使用的是test,当使用常用的方法的时候,这个namespace要用全,具体到接口-->
+    <!--用来写很多的sql语句-->
+    <!--<select id="queryById" parameterType="int" resultType="com.mybatis.first.User">-->
+        <!--select * from user where id=#{id}-->
+    <!--</select>-->
+    <!--通过mapper代理的方法来配置sql语句-->
+    <!--<select id="query" parameterType="int" resultType="com.mybatis.first.User">-->
+        <!--select * from user where id=#{id}-->
+    <!--</select>-->
+
+    <select id="query" resultType="user" parameterType="int">
+        SELECT * FROM user WHERE  id=#{value}
+    </select>
+</mapper>
