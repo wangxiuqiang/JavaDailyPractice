@@ -1,0 +1,21 @@
+create database test;
+
+//resultMap测试用的sql
+create table teacher (id int primary key not null,
+     name varchar(20) Not null,
+     password varchar(20) not null)
+    ;
+insert teacher(id,name,password) values (1,'jack','jack');
+
+
+
+//foreach测试用的sql
+create table Mybatisforeach (id int primary key not null,
+     name varchar(20) Not null,
+     password varchar(20) not null)
+    ;
+    insert Mybatisforeach (id,name,password) values(1,'tom','tom');
+     insert Mybatisforeach (id,name,password) values(2,'tomcat','tomcat');
+      insert Mybatisforeach (id,name,password) values(3,'jsn','jsn');
+       insert Mybatisforeach (id,name,password) values(4,'kerry','kerry');
+        insert Mybatisforeach (id,name,password) values(5,'ptter','ptter');

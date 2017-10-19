@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.resultMap">
+    <!--type 中的是要绑定的pojo类  ,id是resultMap唯一标识 第二个id是数据库中表的唯一标识字段-->
+    <resultMap id="result" type="teacher" >
+        <id column="id" property="ida"/>
+        <result column="password" property="passworda"/>
+        <result column="name" property="namea"/>
+    </resultMap>
+    <select id="queryForResultMap" resultMap="result" >
+        select * from teacher;
+    </select>
+</mapper>

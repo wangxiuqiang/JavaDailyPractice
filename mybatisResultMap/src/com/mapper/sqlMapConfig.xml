@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="db.properties">
+    </properties>
+    <!-- typeAliases 将mapper中的parameterType 和resultType指定别名,方便管理开发-->
+
+    <typeAliases>
+        <package name="com.domain"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.name}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--<mapper resource="useMapper.xml"/>-->
+        <!--用class的方式加载mapper配置文件 , 遵循规范 1,xml文件的名字和接口名字一样
+        2, 1的前提是必须遵循mapper开发的规范 -->
+        <!--用来测试resultMap-->
+        <!--<mapper class="com.mapper.resultMap"/>-->
+        <!--用来测试foreach-->
+        <mapper class="com.mapper.foreach" />
+    </mappers>
+</configuration>
