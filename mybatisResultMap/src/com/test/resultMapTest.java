@@ -25,6 +25,5 @@ public class resultMapTest {
         resultMap resultMap = sqlSession.getMapper(com.mapper.resultMap.class);
         teacher teacher = resultMap.queryForResultMap();
         System.out.println(teacher.getIda() +"\n" +teacher.getNamea() + "\n" +teacher.getPassworda() );
-
     }
 }

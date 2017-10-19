@@ -3,12 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.foreach">
-    <select id="queryForeach" resultMap="com.domain.Mybatisforeach" parameterType="Integer[]">
-       select * FROM  Mybatisforeach where  id
+    <!-- 以下可行-->
+    <select id="queryForeach" resultType="com.domain.Mybatisforeach" parameterType="java.lang.Integer">
+        select * FROM  Mybatisforeach where
 
-            <foreach collection="array" item="a1" open="in (" close=" )" separator=",">
-               #{a1}
-            </foreach>
-        
+        <foreach collection="array" item="a1" open="" close="" separator="or">
+           id = #{a1}
+        </foreach>
+
     </select>
+    <!-- 以下注释的可行  和上面的区别在于 上面用的是or连接, 下面用的是in查询-->
+    <!--<select id="queryForeach" resultType="com.domain.Mybatisforeach" parameterType="java.lang.Integer">-->
+       <!--select * FROM  Mybatisforeach where  id-->
+
+            <!--<foreach collection="array" item="a1" open="in (" close=" )" separator=",">-->
+               <!--#{a1}-->
+            <!--</foreach>-->
+
+    <!--</select>-->
+    
 </mapper>

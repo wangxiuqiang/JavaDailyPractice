@@ -29,6 +29,8 @@
         <!--用来测试resultMap-->
         <!--<mapper class="com.mapper.resultMap"/>-->
         <!--用来测试foreach-->
-        <mapper class="com.mapper.foreach" />
+        <!--<mapper class="com.mapper.foreach" />-->
+        <!--用来测试sql片段-->
+        <mapper class="com.mapper.sqlOutSide" />
     </mappers>
 </configuration>

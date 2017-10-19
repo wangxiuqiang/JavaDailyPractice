@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--借用foreach的方法和函数-->
+<mapper namespace="com.mapper.sqlOutSide">
+    <sql id="sqlId">
+        select * from Mybatisforeach where id = 2;
+    </sql>
+
+    <select id="query"  resultType="com.domain.Mybatisforeach" >
+        <include refid="sqlId"></include>
+
+    </select>
+</mapper>

@@ -23,7 +23,8 @@ public class foreachTest {
         int a[] = {1,3,5};
         List<Mybatisforeach> list = foreach.queryForeach(a);
         for(int i = 0 ; i < list.size(); i++){
-            System.out.println(list.get(i));
+            System.out.println(list.get(i).getId() + "\n" +list.get(i).getName() + "\n"
+            + list.get(i).getPassword()+ "\n");
         }
     }
 
