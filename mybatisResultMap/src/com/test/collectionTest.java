@@ -23,7 +23,7 @@ public class collectionTest {
         collection collection = sqlSession.getMapper(com.mapper.collection.class);
         teacher teacher = collection.queryCollectionTest();
         if(teacher != null ){
-            System.out.println(teacher.getList().get(2).getId() + "   " + teacher.getNamea() );
+            System.out.println(teacher.getList().get(0).getId() + "   " + teacher.getNamea() );
         }else{
             System.out.println("没有查到");
         }

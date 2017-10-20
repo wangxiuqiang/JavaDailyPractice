@@ -3,23 +3,49 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.collection">
+    <!--collection可以使用   另一种的使用方法可能和sql语句有关-->
+    <!--<resultMap id="collectionTest" type="teacher">-->
+        <!--<id column="id" property="ida"/>-->
+        <!--<result column="name" property="namea"/>-->
+        <!--<result column="password" property="passworda"/>-->
+        <!--<collection property="list" ofType="com.domain.Mybatisforeach" column="id" select="query">-->
+            <!--<id column="id" property="id"/>-->
+            <!--<result column="name" property="name"/>-->
+            <!--<result column="password" property="password"/>-->
+        <!--</collection>-->
+    <!--</resultMap>-->
+
+    <!--<select id="queryCollectionTest" resultMap="collectionTest" >-->
+        <!--select * from teacher  ;-->
+    <!--</select>-->
+
+    <!--第二个select中的id是collection中select中要用到的id-->
+    <!--<select id="query" resultType="Mybatisforeach"  >-->
+        <!--select * from Mybatisforeach  ;-->
+    <!--</select>-->
+
+
     <resultMap id="collectionTest" type="teacher">
-        <id column="id" property="ida"/>
-        <result column="name" property="namea"/>
-        <result column="password" property="passworda"/>
-        <collection property="list" ofType="com.domain.Mybatisforeach" column="id" select="query">
-            <id column="id" property="id"/>
-            <result column="name" property="name"/>
-            <result column="password" property="password"/>
-        </collection>
-
+         <id column="tea_id" property="ida"/>
+         <result column="tea_name" property="namea"/>
+         <result column="tea_password" property="passworda"/>
+         <collection property="list" ofType="com.domain.Mybatisforeach">
+                <id column="m_id" property="id"/>
+                <result column="m_name" property="name"/>
+                <result column="m_password" property="password"/>
+           </collection>
     </resultMap>
-
-    <select id="queryCollectionTest" resultMap="collectionTest" >
-        select * from teacher  ;
-    </select>
-    <select id="query" resultType="Mybatisforeach"  >
-        select * from Mybatisforeach  ;
+    <select id="queryCollectionTest" resultMap="collectionTest">
+        select
+        t.id AS tea_id ,
+        t.name AS tea_name,
+        t.password AS  tea_password,
+        m.id as m_id,
+        m.name as m_name,
+        m.password as m_password
+        from teacher t
+        left  join Mybatisforeach m on t.id = m.id
+        where t.id = 1;
     </select>
 
 </mapper>
