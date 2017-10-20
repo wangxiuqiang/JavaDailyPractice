@@ -31,8 +31,18 @@ public class Main {
      * @param args
      * @throws Exception
      */
+//    public static void main(String args[]) throws  Exception{
+//        sql sql = new sql();
+//        sql.doIt();
+//    }
+
+    /**
+     * 用来测试使用collection
+     * @param args
+     * @throws Exception
+     */
     public static void main(String args[]) throws  Exception{
-        sql sql = new sql();
-        sql.doIt();
+        collectionTest collectionTest = new collectionTest();
+        collectionTest.doItCollection();
     }
 }

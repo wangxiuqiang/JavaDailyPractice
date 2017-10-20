@@ -31,6 +31,8 @@
         <!--用来测试foreach-->
         <!--<mapper class="com.mapper.foreach" />-->
         <!--用来测试sql片段-->
-        <mapper class="com.mapper.sqlOutSide" />
+        <!--<mapper class="com.mapper.sqlOutSide" />-->
+        <!--用来测试collection-->
+        <mapper class="com.mapper.collection"/>
     </mappers>
 </configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.collection">
+    <resultMap id="collectionTest" type="teacher">
+        <id column="id" property="ida"/>
+        <result column="name" property="namea"/>
+        <result column="password" property="passworda"/>
+        <collection property="list" ofType="com.domain.Mybatisforeach" column="id" select="query">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="password" property="password"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryCollectionTest" resultMap="collectionTest" >
+        select * from teacher  ;
+    </select>
+    <select id="query" resultType="Mybatisforeach"  >
+        select * from Mybatisforeach  ;
+    </select>
+
+</mapper>
