@@ -37,6 +37,8 @@
                 <result column="m_password" property="password"/>
            </collection>
     </resultMap>
+
+    <!--sql语句查询出的内容的整体付给resultMap  -->
     <select id="queryCollectionTest" resultMap="collectionTest">
         select
         t.id AS tea_id ,

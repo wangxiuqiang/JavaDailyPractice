@@ -24,7 +24,9 @@
         <!--select * from Mybatisforeach  ;-->
     <!--</select>-->
 
-
+<!--另一种方法,用sql语句,   查询出来一个由别名组成的表,(不用别名也行) 然后进行resultMap的匹配,
+匹配成功,就可以输出.   resultMap中的type是返回的某个自定义的需求结果的类, collection中的ofType是
+在自定义类中的字段,表示关联的查询内容-->
     <resultMap id="collectionTest" type="teacher">
          <id column="tea_id" property="ida"/>
          <result column="tea_name" property="namea"/>
@@ -35,6 +37,8 @@
                 <result column="m_password" property="password"/>
            </collection>
     </resultMap>
+
+    <!--sql语句查询出的内容的整体付给resultMap  -->
     <select id="queryCollectionTest" resultMap="collectionTest">
         select
         t.id AS tea_id ,

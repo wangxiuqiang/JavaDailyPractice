@@ -41,8 +41,18 @@ public class Main {
      * @param args
      * @throws Exception
      */
+//    public static void main(String args[]) throws  Exception{
+//        collectionTest collectionTest = new collectionTest();
+//        collectionTest.doItCollection();
+//    }
+
+    /**
+     * 测试使用association
+     * @param args
+     * @throws Exception
+     */
     public static void main(String args[]) throws  Exception{
-        collectionTest collectionTest = new collectionTest();
-        collectionTest.doItCollection();
+       associationTest associationTest = new associationTest();
+       associationTest.doIt();
     }
 }

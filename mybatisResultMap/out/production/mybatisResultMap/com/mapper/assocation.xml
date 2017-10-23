@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.assocation">
+    <resultMap id="queryoneTo_one" type="com.domain.teacher">
+        <id column="id" property="ida" />
+        <association property="mybatisforeach" javaType="com.domain.Mybatisforeach" column="id" select="queryMy">
+        </association>
+    </resultMap>
+    <select id="query" resultMap="queryoneTo_one">
+        select *   from teacher t where id = 1;
+    </select>
+    <select  parameterType="int" id="queryMy" resultType="com.domain.Mybatisforeach" >
+        select * from Mybatisforeach where id = #{id};
+    </select>
+
+</mapper>
